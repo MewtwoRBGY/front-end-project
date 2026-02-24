@@ -1,0 +1,53 @@
+header,
+footer {
+    background-color: blue;
+}
+
+#intro {
+    background-color: blue;
+    padding: 10px;
+    margin: 30px;
+}
+
+#seasonal {
+    background-color: blueviolet;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+#about {
+    background-color: blue;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#recipelist {
+    background-color: blue;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#searchUI {
+    background-color: blueviolet;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 22px;
+}
+
+.recipefeat {
+    height: 150px;
+    width: 150px;
+}
+
+.recipephoto {
+    height: 200px;
+    width: 200px;
+}
+
+#aboutPhoto {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}

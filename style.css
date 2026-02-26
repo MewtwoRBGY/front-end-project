@@ -8,12 +8,29 @@ Color Palette:
 
 */
 
+<<<<<<< HEAD
 :root {
     --midnight-violet: #320A28;
     --crimson-violet: #511730;
     --reddish-brown: #8E443D;
     --toasted-almond: #CB9173;
     --light-gold: #E0D68A;
+=======
+body {
+    background-color: #320A28;
+}
+
+body,
+html {
+    margin: 0;
+}
+
+header,
+footer {
+    background-color: #511730;
+    padding: 5px;
+    width: 100%;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
 }
 
 header {
@@ -64,33 +81,90 @@ body {
 
 /* Page Sections */
 #intro {
+<<<<<<< HEAD
     background-color: var(--light-gold);
+=======
+    background-color: #8E443D;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 10px;
     margin: 30px;
 }
 
 #seasonal {
+<<<<<<< HEAD
     background-color: var(--crimson-violet);
+=======
+    background-color: #511730;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 20px;
     margin-top: 30px;
 }
 
 #about {
+<<<<<<< HEAD
     background-color: var(--light-gold);
+=======
+    background-color: #8E443D;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+#aboutFlex {
+    display: flex;
+}
+
+.featuredlist {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.resultsgrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.resultsgrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.recipelayout {
+    display: flex;
+    padding: 5px;
+    margin: 20px;
+}
+
 #recipelist {
+<<<<<<< HEAD
     background-color: var(--reddish-brown);
+=======
+    background-color: #320A28;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #searchUI {
+<<<<<<< HEAD
     background-color: var(--reddish-brown);
+=======
+    background-color: #511730;
+>>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 22px;
@@ -100,11 +174,13 @@ body {
 .recipefeat {
     height: 150px;
     width: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .recipephoto {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
 }
 
 #aboutPhoto {

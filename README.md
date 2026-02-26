@@ -19,6 +19,7 @@ Seamus Sommers
 -Presentation 2
 
 Pancake test from Taste of Home website
+Gigachad About Me Photo by Gemini
 Logo by Gemini Chats:
 https://gemini.google.com/share/12892021c7cc
 https://gemini.google.com/share/306756db9e18

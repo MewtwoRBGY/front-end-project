@@ -64,31 +64,19 @@ body {
 
 /* Page Sections */
 #intro {
-<<<<<<< HEAD
     background-color: var(--light-gold);
-=======
-    background-color: #8E443D;
->>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 10px;
     margin: 30px;
 }
 
 #seasonal {
-<<<<<<< HEAD
     background-color: var(--crimson-violet);
-=======
-    background-color: #511730;
->>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 20px;
     margin-top: 30px;
 }
 
 #about {
-<<<<<<< HEAD
     background-color: var(--light-gold);
-=======
-    background-color: #8E443D;
->>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -132,22 +120,14 @@ body {
 }
 
 #recipelist {
-<<<<<<< HEAD
     background-color: var(--reddish-brown);
-=======
-    background-color: #320A28;
->>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #searchUI {
-<<<<<<< HEAD
     background-color: var(--reddish-brown);
-=======
-    background-color: #511730;
->>>>>>> ba2f6f8fed0fed214ebe8ad6f2dfff3e558e85af
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 22px;

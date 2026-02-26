@@ -65,8 +65,19 @@ footer {
     align-content: center;
 }
 
-.resultslayout {
+.resultsgrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.recipelayout {
     display: flex;
+    padding: 5px;
+    margin: 20px;
 }
 
 #recipelist {
@@ -91,8 +102,8 @@ footer {
 }
 
 .recipephoto {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
 }
 
 #aboutPhoto {

@@ -8,45 +8,95 @@ Color Palette:
 
 */
 
-
-header,
-footer {
-    background-color: blue;
+:root {
+    --midnight-violet: #320A28;
+    --crimson-violet: #511730;
+    --reddish-brown: #8E443D;
+    --toasted-almond: #CB9173;
+    --light-gold: #E0D68A;
 }
 
+header {
+    background-color: var(--reddish-brown);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer {
+    background-color: var(--toasted-almond);
+}
+
+/*horizontal navigation bar*/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    display: inline-block;
+
+    
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--light-gold);
+    color: var(--crimson-violet);
+}
+
+body {
+    margin: 0;
+    scroll-padding-top: 80px;
+    font-family: 'EB Garamond', serif;
+}
+
+/* Page Sections */
 #intro {
-    background-color: blue;
+    background-color: var(--light-gold);
     padding: 10px;
     margin: 30px;
 }
 
 #seasonal {
-    background-color: blueviolet;
+    background-color: var(--crimson-violet);
     padding: 20px;
     margin-top: 30px;
 }
 
 #about {
-    background-color: blue;
+    background-color: var(--light-gold);
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #recipelist {
-    background-color: blue;
+    background-color: var(--reddish-brown);
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #searchUI {
-    background-color: blueviolet;
+    background-color: var(--reddish-brown);
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 22px;
 }
 
+/* Images */
 .recipefeat {
     height: 150px;
     width: 150px;

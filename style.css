@@ -8,40 +8,50 @@ Color Palette:
 
 */
 
+body {
+    background-color: #320A28;
+}
+
+body,
+html {
+    margin: 0;
+}
 
 header,
 footer {
-    background-color: blue;
+    background-color: #511730;
+    padding: 5px;
+    width: 100%;
 }
 
 #intro {
-    background-color: blue;
+    background-color: #8E443D;
     padding: 10px;
     margin: 30px;
 }
 
 #seasonal {
-    background-color: blueviolet;
+    background-color: #511730;
     padding: 20px;
     margin-top: 30px;
 }
 
 #about {
-    background-color: blue;
+    background-color: #8E443D;
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #recipelist {
-    background-color: blue;
+    background-color: #320A28;
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #searchUI {
-    background-color: blueviolet;
+    background-color: #511730;
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 22px;

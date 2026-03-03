@@ -6,6 +6,101 @@ Color Palette:
 - Toasted Almond: #ACB9173
 - Light Gold: #E0D68A
 
+Task 3:
+Goal: style the site for a visually appealing interface.
+- use CSS to style navigation bar, recipe cards, and overall layout.
+- ensure responsive design by adding media queries for mobile devices.
+- implement a color scheme and typography that consists with the wireframe.
+
+Task 5: 
+Goal: adding smooth transistions and inter activity
+- use CSS animations for hover effects on buttons and recipe cards.
+- implement smooth scrolling for navigation.
+- add feeback animations for buttons (i.e., a "Favorite button toggle)
+
+==========
+Example for using media queries for responsive design: (by Eljay)
+with screen smaller than 850pz + responsive
+@media (max-width: 850px) {
+    .hero-section .text h2 {
+        font-size: 35px;
+    }
+}
+
+
+- puts image on top of text + responsive 
+@media (max-width: 740px) { 
+    /*section 1: hero
+    .hero-section {
+        flex-direction: column-reverse;
+    }
+
+    /*section 3 + 4
+    .project-card {
+        width: 100%;
+    }
+
+    /*section 5: contact
+    .contact-section .group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    /*navbar
+    nav {
+        padding: 0 20px; 
+    }
+
+    nav .right a {
+        font-size: 24px;
+    }
+
+    nav .right a:last-child {
+        color: var(--background-color);
+        background-color: transparent;
+        padding: 0; 
+    }
+
+    nav .right a span {
+        display: none;
+
+    }
+
+    /* section 1: hero 
+    .hero-section {
+        padding: 0 20px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 28px;
+    }
+
+    /*section 2: skills
+    .skills-section {
+        padding: 0 20px;
+    }
+
+    .skills-section .cells .cell {
+        font-style: 16px;
+    }
+
+    /*section 3 + 4
+    .project-section {
+        padding: 0 20px;
+    }
+
+    /*section 5: contact
+    .contact-section{
+        padding: 0 20px;
+    }
+
+    footer {
+        padding: 20px;
+    }
+}
+
+
 */
 
 body,

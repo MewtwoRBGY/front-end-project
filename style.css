@@ -264,6 +264,116 @@ img:hover {
     width: 90px;
 }
 
+/*recipe cards: the layout of cards we have int he wireframe*/
+
+.recipe-card {
+    background-color: var(--toasted-almond);
+    border: 2px solid var(--crimson-violet);
+    border-radius: 2px;
+    width: 320px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/*card header*/
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--crimson-violet);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.card-number {
+    font-style: 14px;
+    color: var(--crimson-violet);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/*the little heart icon - we'll prolly replace for js stuff*/
+.card-heart {
+    font-style: 20px;
+    color: var(--crimson-violet);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.card-heart:hover {
+    color: #c0392b;
+}
+
+.cardtitle {
+    margin: 0;
+    font-style: 16px;
+    color: var(--midnight-violet);
+    flex-grow: 1;
+    text-align: center;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.card-info ul {
+    list-style-type: disc;
+    padding-left: 18px;
+    margin: 0 0 10px 0;
+    font-style: 14px;
+    color: var(--midnight-violet)
+}
+
+.card-info ul li {
+    margin-bottom: 5px;
+}
+
+
+/*card tags for info column*/
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.tag {
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    font-style: 12px;
+    border-radius: 3px;
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+.recipe-card .recipefeat {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--crimson-violet);
+    flex-shrink: 0;
+}
+
 /*media queries (please keep them at the very bottom
 
 the breakpoints are:

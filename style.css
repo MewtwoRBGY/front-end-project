@@ -313,7 +313,7 @@ img:hover {
     color: #c0392b;
 }
 
-.cardtitle {
+.card-title {
     margin: 0;
     font-style: 16px;
     color: var(--midnight-violet);

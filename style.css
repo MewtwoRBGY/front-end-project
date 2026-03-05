@@ -212,15 +212,6 @@ img:hover {
     align-content: center;
 }
 
-.resultsgrid {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-}
-
 .recipelayout {
     display: flex;
     padding: 5px;
@@ -271,4 +262,123 @@ img:hover {
 #logo {
     height: 135px;
     width: 90px;
+}
+
+/*media queries (please keep them at the very bottom
+
+the breakpoints are:
+
+850px: for landscape tablets or small desktop screens
+740px: for portrait tablets or large phones
+600px: for small phones
+*/
+
+/*850px media query*/
+@media (max-width: 850px) {
+
+    nav ul li a {
+        font-style: 14px;
+        padding: 6px 10px;
+    }
+
+    /*featured lists goes from 3 columns to 2 columns*/
+    .featuredlist {
+        grid-template-columns: auto auto;
+    }
+
+    .resultsgrid {
+        grid-template-columns: auto auto;
+    }
+}
+
+/*740px media query*/
+@media (max-width: 740px) {
+
+    /*about section where the photo stacks above the text*/
+    #aboutFlex {
+        flex-direction: column;
+    }
+
+    #featuredFlex {
+        flex-direction: column;
+    }
+
+    .recipelayout {
+        flex-direction: column;
+    }
+
+    .featuredlist {
+        grid-template-columns: auto;
+    }
+
+    .resultsgrid {
+        grid-template-columns: auto;
+    }
+
+    /*intro/about sections: adjusting margins so stuff doesn't feel cramped*/
+    #intro {
+        margin: 20px;
+    }
+
+    #about {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+/*600px media query*/
+@media (max-width: 600px) {
+
+    /*navigation bar: reducing gaps so links don't go over each other*/
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-style: 14px;
+        padding: 4px 8px;
+    }
+
+    header {
+        padding: 8px 10px;
+    }
+
+    #intro {
+        margin: 10px 5px;
+    }
+
+    #seasonal {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    #about {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    #recipelist {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    .recipefeat {
+        height: 120px;
+        width: 120px;
+    }
+
+    .recipephoto {
+        height: 120px;
+        width: 120px;
+    }
+
+    #aboutPhoto {
+        height: 120px;
+        width: 120px;
+    }
+
+    footer {
+        font-style: 14px;
+        padding: 10px;
+    }
 }

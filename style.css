@@ -196,20 +196,20 @@ img:hover {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
+    grid-template-columns: repeat(2, 1fr); /*adjusts the column count for the recipe cards*/
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .resultsgrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .recipelayout {
@@ -270,9 +270,13 @@ img:hover {
     background-color: var(--toasted-almond);
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
-    width: 320px;
+    width: 100%;
+    min-height: 150px;
+    box-sizing: border-box;
     padding: 12px;
     margin: 10px;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -371,17 +375,19 @@ a.card-link .recipe-card:hover {
 .tag {
     background-color: var(--crimson-violet);
     color: var(--light-gold);
-    font-style: 12px;
+    font-size: 12px;
     border-radius: 3px;
     padding: 2px 6px;
     border-radius: 12px;
 }
 
 .recipe-card .recipefeat {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 5px;
+    align-self: center;
+    margin: 0;
     border: 1px solid var(--crimson-violet);
     flex-shrink: 0;
 }
@@ -405,11 +411,11 @@ the breakpoints are:
 
     /*featured lists goes from 3 columns to 2 columns*/
     .featuredlist {
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .resultsgrid {
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -430,11 +436,11 @@ the breakpoints are:
     }
 
     .featuredlist {
-        grid-template-columns: auto;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .resultsgrid {
-        grid-template-columns: auto;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     /*intro/about sections: adjusting margins so stuff doesn't feel cramped*/
@@ -497,6 +503,19 @@ the breakpoints are:
     #aboutPhoto {
         height: 120px;
         width: 120px;
+    }
+
+    .featuredlist {
+        grid-template-columns: 1fr;
+    }
+
+    .resultsgrid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-body {
+        flex-direction: column;
+        align-items: center;
     }
 
     footer {

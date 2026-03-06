@@ -196,7 +196,7 @@ img:hover {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     justify-content: center;
@@ -205,7 +205,7 @@ img:hover {
 
 .resultsgrid {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     justify-content: center;
@@ -282,6 +282,18 @@ img:hover {
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+a.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+a.card-link .recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
 
 /*card header*/
 .card-header {
@@ -294,7 +306,7 @@ img:hover {
 }
 
 .card-number {
-    font-style: 14px;
+    font-size: 14px;
     color: var(--crimson-violet);
     font-weight: bold;
     white-space: nowrap;
@@ -302,7 +314,7 @@ img:hover {
 
 /*the little heart icon - we'll prolly replace for js stuff*/
 .card-heart {
-    font-style: 20px;
+    font-size: 20px;
     color: var(--crimson-violet);
     cursor: pointer;
     line-height: 1;
@@ -315,7 +327,7 @@ img:hover {
 
 .card-title {
     margin: 0;
-    font-style: 16px;
+    font-size: 16px;
     color: var(--midnight-violet);
     flex-grow: 1;
     text-align: center;
@@ -336,10 +348,10 @@ img:hover {
 }
 
 .card-info ul {
-    list-style-type: disc;
+    list-style: disc;
     padding-left: 18px;
     margin: 0 0 10px 0;
-    font-style: 14px;
+    font-size: 14px;
     color: var(--midnight-violet)
 }
 
@@ -387,7 +399,7 @@ the breakpoints are:
 @media (max-width: 850px) {
 
     nav ul li a {
-        font-style: 14px;
+        font-size: 14px;
         padding: 6px 10px;
     }
 
@@ -445,7 +457,7 @@ the breakpoints are:
     }
 
     nav ul li a {
-        font-style: 14px;
+        font-size: 14px;
         padding: 4px 8px;
     }
 
@@ -488,7 +500,7 @@ the breakpoints are:
     }
 
     footer {
-        font-style: 14px;
+        font-size: 14px;
         padding: 10px;
     }
 }

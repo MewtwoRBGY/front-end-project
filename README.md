@@ -5,18 +5,21 @@ Joseph Racca
 -HTML
 -CSS, flex boxes
 -Presentation 3
+-Recipe Details Page styling
 
 Eljay Jimenez
 -Sitemap
 -Slides
 -CSS, Navbar and color scheme
 -Presentation 1
+-Recipe Cards
 
 Seamus Sommers
 -Wireframe
 -Slides
 -Slide images
 -Presentation 2
+-Animations
 
 Pancake test from Taste of Home website
 Gigachad About Me Photo by Gemini

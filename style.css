@@ -307,7 +307,15 @@ img:hover {
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     perspective: 1000px;
-    cursor: pointer;
+    cursor:default;
+}
+
+.image-flipper-container {
+    width: 120px;  
+    height: 120px;  
+    cursor: help;
+    perspective: 1000px;
+
 }
 
 .card-inner {
@@ -318,7 +326,7 @@ img:hover {
     transform-style: preserve-3d;
   }
 
-  .recipe-card:hover .card-inner {
+  .image-flipper-container:hover .card-inner {
     transform: rotateY(180deg);
   }
 
@@ -327,18 +335,14 @@ img:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 12px;
   backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .card-front {
     z-index: 2; /* puts front on top at first */
-    display: block; /* layout */
+    transform: rotateY(0deg);
 }
   
   .card-back {
@@ -346,7 +350,19 @@ img:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
   }
+
+  .card-back p{
+  background-color: var(--crimson-violet);
+  color: var(--light-gold);
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
 
 .recipe-card:hover {
     transform: translateY(-5px);
@@ -452,10 +468,12 @@ a.card-link .recipe-card:hover {
     border-radius: 12px;
 }
 
+
 .recipe-card .recipefeat {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
     border-radius: 5px;
     align-self: center;
     margin: 0;

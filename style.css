@@ -298,7 +298,7 @@ img:hover {
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
     width: 100%;
-    min-height: 150px;
+    height: 250px;
     box-sizing: border-box;
     padding: 12px;
     margin: 10px;
@@ -306,7 +306,47 @@ img:hover {
     justify-content: space-between;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    perspective: 1000px;
+    cursor: pointer;
 }
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .recipe-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.card-front {
+    z-index: 2; /* puts front on top at first */
+    display: block; /* layout */
+}
+  
+  .card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 .recipe-card:hover {
     transform: translateY(-5px);

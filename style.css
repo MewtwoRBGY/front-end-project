@@ -113,7 +113,12 @@ html {
     --crimson-violet: #511730;
     --reddish-brown: #8E443D;
     --toasted-almond: #CB9173;
-    --light-gold: #E0D68A;
+    --light-gold: #fff8bf;
+    --tan: #e9c4b1;
+}
+
+body {
+    background-color: var(--tan);
 }
 
 header {
@@ -172,7 +177,6 @@ img:hover {
 /* Page Sections */
 
 #intro {
-    background-color: var(--light-gold);
     padding: 10px;
     margin: 30px;
 }
@@ -184,7 +188,6 @@ img:hover {
 }
 
 #about {
-    background-color: var(--light-gold);
     padding: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -196,7 +199,8 @@ img:hover {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /*adjusts the column count for the recipe cards*/
+    grid-template-columns: repeat(2, 1fr);
+    /*adjusts the column count for the recipe cards*/
     gap: 20px;
     padding: 20px;
     width: 100%;
@@ -264,6 +268,7 @@ img:hover {
     width: 90px;
 }
 
+
 /*recipe cards: the layout of cards we have int he wireframe*/
 
 .recipe-card {
@@ -300,6 +305,7 @@ a.card-link .recipe-card:hover {
 
 
 /*card header*/
+
 .card-header {
     display: flex;
     align-items: center;
@@ -316,7 +322,9 @@ a.card-link .recipe-card:hover {
     white-space: nowrap;
 }
 
+
 /*the little heart icon - we'll prolly replace for js stuff*/
+
 .card-heart {
     font-size: 20px;
     color: var(--crimson-violet);
@@ -365,6 +373,7 @@ a.card-link .recipe-card:hover {
 
 
 /*card tags for info column*/
+
 .card-tags {
     display: flex;
     flex-wrap: wrap;
@@ -392,6 +401,7 @@ a.card-link .recipe-card:hover {
     flex-shrink: 0;
 }
 
+
 /*media queries (please keep them at the very bottom
 
 the breakpoints are:
@@ -401,123 +411,105 @@ the breakpoints are:
 600px: for small phones
 */
 
-/*850px media query*/
-@media (max-width: 850px) {
 
+/*850px media query*/
+
+@media (max-width: 850px) {
     nav ul li a {
         font-size: 14px;
         padding: 6px 10px;
     }
-
     /*featured lists goes from 3 columns to 2 columns*/
     .featuredlist {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .resultsgrid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/*740px media query*/
-@media (max-width: 740px) {
 
+/*740px media query*/
+
+@media (max-width: 740px) {
     /*about section where the photo stacks above the text*/
     #aboutFlex {
         flex-direction: column;
     }
-
     #featuredFlex {
         flex-direction: column;
     }
-
     .recipelayout {
         flex-direction: column;
     }
-
     .featuredlist {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .resultsgrid {
         grid-template-columns: repeat(2, 1fr);
     }
-
     /*intro/about sections: adjusting margins so stuff doesn't feel cramped*/
     #intro {
         margin: 20px;
     }
-
     #about {
         margin-top: 15px;
         margin-bottom: 15px;
     }
 }
 
-/*600px media query*/
-@media (max-width: 600px) {
 
+/*600px media query*/
+
+@media (max-width: 600px) {
     /*navigation bar: reducing gaps so links don't go over each other*/
     nav ul {
         gap: 10px;
     }
-
     nav ul li a {
         font-size: 14px;
         padding: 4px 8px;
     }
-
     header {
         padding: 8px 10px;
     }
-
     #intro {
         margin: 10px 5px;
     }
-
     #seasonal {
         margin-top: 10px;
         padding: 10px;
     }
-
     #about {
         margin: 10px 5px;
         padding: 10px;
     }
-
     #recipelist {
         margin: 10px 5px;
         padding: 10px;
     }
-
     .recipefeat {
         height: 120px;
         width: 120px;
     }
-
     .recipephoto {
         height: 120px;
         width: 120px;
     }
-
     #aboutPhoto {
         height: 120px;
         width: 120px;
     }
-
     .featuredlist {
         grid-template-columns: 1fr;
     }
-
     .resultsgrid {
         grid-template-columns: 1fr;
     }
-
     .card-body {
         flex-direction: column;
         align-items: center;
     }
-
     footer {
         font-size: 14px;
         padding: 10px;

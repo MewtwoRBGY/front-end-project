@@ -313,7 +313,9 @@ img:hover {
 .image-flipper-container {
     width: 120px;  
     height: 120px;  
+    cursor: help;
     perspective: 1000px;
+
 }
 
 .card-inner {
@@ -324,7 +326,7 @@ img:hover {
     transform-style: preserve-3d;
   }
 
-  .recipe-card:hover .card-inner {
+  .image-flipper-container:hover .card-inner {
     transform: rotateY(180deg);
   }
 
@@ -335,6 +337,7 @@ img:hover {
   height: 100%;
   backface-visibility: hidden;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .card-front {
@@ -351,6 +354,15 @@ img:hover {
     text-align: center;
     padding: 5px;
   }
+
+  .card-back p{
+  background-color: var(--crimson-violet);
+  color: var(--light-gold);
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
 
 .recipe-card:hover {
     transform: translateY(-5px);

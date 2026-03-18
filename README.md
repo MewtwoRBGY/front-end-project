@@ -29,4 +29,4 @@ Chats:
 https://gemini.google.com/share/12892021c7cc
 https://gemini.google.com/share/306756db9e18
 https://gemini.google.com/share/434bc826b11c for text
-https://gemini.google.com/app/b9b6c624dd40be75 Nano Logo
+https://gemini.google.com/share/f8ab23ca2399 Nano Logo

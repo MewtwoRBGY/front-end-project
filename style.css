@@ -214,6 +214,14 @@ nav ul li a:hover {
     color: var(--light-gold);
 }
 
+.navbutton:hover {
+    background-color: var(--reddish-brown);
+}
+
+.navbutton a:hover {
+    color: rgb(255, 153, 0);
+}
+
 body {
     margin: 0;
     scroll-padding-top: 80px;
@@ -222,6 +230,14 @@ body {
 
 img:hover {
     -webkit-filter: saturate(200%);
+}
+
+.centeredtext {
+    text-align: center;
+}
+
+blockquote {
+    max-width: 70%;
 }
 
 

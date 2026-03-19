@@ -342,7 +342,7 @@ blockquote {
     background-color: var(--toasted-almond);
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
-    width: 100%;
+    width: 250px;
     height: 250px;
     box-sizing: border-box;
     padding: 12px;
@@ -392,11 +392,7 @@ blockquote {
 
 .card-back {
     transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 12px;
-    text-align: center;
     padding: 5px;
 }
 
@@ -409,6 +405,9 @@ blockquote {
     border-radius: 12px;
 }
 
+.recipe-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
 .recipe-card:hover {
     transform: translateY(-5px);
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
@@ -432,6 +431,8 @@ a.card-link .recipe-card:hover {
 .card-header {
     display: flex;
     align-items: center;
+    justify-content: left;
+
     gap: 10px;
     border-bottom: 1px solid var(--crimson-violet);
     padding-bottom: 10px;
@@ -514,13 +515,12 @@ a.card-link .recipe-card:hover {
 }
 
 .recipe-card .recipefeat {
-    width: 100%;
-    height: 100%;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
-    display: block;
+    display: block; /*  for margin auto to work */
+    margin: 10px auto; /* 10px top/bottom, 'auto' centers it left/right */
     border-radius: 5px;
-    align-self: center;
-    margin: 0;
     border: 1px solid var(--crimson-violet);
     flex-shrink: 0;
 }

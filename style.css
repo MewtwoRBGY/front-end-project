@@ -145,6 +145,35 @@ hr {
     padding: 0;
 }
 
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: var(--toasted-almond);
+    padding: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+th:hover,
+td:hover {
+    color: var(--light-gold);
+}
+
+tfoot td {
+    background-color: var(--tan);
+    border: 0px;
+    text-align: center;
+}
+
+tfoot td:hover {
+    color: black;
+}
+
+th {
+    background-color: var(--reddish-brown);
+}
+
 
 /*horizontal navigation bar*/
 
@@ -185,6 +214,14 @@ nav ul li a:hover {
     color: var(--light-gold);
 }
 
+.navbutton:hover {
+    background-color: var(--reddish-brown);
+}
+
+.navbutton a:hover {
+    color: rgb(255, 153, 0);
+}
+
 body {
     margin: 0;
     scroll-padding-top: 80px;
@@ -193,6 +230,14 @@ body {
 
 img:hover {
     -webkit-filter: saturate(200%);
+}
+
+.centeredtext {
+    text-align: center;
+}
+
+blockquote {
+    max-width: 70%;
 }
 
 
@@ -307,15 +352,14 @@ img:hover {
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     perspective: 1000px;
-    cursor:default;
+    cursor: default;
 }
 
 .image-flipper-container {
-    width: 120px;  
-    height: 120px;  
+    width: 120px;
+    height: 120px;
     cursor: help;
     perspective: 1000px;
-
 }
 
 .card-inner {
@@ -324,40 +368,41 @@ img:hover {
     height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-  }
+}
 
-  .image-flipper-container:hover .card-inner {
+.image-flipper-container:hover .card-inner {
     transform: rotateY(180deg);
-  }
+}
 
-  .card-front,
+.card-front,
 .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 5px;
-  cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .card-front {
-    z-index: 2; /* puts front on top at first */
+    z-index: 2;
+    /* puts front on top at first */
     transform: rotateY(0deg);
 }
-  
-  .card-back {
+
+.card-back {
     transform: rotateY(180deg);
     font-size: 12px;
     padding: 5px;
-  }
+}
 
-  .card-back p{
-  background-color: var(--crimson-violet);
-  color: var(--light-gold);
-  font-size: 12px;
-  border-radius: 3px;
-  padding: 2px 6px;
-  border-radius: 12px;
+.card-back p {
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 2px 6px;
+    border-radius: 12px;
 }
 
 .recipe-card:hover .card-inner {
@@ -468,7 +513,6 @@ a.card-link .recipe-card:hover {
     padding: 2px 6px;
     border-radius: 12px;
 }
-
 
 .recipe-card .recipefeat {
     width: 180px;

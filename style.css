@@ -266,9 +266,9 @@ blockquote {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /*adjusts the column count for the recipe cards*/
-    gap: 20px;
+    gap: 8px;
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -342,8 +342,8 @@ blockquote {
     background-color: var(--toasted-almond);
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     box-sizing: border-box;
     padding: 12px;
     margin: 10px;
@@ -381,8 +381,10 @@ blockquote {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 5px;
+    
     cursor: pointer;
 }
+
 
 .card-front {
     z-index: 2;
@@ -481,6 +483,7 @@ a.card-link .recipe-card:hover {
     flex-direction: column;
     flex: 1;
     justify-content: space-between;
+    height: 100%;
 }
 
 .card-info ul {
@@ -500,9 +503,10 @@ a.card-link .recipe-card:hover {
 
 .card-tags {
     display: flex;
+    justify-content: bottom;
     flex-wrap: wrap;
     gap: 5px;
-    margin-top: 8px;
+    margin-top: auto;
 }
 
 .tag {

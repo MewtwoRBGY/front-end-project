@@ -381,7 +381,8 @@ blockquote {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 5px;
-    
+    display: flex;          
+    flex-direction: column;
     cursor: pointer;
 }
 
@@ -434,7 +435,6 @@ a.card-link .recipe-card:hover {
     display: flex;
     align-items: center;
     justify-content: left;
-
     gap: 10px;
     border-bottom: 1px solid var(--crimson-violet);
     padding-bottom: 10px;
@@ -476,6 +476,9 @@ a.card-link .recipe-card:hover {
     justify-content: space-between;
     align-items: flex-start;
     gap: 10px;
+    flex-direction: column; 
+    flex-grow: 1;         
+    padding-bottom: 5px;
 }
 
 .card-info {
@@ -484,6 +487,7 @@ a.card-link .recipe-card:hover {
     flex: 1;
     justify-content: space-between;
     height: 100%;
+    flex-grow: 1;
 }
 
 .card-info ul {
@@ -502,6 +506,8 @@ a.card-link .recipe-card:hover {
 /*card tags for info column*/
 
 .card-tags {
+    border-top: 1px solid var(--crimson-violet);
+    padding-top: 10px;
     display: flex;
     justify-content: bottom;
     flex-wrap: wrap;

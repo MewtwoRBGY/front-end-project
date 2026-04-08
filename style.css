@@ -649,3 +649,22 @@ the breakpoints are:
         padding: 10px;
     }
 }
+
+/*recipelist.html card fixes*/
+.resultsgrid .card-body {
+    flex-direction: row;
+    align-items: center;
+}
+
+.resultsgrid .recipe-card {
+    height: auto;
+    width: 100%;
+    min-height: 200px;
+}
+
+.resultsgrid .recipe-card .recipefeat {
+    height: 120px;
+    width: 120px;
+    flex-shrink: 0;
+    margin: 0;
+}

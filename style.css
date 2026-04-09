@@ -689,3 +689,7 @@ the breakpoints are:
     margin-top: 3px;
 
 }
+
+.hidden {
+   display: none; 
+}

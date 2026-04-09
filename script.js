@@ -148,3 +148,21 @@ taskMake.addEventListener('click', addTask);
 //making the blue print for elements of the to do list 
 
 
+//to toggle on and off th elist logic
+
+//  the button and the content div
+const toggleBtn = document.getElementById('toggleBtn');
+const todoContent = document.getElementById('todoContent');
+
+toggleBtn.addEventListener('click', function() {
+
+// default to hidden, and flips to be on or off it when hit
+todoContent.classList.toggle('hidden'); 
+    
+// checks if it has the hidden class or no, and swaps the buttton name accordingly
+if (todoContent.classList.contains('hidden')) {
+    toggleBtn.textContent = "Show List";
+} else {
+    toggleBtn.textContent = "Hide List";
+}
+});

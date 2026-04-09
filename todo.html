@@ -13,10 +13,12 @@
 <div class = "nav">
 
     <h1>To-Do List</h1>
+    <button id="toggleBtn">Show List</button>
     <hr>
 
+    <div id="todoContent" class="hidden">
     <form action="/action_page.php">
-        <lable for="fname">Task name:</lable>
+        <label for="fname">Task name:</label>
         <br>
         <input id="WriteTask" type="text" name="WriteTask" value="Example task">
         <input id="CreateTask" type="submit" value="Create"><br>
@@ -25,12 +27,13 @@
     <div id="TaskDiv">
       <h4 id = "NoTasks">You completed all your tasks!</h4>
     </div>
-
-
+  </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 

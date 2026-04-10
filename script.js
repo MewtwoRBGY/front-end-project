@@ -1,4 +1,5 @@
-/*function makeCard() {
+//let masterItems = []; 
+/*function makeCards() {
     const tbody = document.getElementByID('featuredlist');
     if (!tbody) return;
 
@@ -18,22 +19,22 @@
             <
             div class = "card-header" >
             <
-            span class = "card-number" > No .1 < /span> <
+            span class = "card-number" > No. $(item.id) < /span> <
         span class = "card-heart" > & #9825;</span>
-                            <h3 class= "card-title" > Pancakes < /h3> < /
+                            <h3 class= "card-title" > $(item.name) < /h3> < /
             div >
 
             <
-            img src = "pancaketest.jpg"
+            img src = "$(item.images[0])"
         alt = "recipe"
         class = "recipefeat" >
 
             <
             div class = "card-tags" >
             <
-            span class = "tag" > Season < /span> <
-        span class = "tag" > Meal Type < /span> <
-        span class = "tag" > Serves: 4 < /span> < /
+            span class = "tag" > $(item.season) < /span> <
+        span class = "tag" > $(item.cuisine) < /span> <
+        span class = "tag" > Prep Time: $(item.prep_time) < /span> < /
             div >
 
             <
@@ -43,9 +44,9 @@
             <
             div class = "card-header" >
             <
-            span class = "card-number" > No .1 < /span> <
+            span class = "card-number" > No. $(item.id) < /span> <
         span class = "card-heart" > & #9825;</span>
-                                            <h3 class= "card-title" > Pancakes < /h3> < /
+                                            <h3 class= "card-title" > $(item.name) < /h3> < /
             div >
 
             <
@@ -55,14 +56,14 @@
             <
             ul >
             <
-            li > Approximate time to complete: 10 minutes < /li> <
-        li > Required ingredients: flour, eggs, milk, sugar, baking powder < /li> < /
+            li > Approximate time to complete: $(item.prep_time) < /li> <
+        li > Required ingredients: $(item.ingredients) < /li> < /
             ul > <
             div class = "card-tags" >
             <
-            span class = "tag" > Season < /span> <
-        span class = "tag" > Meal Type < /span> <
-        span class = "tag" > Serves: 4 < /span> < /
+            span class = "tag" > $(item.season) < /span> <
+        span class = "tag" > $(item.cuisine) < /span> <
+        span class = "tag" > Prep Time: $(item.prep_time) < /span> < /
             div > <
             /div> < /
             div > <
@@ -73,6 +74,16 @@
     });
     tbody.innerHTML = html;
 }*/
+
+/*
+    fetch("./json/winter_recipes.json")
+        .then(res => res.json())
+        .then(data => {
+            masterItems = data; // save JSON into the global variable
+            makeCards();      // draws table for the first time
+        })
+        .catch(err => console.error("Could not load table1.json:", err));
+*/
 
 console.log("H3110 W0r1d");
 /*TO-DO LOGIC*/

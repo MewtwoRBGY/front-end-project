@@ -693,3 +693,296 @@ the breakpoints are:
 .hidden {
    display: none; 
 }
+
+
+/*
+======
+
+======
+*/
+
+/* nav button that opens the timer */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px; /* prevents button from hitting the edge */
+}
+
+.timer-nav-btn {
+    margin-left: 16px;
+    margin-right: 14px; /* accounts for the cube's right face sticking out */
+    font-size: 13px; /* slightly smaller so it fits comfortably */
+    padding: 0.4em 0.8em;
+}
+ 
+#timer-window {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    background: #fff8bf;
+    border: 3px solid var(--crimson-violet);
+    border-radius: 6px;
+    box-shadow: 8px 8px 0px var(--midnight-violet);
+    z-index: 9999;
+    user-select: none;
+    transition: box-shadow 0.2s ease;
+}
+ 
+#timer-window.dragging {
+    box-shadow: 14px 14px 0px var(--midnight-violet);
+    opacity: 0.93;
+}
+ 
+/* timer title bar */
+#timer-titlebar {
+    background: var(--crimson-violet);
+    color: var(--light-gold);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+    border-radius: 3px 3px 0 0;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+ 
+#timer-titlebar:active { cursor: grabbing; }
+ 
+#titlebar-controls {
+    display: flex;
+    gap: 6px;
+}
+ 
+#titlebar-controls button {
+    background: var(--reddish-brown);
+    color: var(--light-gold);
+    border: 1px solid var(--light-gold);
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    font-family: monospace;
+    padding: 0;
+}
+ 
+#titlebar-controls button:hover {
+    background: var(--light-gold);
+    color: var(--crimson-violet);
+}
+ 
+#timer-body {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+ 
+/* timer messages display font */
+#timer-message {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--crimson-violet);
+    text-align: center;
+    min-height: 22px;
+    transition: opacity 0.25s ease;
+}
+ 
+#timer-display {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--midnight-violet);
+    padding: 14px 22px;
+    border-radius: 6px;
+    border: 2px solid var(--crimson-violet);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+}
+ 
+.time-segment {
+    width: 72px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--light-gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 3px;
+    -moz-appearance: textfield;
+}
+ 
+.time-segment::-webkit-outer-spin-button,
+.time-segment::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+.time-segment:focus {
+    background: rgba(255,255,255,0.07);
+    border-radius: 4px;
+    color: #fff8bf;
+}
+ 
+/* glowing effect */
+.time-segment.running {
+    color: #ffdd55;
+    text-shadow: 0 0 10px rgba(255, 210, 60, 0.7);
+}
+ 
+.time-sep {
+    color: var(--light-gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+ 
+#timer-controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+ 
+/* cube buttons - same structure as Uiverse.io by gagan-gv */
+.btn {
+    display: block;
+    padding: 0.55em 1em;
+    background: transparent;
+    outline: none;
+    border: 0;
+    color: var(--crimson-violet);
+    letter-spacing: 0.1em;
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+}
+ 
+.cube { 
+    position: relative; 
+    transition: all 0.5s; 
+}
+ 
+/* top face of the 3D cube */
+.cube .bg-top {
+    position: absolute;
+    height: 10px;
+    background: var(--reddish-brown);
+    bottom: 100%;
+    left: 5px;
+    right: -5px;
+    transform: skew(-45deg, 0);
+    margin: 0;
+    transition: all 0.4s;
+}
+ 
+.cube .bg-top .bg-inner { bottom: 0; }
+ 
+/* front face */
+.cube .bg {
+    position: absolute;
+    left: 0; bottom: 0; top: 0; right: 0;
+    background: var(--reddish-brown);
+    transition: all 0.4s;
+}
+ 
+/* right face */
+.cube .bg-right {
+    position: absolute;
+    background: var(--reddish-brown);
+    top: -5px;
+    z-index: 0;
+    bottom: 5px;
+    width: 10px;
+    left: 100%;
+    transform: skew(0, -45deg);
+    transition: all 0.4s;
+}
+ 
+.cube .bg-right .bg-inner { left: 0; }
+ 
+/* inner faces for hover color change */
+.cube .bg-inner {
+    background: var(--light-gold);
+    position: absolute;
+    left: 2px; right: 2px; top: 2px; bottom: 2px;
+}
+ 
+.cube .text { position: relative; transition: all 0.4s; }
+ 
+/* hover effects */
+.cube:hover .bg-inner { 
+    background: var(--crimson-violet); 
+    transition: all 0.4s; 
+}
+
+.cube:hover .text { 
+    color: var(--light-gold); 
+    transition: all 0.4s; 
+}
+
+.cube:hover .bg-right, .cube:hover .bg, .cube:hover .bg-top { 
+    background: var(--midnight-violet);
+}
+ 
+.cube:active { 
+    z-index: 9999; 
+    animation: cubeBounce 0.1s linear; 
+}
+ 
+@keyframes cubeBounce {
+    50% { transform: scale(0.9); }
+}
+ 
+/* progress bar */
+#progress-container {
+    width: 100%;
+    height: 10px;
+    background: var(--toasted-almond);
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--crimson-violet);
+}
+ 
+#progress-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--midnight-violet), var(--crimson-violet), var(--reddish-brown), var(--light-gold));
+    border-radius: 5px;
+}
+ 
+/* minimized state */
+#timer-window.minimized #timer-body { display: none; }
+#timer-window.minimized { box-shadow: 4px 4px 0px var(--midnight-violet); }
+ 
+/* done flash animation when time is up! */
+@keyframes doneFlash {
+    0%, 100% { 
+        border-color: var(--crimson-violet); 
+        box-shadow: 8px 8px 0px var(--midnight-violet); 
+    }
+    50% { 
+        border-color: var(--light-gold); 
+        box-shadow: 0 0 24px var(--light-gold); 
+    }
+}
+ 
+#timer-window.done { animation: doneFlash 0.5s ease-in-out 6; }
+

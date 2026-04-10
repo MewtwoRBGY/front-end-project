@@ -18,6 +18,13 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="recipelist.html">Recipes</a></li>
             </ul>
+
+            <button class="btn cube timer-nav-btn" id="open-timer-btn" type="button">
+                <div class="bg-top"><div class="bg-inner"></div></div>
+                <div class="bg-right"><div class="bg-inner"></div></div>
+                <div class="bg"><div class="bg-inner"></div></div>
+                <div class="text">⏲️ Cook Timer</div>
+            </button>
         </nav>
     </header>
 
@@ -25,6 +32,68 @@
         <button class="navbutton">
             <a href="index.html" title="Homepage">Go Home</a>
         </button>
+
+        
+<!-- floating draggable timer window -->
+     <div id="timer-window" style="display:none;">
+
+        <!-- title bar - grab and drag from here -->
+        <div id="timer-titlebar">
+            <span id="timer-title">Knights of the Grill - Cook Timer</span>
+            <div id="titlebar-controls">
+                <button id="minimize-btn" title="Minimize">-</button>
+                <button id="close-btn" title="Close">x</button>
+            </div>
+        </div>
+
+    <!-- cooking timer - hidden when minimized -->
+        <div id="timer-body">
+
+            <p id="timer-message">Awaiting your sigma cooking orders...</p>
+
+            <!-- editable HH:MM:SS display -->
+            <div id="timer-display">
+                <input type="number" id="input-hours"   class="time-segment" value="00" min="0" max="99">
+                <span class="time-sep">:</span>
+                <input type="number" id="input-minutes" class="time-segment" value="00" min="0" max="59">
+                <span class="time-sep">:</span>
+                <input type="number" id="input-seconds" class="time-segment" value="00" min="0" max="59">
+            </div>
+
+            <!-- cube buttons from UIVERSE-->
+            <div id="timer-controls">
+
+                <button class="btn cube" id="btn-start" type="button">
+                    <div class="bg-top"><div class="bg-inner"></div></div>
+                    <div class="bg-right"><div class="bg-inner"></div></div>
+                    <div class="bg"><div class="bg-inner"></div></div>
+                    <div class="text">Start</div>
+                </button>
+
+                <button class="btn cube" id="btn-pause" type="button">
+                    <div class="bg-top"><div class="bg-inner"></div></div>
+                    <div class="bg-right"><div class="bg-inner"></div></div>
+                    <div class="bg"><div class="bg-inner"></div></div>
+                    <div class="text">Pause</div>
+                </button>
+
+                <button class="btn cube" id="btn-reset" type="button">
+                    <div class="bg-top"><div class="bg-inner"></div></div>
+                    <div class="bg-right"><div class="bg-inner"></div></div>
+                    <div class="bg"><div class="bg-inner"></div></div>
+                    <div class="text">Reset</div>
+                </button>
+
+            </div>
+
+            <!-- progress bar for when the timer is going -->
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+
+        </div>
+    </div>
+
         <section id="recipedetails">
             <h1>Recipe Name</h1>
             <div>
@@ -70,6 +139,7 @@
         <p><i>Knights of the Grill</i> is brought to you by Chad TV, Inc. All rights reserved. 2026</p>
         <a href="https://github.com/MewtwoRBGY/front-end-project">GitHub Available Here</a></p>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>

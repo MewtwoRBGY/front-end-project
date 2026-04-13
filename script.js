@@ -446,8 +446,7 @@ function renderBatch() {
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <img src="images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
-                            <div class="card-tags">
+                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">                            <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
                             </div>

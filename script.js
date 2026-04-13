@@ -371,3 +371,134 @@ if (timerWindow) {
     setMessage("idle");
 
 }
+
+/* GLOBAL STATE & DOM REFERENCES*/
+let allRecipes = [];      // gets all data from all JSON files
+let filteredRecipes = []; // filters for search
+let currentIndex = 0;
+const recipesPerPage = 4; //displays 4 more each time you click loadf more
+
+const recipeContainer = document.getElementById('recipe-container');
+const loadMoreBtn = document.getElementById('load-more');
+const searchInput = document.getElementById('recipe-search');
+
+/* TASK 6 & 7: MERGED DATA FETCHING & SEARCH */
+
+/*creastes json master list
+ */
+
+
+async function loadAndMergeRecipes() {
+    const files = [
+        'json/recipes/breakfast_recipes_part1.json',
+        'json/recipes/breakfast_recipes_part2.json',
+        'json/recipes/breakfast_recipes_part3.json',
+        'json/recipes/lunch_recipes_part1.json',
+        'json/recipes/lunch_recipes_part2.json',
+        'json/recipes/dinner_recipes_part1.json',
+        'json/recipes/dinner_recipes_part2.json',
+        'json/recipes/snacks_recipes.json',
+        'json/recipes/dessert_recipes_part1.json',
+        'json/recipes/dessert_recipes_part2.json',
+        'json/recipes/beverages_recipes.json',
+        'json/recipes/summer_recipes.json',
+        'json/recipes/winter_recipes.json',
+        'json/recipes/spring_recipes.json',
+        'json/recipes/autumn_recipes.json',
+        'json/recipes/appetizer_recipes.json'
+
+
+    ];
+
+    try {
+        const responses = await Promise.all(files.map(file => fetch(file)));
+        
+        // Validate all responses
+        responses.forEach(res => {
+            if (!res.ok) throw new Error(`Could not find ${res.url}`);
+        });
+
+        const dataArrays = await Promise.all(responses.map(res => res.json()));
+        
+        // Flatten into one array
+        allRecipes = dataArrays.flat();
+        filteredRecipes = [...allRecipes]; // Initialize filtered list with all data
+        
+        renderBatch();
+    } catch (error) {
+        console.error("Data Load Error:", error);
+        recipeContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+    }
+}
+
+/**
+ * Handles the display of recipe cards
+ */
+function renderBatch() {
+    const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
+    
+    batch.forEach(recipe => {
+        const cardHTML = `
+            <a href="recipedetails.html?id=${recipe.id}" class="card-link">
+                <div class="recipe-card">
+                    <div class="card-inner">  
+                        <div class="card-front">
+                            <div class="card-header">
+                                <span class="card-number">No. ${recipe.id}</span>
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <img src="images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <div class="card-tags">
+                                <span class="tag">${recipe.season}</span>
+                                <span class="tag">${recipe.cuisine}</span>
+                            </div>
+                        </div>    
+                        <div class="card-back">
+                            <div class="card-header">
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
+                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>`;
+        recipeContainer.insertAdjacentHTML('beforeend', cardHTML);
+    });
+
+    currentIndex += recipesPerPage;
+
+    // Visibility of Load More
+    if (loadMoreBtn) {
+        loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
+    }
+}
+
+/**
+ * Task 7: Filtering Logic
+ */
+function handleSearch(e) {
+    const query = e.target.value.toLowerCase();
+    
+    filteredRecipes = allRecipes.filter(recipe => {
+        const matchName = recipe.name.toLowerCase().includes(query);
+        const matchIngredient = recipe.ingredients.some(ing => ing.toLowerCase().includes(query));
+        return matchName || matchIngredient;
+    });
+
+    // Reset display
+    recipeContainer.innerHTML = '';
+    currentIndex = 0;
+    renderBatch();
+}
+
+/* ============================================================
+INITIALIZATION
+============================================================ */
+if (recipeContainer) {
+    loadMoreBtn.addEventListener('click', renderBatch);
+    searchInput.addEventListener('input', handleSearch);
+    loadAndMergeRecipes();
+}

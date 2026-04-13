@@ -457,11 +457,16 @@ function renderBatch() {
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p class="ingredient-text">Ingredients:</p>
-                                <ul class="card-ingredients">
-                                    ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
-                            </div>
+                            <p class="ingredient-text">Ingredients List:</p>    
+                            <span class="tag line-tag"></span>                       
+                            <ul class="card-ingredients"> 
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                            </ul>
+                            
+                          </div>
+                          <div class="card-tags">
+                            <span class="tag"><strong>Prep time: </strong>${recipe.prep_time}</span>
+                        </div>
                         </div>
                     </div>
                 </div>

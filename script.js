@@ -2,75 +2,37 @@
 /*function makeCards() {
     const tbody = document.getElementByID('featuredlist');
     if (!tbody) return;
-
-
-
     let html = "";
     sortedItems.forEach(item => {
-
         html += `<a href="recipedetails.html" class="card-link">
-
         <div class = "recipe-card" >
-            <
-            div class = "card-inner" >
-
-            <
-            div class = "card-front" >
-            <
-            div class = "card-header" >
-            <
-            span class = "card-number" > No. $(item.id) < /span> <
-        span class = "card-heart" > & #9825;</span>
-                            <h3 class= "card-title" > $(item.name) < /h3> < /
-            div >
-
-            <
-            img src = "$(item.images[0])"
-        alt = "recipe"
-        class = "recipefeat" >
-
-            <
-            div class = "card-tags" >
-            <
-            span class = "tag" > $(item.season) < /span> <
-        span class = "tag" > $(item.cuisine) < /span> <
-        span class = "tag" > Prep Time: $(item.prep_time) < /span> < /
-            div >
-
-            <
-            /div>     <
-        div class = "card-back" >
-
-            <
-            div class = "card-header" >
-            <
-            span class = "card-number" > No. $(item.id) < /span> <
-        span class = "card-heart" > & #9825;</span>
-                                            <h3 class= "card-title" > $(item.name) < /h3> < /
-            div >
-
-            <
-            div class = "card-body" >
-            <
-            div class = "card-info" >
-            <
-            ul >
-            <
-            li > Approximate time to complete: $(item.prep_time) < /li> <
-        li > Required ingredients: $(item.ingredients) < /li> < /
-            ul > <
-            div class = "card-tags" >
-            <
-            span class = "tag" > $(item.season) < /span> <
-        span class = "tag" > $(item.cuisine) < /span> <
-        span class = "tag" > Prep Time: $(item.prep_time) < /span> < /
-            div > <
-            /div> < /
-            div > <
-            /div> < /
-            div > <
-            /div> < /
-            a > `
+            < div class = "card-inner" >
+            < div class = "card-front" >
+            < div class = "card-header" >
+            < span class = "card-number" > No. $(item.id) < /span> 
+            <span class = "card-heart" > &#9825;</span>
+            <h3 class= "card-title" > $(item.name) < /h3> < /div >
+            <img src = "$(item.images[0])" alt = "recipe" class = "recipefeat" >
+            < div class = "card-tags" >
+            < span class = "tag" > $(item.season) < /span>
+            <span class = "tag" > $(item.cuisine) < /span>
+            <span class = "tag" > Prep Time: $(item.prep_time) < /span> < /div >
+            </div>
+            <div class = "card-back" >
+            < div class = "card-header" >
+            < span class = "card-number" > No. $(item.id) < /span>
+            <span class = "card-heart" > &#9825;</span>
+            <h3 class= "card-title" > $(item.name) < /h3> < /div >
+            < div class = "card-body" >
+            < div class = "card-info" >
+            < ul >
+            < li > Approximate time to complete: $(item.prep_time) < /li>
+            <li > Required ingredients: $(item.ingredients) < /li> < /ul >
+            <div class = "card-tags" >
+            < span class = "tag" > $(item.season) < /span>
+            <span class = "tag" > $(item.cuisine) < /span>
+            <span class = "tag" > Prep Time: $(item.prep_time) < /span>
+            </div> </div> </div> </div> </div> </a> `
     });
     tbody.innerHTML = html;
 }*/
@@ -79,21 +41,26 @@
     fetch("./json/winter_recipes.json")
         .then(res => res.json())
         .then(data => {
-            masterItems = data; // save JSON into the global variable
-            makeCards();      // draws table for the first time
+            masterItems = data;
+            makeCards();
         })
         .catch(err => console.error("Could not load table1.json:", err));
 */
 
 console.log("H3110 W0r1d");
-/*TO-DO LOGIC*/
 
-//test to see if linked with html file. it is
+/*
+============================================================
+TO-DO LOGIC
+Guard: only runs on todo.html where #CreateTask exists
+============================================================
+*/
+
 const taskText = document.getElementById('WriteTask');
 const taskMake = document.getElementById('CreateTask');
 const taskList = document.getElementById('TaskDiv');
-const empty = document.getElementById('NoTasks');
-let taskCount = 0;
+const empty    = document.getElementById('NoTasks');
+let taskCount  = 0;
 
 if (taskMake) {
 
@@ -108,14 +75,13 @@ if (taskMake) {
             empty.style.display = "none"; // hide "no tasks" message
         }
 
-        // create the task elements
-        const EachTask = document.createElement('div');
-        const CheckBox = document.createElement('input');
-        CheckBox.type = "checkbox";
-        const TaskName = document.createElement('span');
+        const EachTask  = document.createElement('div');
+        const CheckBox  = document.createElement('input');
+        CheckBox.type   = "checkbox";
+        const TaskName  = document.createElement('span');
         TaskName.innerText = newText;
         const DeleteBtn = document.createElement('input');
-        DeleteBtn.type = "button";
+        DeleteBtn.type  = "button";
         DeleteBtn.value = "Delete";
 
         EachTask.appendChild(CheckBox);
@@ -124,7 +90,6 @@ if (taskMake) {
         taskList.appendChild(EachTask);
         taskText.value = "";
 
-        // delete button removes the task
         DeleteBtn.addEventListener('click', function() {
             EachTask.remove();
             taskCount--;
@@ -133,7 +98,6 @@ if (taskMake) {
             }
         });
 
-        // checkbox crosses out the task
         CheckBox.addEventListener('change', function() {
             EachTask.classList.toggle("completed");
         });
@@ -141,8 +105,7 @@ if (taskMake) {
 
     taskMake.addEventListener('click', addTask);
 
-    // toggle show/hide the list
-    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleBtn   = document.getElementById('toggleBtn');
     const todoContent = document.getElementById('todoContent');
 
     toggleBtn.addEventListener('click', function() {
@@ -153,19 +116,17 @@ if (taskMake) {
 }
 
 
-/* 
+/*
 ============================================================
 COOKING TIMER
-Guards against running on pages without these elements.
-Only activates on recipedetails.html where #timer-window exists.
-============================================================ 
+Guard: only runs on recipedetails.html where #timer-window exists
+============================================================
 */
 
 const timerWindow = document.getElementById("timer-window");
 
 if (timerWindow) {
 
-    // message that are coolio
     const messages = {
         idle: [
             "Awaiting your sigma cooking orders...",
@@ -201,34 +162,25 @@ if (timerWindow) {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    // timer state
-    let totalSeconds = 0;
+    let totalSeconds  = 0;
     let remainSeconds = 0;
     let timerInterval = null;
-    let isRunning = false;
+    let isRunning     = false;
 
-    // DOM references
-    const msgEl = document.getElementById("timer-message");
-    const inputH = document.getElementById("input-hours");
-    const inputM = document.getElementById("input-minutes");
-    const inputS = document.getElementById("input-seconds");
+    const msgEl       = document.getElementById("timer-message");
+    const inputH      = document.getElementById("input-hours");
+    const inputM      = document.getElementById("input-minutes");
+    const inputS      = document.getElementById("input-seconds");
     const progressBar = document.getElementById("progress-bar");
-    const btnStart = document.getElementById("btn-start");
-    const btnPause = document.getElementById("btn-pause");
-    const btnReset = document.getElementById("btn-reset");
+    const btnStart    = document.getElementById("btn-start");
+    const btnPause    = document.getElementById("btn-pause");
+    const btnReset    = document.getElementById("btn-reset");
     const minimizeBtn = document.getElementById("minimize-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const openBtn = document.getElementById("open-timer-btn");
-    const titleBar = document.getElementById("timer-titlebar");
+    const closeBtn    = document.getElementById("close-btn");
+    const openBtn     = document.getElementById("open-timer-btn");
+    const titleBar    = document.getElementById("timer-titlebar");
 
-    /* DRAGGING
-       mousedown records offset between mouse and window corner.
-       mousemove repositions window using that offset.
-       mouseup stops tracking.
-    */
-    let isDragging = false,
-        dragOffsetX = 0,
-        dragOffsetY = 0;
+    let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
 
     titleBar.addEventListener("mousedown", function(e) {
         if (e.target.closest("#titlebar-controls")) return;
@@ -242,11 +194,11 @@ if (timerWindow) {
 
     document.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
-        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth - timerWindow.offsetWidth));
-        let newTop = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
+        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth  - timerWindow.offsetWidth));
+        let newTop  = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
         timerWindow.style.transform = "none";
         timerWindow.style.left = newLeft + "px";
-        timerWindow.style.top = newTop + "px";
+        timerWindow.style.top  = newTop  + "px";
     });
 
     document.addEventListener("mouseup", function() {
@@ -254,29 +206,23 @@ if (timerWindow) {
         timerWindow.classList.remove("dragging");
     });
 
-    /* HELPERS */
-
-    // reads the three inputs and converts to total seconds
     function getInputSeconds() {
         return (parseInt(inputH.value) || 0) * 3600 +
-            (parseInt(inputM.value) || 0) * 60 +
-            (parseInt(inputS.value) || 0);
+               (parseInt(inputM.value) || 0) * 60 +
+               (parseInt(inputS.value) || 0);
     }
 
-    // takes seconds and updates the HH MM SS inputs
     function setDisplayFromSeconds(secs) {
         inputH.value = String(Math.floor(secs / 3600)).padStart(2, "0");
         inputM.value = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
         inputS.value = String(secs % 60).padStart(2, "0");
     }
 
-    // updates progress bar width based on remaining time
     function updateProgress() {
         progressBar.style.width = totalSeconds === 0 ? "100%" :
             (remainSeconds / totalSeconds * 100) + "%";
     }
 
-    // fades out current message and fades in a new random one
     function setMessage(category) {
         msgEl.style.opacity = "0";
         setTimeout(function() {
@@ -285,30 +231,23 @@ if (timerWindow) {
         }, 200);
     }
 
-    // adds/removes the gold glow on the time digits when running
     function setRunningStyle(on) {
         [inputH, inputM, inputS].forEach(function(el) {
             el.classList.toggle("running", on);
         });
     }
 
-    /* ---- TIMER LOGIC ---- */
-
     btnStart.addEventListener("click", function() {
         if (isRunning) return;
         const secs = getInputSeconds();
         if (secs <= 0) { msgEl.textContent = "Set a time first, chef."; return; }
 
-        if (remainSeconds === 0) {
-            totalSeconds = secs;
-            remainSeconds = secs;
-        }
+        if (remainSeconds === 0) { totalSeconds = secs; remainSeconds = secs; }
 
         isRunning = true;
         setRunningStyle(true);
         setMessage("running");
 
-        // setInterval ticks every 1000ms (1 second)
         timerInterval = setInterval(function() {
             remainSeconds--;
             updateProgress();
@@ -333,7 +272,7 @@ if (timerWindow) {
 
     btnPause.addEventListener("click", function() {
         if (!isRunning) return;
-        clearInterval(timerInterval); // stop ticking but keep remainSeconds
+        clearInterval(timerInterval);
         isRunning = false;
         setRunningStyle(false);
         setMessage("paused");
@@ -351,8 +290,6 @@ if (timerWindow) {
         setMessage("idle");
     });
 
-    /* ---- WINDOW CONTROLS ---- */
-
     minimizeBtn.addEventListener("click", function() {
         timerWindow.classList.toggle("minimized");
         minimizeBtn.textContent = timerWindow.classList.contains("minimized") ? "□" : "—";
@@ -369,24 +306,33 @@ if (timerWindow) {
     });
 
     setMessage("idle");
-
 }
 
-/* GLOBAL STATE & DOM REFERENCES*/
-let allRecipes = [];      // gets all data from all JSON files
-let filteredRecipes = []; // filters for search
-let currentIndex = 0;
-const recipesPerPage = 4; //displays 4 more each time you click loadf more
+
+/*
+===========================================================
+GLOBAL STATE & DOM REFERENCES
+Used by the recipe fetching, rendering, and search system
+============================================================
+*/
+
+let allRecipes      = [];   // master list — all recipes from all JSON files
+let filteredRecipes = [];   // current working list — filtered by search query
+let currentIndex    = 0;    // tracks how far into filteredRecipes we've rendered
+const recipesPerPage = 4;   // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
-const loadMoreBtn = document.getElementById('load-more');
-const searchInput = document.getElementById('recipe-search');
+const loadMoreBtn     = document.getElementById('load-more');
+const searchInput     = document.getElementById('recipe-search');
 
-/* TASK 6 & 7: MERGED DATA FETCHING & SEARCH */
 
-/*creastes json master list
- */
-
+/* 
+==================================================================
+TASK 6: DATA FETCHING
+Loads all JSON files in parallel using Promise.all,
+flattens them into one master array, then renders the first batch
+==================================================================
+*/
 
 async function loadAndMergeRecipes() {
     const files = [
@@ -406,24 +352,20 @@ async function loadAndMergeRecipes() {
         'json/recipes/spring_recipes.json',
         'json/recipes/autumn_recipes.json',
         'json/recipes/appetizer_recipes.json'
-
-
     ];
 
     try {
         const responses = await Promise.all(files.map(file => fetch(file)));
-        
-        // error control
+
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
 
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-        
-        // turns it into one array
-        allRecipes = dataArrays.flat();
-        filteredRecipes = [...allRecipes]; // Initialize filtered list with all data
-        
+
+        allRecipes      = dataArrays.flat();
+        filteredRecipes = [...allRecipes]; // start with all recipes visible
+
         renderBatch();
     } catch (error) {
         console.error("Data Load Error:", error);
@@ -431,42 +373,92 @@ async function loadAndMergeRecipes() {
     }
 }
 
-/* Renders recipes in the proper envelopes
- */
+
+/*
+==========================================================================
+TASK 6: RENDER BATCH
+Displays the next 4 recipes from filteredRecipes.
+
+CHANGED: added class="recipe-card fade-in" - triggers Animation 2
+            (cards fade up from below when they appear)
+
+   CHANGED: added heart-btn button inside card-header — Animation 1
+            (heart pops and floats when clicked to favorite a recipe)
+            onclick="event.preventDefault()" stops the card link
+            from navigating when the heart button is clicked
+
+   CHANGED: fixed image path from images/ to images/images/
+            to match the actual folder structure in the project
+
+   CHANGED: added ratings-section inside card-back — Ratings & Reviews
+            data-recipe="recipe-${recipe.id}" is the unique localStorage
+            key that ties this section to a specific recipe
+
+   CHANGED: calls initNewHeartButtons() and initNewRatings() after
+            inserting cards — these functions attach event listeners
+            to the newly created elements. They must run AFTER
+            insertAdjacentHTML so the elements exist in the DOM
+=========================================================================
+*/
+
 function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
-    
+
     batch.forEach(recipe => {
         const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
-                <div class="recipe-card">
-                    <div class="card-inner">  
+                <div class="recipe-card fade-in">
+                    <div class="card-inner">
+
                         <div class="card-front">
                             <div class="card-header">
                                 <span class="card-number">No. ${recipe.id}</span>
+                                <!-- CHANGED: heart button added for Animation 1 (heart favorite) -->
+                                <!-- event.preventDefault() stops the <a> link from firing on heart click -->
+                                <button class="heart-btn" data-card="${recipe.id}"
+                                        onclick="event.preventDefault();"
+                                        aria-label="Favorite">&#9825;</button>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">                            <div class="card-tags">
+                            <!-- CHANGED: fixed path from images/ to images/images/ -->
+                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
                             </div>
-                        </div>    
+                        </div>
+
                         <div class="card-back">
                             <div class="card-header">
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
-                            <p class="ingredient-text">Ingredients List:</p>    
-                            <span class="tag line-tag"></span>                       
-                            <ul class="card-ingredients"> 
-                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                            </ul>
-                            
-                          </div>
-                          <div class="card-tags">
-                            <span class="tag"><strong>Prep time: </strong>${recipe.prep_time}</span>
+                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
+                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
+                            </div>
+                            <!-- CHANGED: ratings section added for Ratings & Reviews feature -->
+                            <!-- data-recipe is the unique key used to save/load from localStorage -->
+                            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                                <div class="star-display">
+                                    <span class="avg-rating">☆☆☆☆☆</span>
+                                    <span class="rating-count">(0 ratings)</span>
+                                </div>
+                                <div class="star-input">
+                                    <button class="star" data-value="1" onclick="event.preventDefault();">★</button>
+                                    <button class="star" data-value="2" onclick="event.preventDefault();">★</button>
+                                    <button class="star" data-value="3" onclick="event.preventDefault();">★</button>
+                                    <button class="star" data-value="4" onclick="event.preventDefault();">★</button>
+                                    <button class="star" data-value="5" onclick="event.preventDefault();">★</button>
+                                </div>
+                                <div class="review-form">
+                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                                              onclick="event.preventDefault();"></textarea>
+                                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
+                                </div>
+                                <div class="reviews-list"></div>
+                            </div>
                         </div>
-                        </div>
+
                     </div>
                 </div>
             </a>`;
@@ -475,32 +467,245 @@ function renderBatch() {
 
     currentIndex += recipesPerPage;
 
-    // load more button
+/* CHANGED: init hearts and ratings on the newly added cards. Must be called here, after insertAdjacentHTML, so the elements exist */
+    initNewHeartButtons();
+    initNewRatings();
+
+    // hide Load More button when all recipes are shown
     if (loadMoreBtn) {
         loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
     }
 }
 
-/* Task 7: filtering */
 
+/*
+============================================================
+TASK 7: SEARCH / FILTER
+Filters allRecipes by name or ingredient as the user types
+============================================================
+*/
 
 function handleSearch(e) {
     const query = e.target.value.toLowerCase();
-    
+
     filteredRecipes = allRecipes.filter(recipe => {
-        const matchName = recipe.name.toLowerCase().includes(query);
+        const matchName       = recipe.name.toLowerCase().includes(query);
         const matchIngredient = recipe.ingredients.some(ing => ing.toLowerCase().includes(query));
         return matchName || matchIngredient;
     });
 
-    // reset display
+    // reset and re-render from the beginning with the filtered list
     recipeContainer.innerHTML = '';
     currentIndex = 0;
     renderBatch();
 }
 
-/* initilizations */
 
+/*
+============================================================
+CHANGED: ANIMATION 1 - HEART FAVORITE
+   
+Called by renderBatch() after each batch of cards is inserted
+   
+Uses querySelectorAll(".heart-btn:not([data-init])") to find
+only buttons that haven't been initialized yet — this prevents
+duplicate event listeners when Load More adds more cards
+   
+On click:
+   - toggles .favorited class (red filled heart vs hollow)
+   - saves favorite state to localStorage
+   - triggers heartPop CSS animation via .popping class
+     (void btn.offsetWidth forces a reflow so animation restarts)
+   - creates a floating .heart-burst <span> that rises and fades,
+     then removes itself when the animation ends
+   - e.stopPropagation() prevents the click from bubbling up
+     to the parent <a> tag and navigating away
+============================================================ 
+*/
+
+function initNewHeartButtons() {
+    /* :not([data-init]) only selects buttons not yet set up */
+    const heartBtns = document.querySelectorAll(".heart-btn:not([data-init])");
+
+    heartBtns.forEach(function(btn) {
+        btn.dataset.init = "true"; /* mark so we skip it next time */
+        const cardId = btn.dataset.card;
+
+        /* restore saved favorite state on page load */
+        if (localStorage.getItem("fav-" + cardId) === "true") {
+            btn.classList.add("favorited");
+            btn.innerHTML = "&#9829;"; /* filled heart ♥ */
+        }
+
+        btn.addEventListener("click", function(e) {
+            e.preventDefault(); /* stop card link from navigating */
+            e.stopPropagation(); /* stop click bubbling to parent <a> */
+
+            const isFav = btn.classList.toggle("favorited");
+            btn.innerHTML = isFav ? "&#9829;" : "&#9825;"; /* makes the heart filled or hollow */
+            localStorage.setItem("fav-" + cardId, isFav);
+
+            /* retrigger heartPop: remove, force reflow, re-add */
+            btn.classList.remove("popping");
+            void btn.offsetWidth; /* forces browser to recalculate layout,resetting the animation so it can fire again */
+            btn.classList.add("popping");
+
+            /* create the floating heart burst */
+            const burst = document.createElement("span");
+            burst.classList.add("heart-burst");
+            burst.innerHTML = "&#9829;";
+            btn.appendChild(burst);
+
+            /* remove burst after its 0.8s animation ends */
+            burst.addEventListener("animationend", function() { burst.remove(); });
+
+            /* remove .popping after 350ms so it can retrigger on next click */
+            setTimeout(function() { btn.classList.remove("popping"); }, 350);
+        });
+    });
+}
+
+
+/* 
+==============================================================================
+CHANGED: RATINGS & REVIEWS
+   
+Called by renderBatch() after each batch of cards is inserted.
+Same :not([data-init]) pattern as hearts to avoid duplicates.
+   
+Per recipe:
+   - "ratings-recipe-{id}" in localStorage = array of numbers i.e. [4,5,3]
+   - "reviews-recipe-{id}" in localStorage = array of {stars, text} objects
+   - loadRatings() sums the array and displays the average
+   - loadReviews() renders all saved review objects into .reviews-list
+   - Star mouseenter/mouseleave handles hover highlighting
+   - Clicking a star sets pendingRating for this section
+   - Submit saves both rating + text, refreshes display, resets form
+   - e.stopPropagation() on all buttons prevents card navigation
+==============================================================================
+*/
+
+function initNewRatings() {
+    const ratingSections = document.querySelectorAll(".ratings-section:not([data-init])");
+
+    ratingSections.forEach(function(section) {
+        section.dataset.init = "true"; /* mark as initialized */
+
+        const recipeKey   = section.dataset.recipe;
+        const starBtns    = section.querySelectorAll(".star");
+        const avgEl       = section.querySelector(".avg-rating");
+        const countEl     = section.querySelector(".rating-count");
+        const reviewsList = section.querySelector(".reviews-list");
+        const reviewInput = section.querySelector(".review-input");
+        const submitBtn   = section.querySelector(".submit-review");
+
+        let pendingRating = 0; /* tracks which star the user clicked */
+
+        /* recalculates average from saved ratings and updates display */
+        function loadRatings() {
+            const saved = JSON.parse(localStorage.getItem("ratings-" + recipeKey)) || [];
+            if (saved.length === 0) {
+                avgEl.textContent   = "☆☆☆☆☆";
+                countEl.textContent = "(0 ratings)";
+                return;
+            }
+            /* reduce adds all numbers: [4,5,3] → 12 */
+            const sum = saved.reduce(function(a, b) { return a + b; }, 0);
+            const avg = sum / saved.length;
+            let stars = "";
+            for (let i = 1; i <= 5; i++) {
+                stars += i <= Math.round(avg) ? "★" : "☆";
+            }
+            avgEl.textContent   = stars;
+            countEl.textContent = "(" + saved.length + " rating" +
+                (saved.length !== 1 ? "s" : "") + " — avg: " + avg.toFixed(1) + ")";
+        }
+
+        /* clears and re-renders all saved review cards */
+        function loadReviews() {
+            reviewsList.innerHTML = "";
+            const saved = JSON.parse(localStorage.getItem("reviews-" + recipeKey)) || [];
+            saved.forEach(function(review) {
+                const item = document.createElement("div");
+                item.classList.add("review-item");
+                let stars = "";
+                for (let i = 1; i <= 5; i++) {
+                    stars += i <= review.stars ? "★" : "☆";
+                }
+                item.innerHTML = `
+                    <div class="review-stars">${stars}</div>
+                    <div class="review-text">${review.text}</div>`;
+                reviewsList.appendChild(item);
+            });
+        }
+
+        /* hover highlights stars up to the cursor, resets on mouse leave */
+        starBtns.forEach(function(star) {
+            star.addEventListener("mouseenter", function() {
+                const val = parseInt(star.dataset.value);
+                starBtns.forEach(function(s) {
+                    s.classList.toggle("selected", parseInt(s.dataset.value) <= val);
+                });
+            });
+            star.addEventListener("mouseleave", function() {
+                /* reset back to pendingRating so locked selection stays visible */
+                starBtns.forEach(function(s) {
+                    s.classList.toggle("selected", parseInt(s.dataset.value) <= pendingRating);
+                });
+            });
+            star.addEventListener("click", function(e) {
+                e.stopPropagation(); /* prevent card link from firing */
+                pendingRating = parseInt(star.dataset.value);
+                starBtns.forEach(function(s) {
+                    s.classList.toggle("selected", parseInt(s.dataset.value) <= pendingRating);
+                });
+            });
+        });
+
+        /* submit: saves rating + review to localStorage, refreshes display */
+        submitBtn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            const text = reviewInput.value.trim();
+
+            if (pendingRating === 0) {
+                reviewInput.placeholder = "Select a star rating first!";
+                return;
+            }
+
+            /* save the rating number into the array */
+            const savedRatings = JSON.parse(localStorage.getItem("ratings-" + recipeKey)) || [];
+            savedRatings.push(pendingRating);
+            localStorage.setItem("ratings-" + recipeKey, JSON.stringify(savedRatings));
+
+            /* only save review text if user actually typed something */
+            if (text !== "") {
+                const savedReviews = JSON.parse(localStorage.getItem("reviews-" + recipeKey)) || [];
+                savedReviews.push({ stars: pendingRating, text: text });
+                localStorage.setItem("reviews-" + recipeKey, JSON.stringify(savedReviews));
+            }
+
+            loadRatings(); /* refresh average display */
+            loadReviews(); /* refresh review list */
+
+            /* reset form */
+            reviewInput.value = "";
+            pendingRating = 0;
+            starBtns.forEach(function(s) { s.classList.remove("selected"); });
+        });
+
+        /* load saved data on first render */
+        loadRatings();
+        loadReviews();
+    });
+}
+
+
+/*
+==============================================================
+INITIALIZATION
+Guard: only runs on index.html where #recipe-container exists
+==============================================================
+*/
 
 if (recipeContainer) {
     loadMoreBtn.addEventListener('click', renderBatch);

@@ -397,50 +397,15 @@ blockquote {
     transform: rotateY(180deg);
     font-size: 12px;
     padding: 5px;
-
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
 }
 
-
-    .card-back .tag {
-        background-color: var(--crimson-violet);
-        color: var(--light-gold);
-        font-size: 12px;
-        padding: 2px 6px;
-        border-radius: 12px;
-        display: inline-block;
-    }
-
-.line-tag {
-    display: block;
-    width: 100px;      /* length of the line */
-    height: 4px;      
-    padding: 0 !important;
-    margin: 0 0px;  
-}
-
-.card-ingredients {
-    font-size: 0.85rem;
-    padding-left: 20px;
-    margin-top: 0px !important;
-    margin-bottom: 15px;
-    list-style-type: disc;
-    text-align: left;
-    padding-top: 0px;
-}
-
-p.ingredient-text {
-    background-color: transparent !important; 
-    color: #000000 !important;              
-    font-weight: bold !important;          
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 0px !important; /* remove space below "Ingredients" */
-    padding: 0 !important;                 
-    border-radius: 0 !important;                    
+.card-back p {
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 2px 6px;
+    border-radius: 12px;
 }
 
 .recipe-card:hover .card-inner {
@@ -516,11 +481,6 @@ a.card-link .recipe-card:hover {
     padding-bottom: 5px;
 }
 
-.card-body p:last-child {
-    margin-top: 10px;
-    padding-bottom: 10px;
-}
-
 .card-info {
     display: flex;
     flex-direction: column;
@@ -547,7 +507,6 @@ a.card-link .recipe-card:hover {
 
 .card-tags {
     border-top: 1px solid var(--crimson-violet);
-    font-size: 10px;
     padding-top: 10px;
     display: flex;
     justify-content: bottom;
@@ -1027,3 +986,210 @@ nav {
  
 #timer-window.done { animation: doneFlash 0.5s ease-in-out 6; }
 
+
+/* 
+======================================================================
+ANIMATION 1 - HEART FAVORITE
+Two animations work together:
+   
+heartPop: scales the button up then settles back down
+   - triggered when JS adds .popping class on click
+   - the 40% overshoot then 70% undershoot makes it feel bouncy
+   
+heartFloat: a floating ❤️ that rises upward and fades out
+   - JS creates a .heart-burst <span> on click
+   - "forwards" keeps it invisible at the end so it doesn't snap back
+   - JS removes the element after animationend fires
+======================================================================
+*/
+
+
+.heart-btn {
+    background: none;
+    border: none;
+    font-style: 20px;
+    cursor: pointer;
+    color: var(--crimson-violet);
+    position: relative; /* needed so .heart-burst positions properly */
+}
+
+/* filled red heart when clicked */
+.heart-btn.filled {
+    color: #c0392b;
+}
+
+/* .popping is added by JS on click */
+.heart-btn.popping {
+    animation: heartPop 0.3s ease;
+}
+
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.4); } /* overshoot */
+    70% { transform: scale(0.9); } /* undershoot */
+    100% { transform: scale(1); } /* back to normal */
+}
+
+/* the floating heart burst */
+.heart-burst {
+    position: absolute;
+    font-size: 20px;
+    color: #c0392b;
+    animation: heartFloat 0.8s ease forwards;
+
+    pointer-events: none; /* so it doesn't interfere with clicking the button again */
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+@keyframes heartFloat {
+    0% { transform: translateY(0) scale(1); opacity: 1; } /* start at normal size and fully visible */
+    100% { transform: translateY(-40px) scale(1.5); opacity: 0; } /* float up, grow, and fade out */
+}
+
+/* 
+============================================================
+ANIMATION 2 — FADE-IN on card render
+   
+Every card gets class="recipe-card fade-in" in renderBatch()
+The animation runs once automatically when the card appears
+Cards start 18px below their final position (translateY(18px))
+and rise into place while fading from opacity 0 to 1
+   
+"both" applies the start state before the animation begins
+so cards don't flash visible for a frame before fading in
+============================================================
+*/
+
+fade-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*
+======================================================================
+RATINGS & REVIEWS
+   
+These styles are for the back face of each flip card
+Stars are grey by default — JS adds .selected to turn them gold.
+.review-item also uses fadeInUp so new reviews animate in when posted
+======================================================================
+*/
+
+.ratings-section {
+    border-top: 1px solid var(--crimson-violet);
+    padding-top: 8px;
+    margin-top: 6px;
+}
+
+/* average start display - JS will write the start string here */
+.star-display {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+ 
+.avg-rating {
+    font-size: 16px;
+    color: #d4a017;
+    letter-spacing: 1px;
+}
+ 
+.rating-count {
+    font-size: 11px;
+    color: var(--light-gold);
+    font-style: italic;
+}
+ 
+/* the 5 clickable star buttons */
+.star-input {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 7px;
+}
+ 
+.star {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888; /* grey by default */
+    transition: color 0.15s ease, transform 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+ 
+/* hover and selected both turn gold and scale up slightly */
+.star:hover,
+.star.selected {
+    color: #d4a017;
+    transform: scale(1.2);
+}
+ 
+/* review text area and submit button */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+ 
+.review-input {
+    width: 100%;
+    padding: 5px 7px;
+    border: 1px solid var(--crimson-violet);
+    border-radius: 4px;
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+    resize: vertical;
+}
+ 
+.submit-review {
+    align-self: flex-start;
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: none;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+ 
+.submit-review:hover {
+    background-color: var(--reddish-brown);
+}
+ 
+/* 
+each posted review
+reuses fadeInUp so new reviews animate in
+*/
+.review-item {
+    background-color: rgba(255,248,191,0.15);
+    border: 1px solid var(--crimson-violet);
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    animation: fadeInUp 0.3s ease both;
+}
+ 
+.review-stars {
+    color: #d4a017;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+ 
+.review-text {
+    color: var(--light-gold);
+}

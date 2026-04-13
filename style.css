@@ -397,6 +397,10 @@ blockquote {
     transform: rotateY(180deg);
     font-size: 12px;
     padding: 5px;
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-back p {
@@ -406,6 +410,21 @@ blockquote {
     border-radius: 3px;
     padding: 2px 6px;
     border-radius: 12px;
+}
+
+.card-ingredients {
+    font-size: 0.85rem;
+    padding-left: 20px;
+    margin-top: 5px;
+    list-style-type: disc;
+}
+
+.ingredient-text p {
+    font-size: 0.85rem;
+    font-weight: 700;
+    background-color: transparent;
+    color: black;
+
 }
 
 .recipe-card:hover .card-inner {

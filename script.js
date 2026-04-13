@@ -413,14 +413,14 @@ async function loadAndMergeRecipes() {
     try {
         const responses = await Promise.all(files.map(file => fetch(file)));
         
-        // Validate all responses
+        // error control
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
 
         const dataArrays = await Promise.all(responses.map(res => res.json()));
         
-        // Flatten into one array
+        // turns it into one array
         allRecipes = dataArrays.flat();
         filteredRecipes = [...allRecipes]; // Initialize filtered list with all data
         
@@ -431,8 +431,7 @@ async function loadAndMergeRecipes() {
     }
 }
 
-/**
- * Handles the display of recipe cards
+/* Renders recipes in the proper envelopes
  */
 function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
@@ -458,7 +457,9 @@ function renderBatch() {
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
+                                <p class="ingredient-text">Ingredients:</p>
+                                <ul class="card-ingredients">
+                                    ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
                             </div>
                         </div>
@@ -470,15 +471,15 @@ function renderBatch() {
 
     currentIndex += recipesPerPage;
 
-    // Visibility of Load More
+    // load more button
     if (loadMoreBtn) {
         loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
     }
 }
 
-/**
- * Task 7: Filtering Logic
- */
+/* Task 7: filtering */
+
+
 function handleSearch(e) {
     const query = e.target.value.toLowerCase();
     
@@ -488,15 +489,15 @@ function handleSearch(e) {
         return matchName || matchIngredient;
     });
 
-    // Reset display
+    // reset display
     recipeContainer.innerHTML = '';
     currentIndex = 0;
     renderBatch();
 }
 
-/* ============================================================
-INITIALIZATION
-============================================================ */
+/* initilizations */
+
+
 if (recipeContainer) {
     loadMoreBtn.addEventListener('click', renderBatch);
     searchInput.addEventListener('input', handleSearch);

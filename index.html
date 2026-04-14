@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Knights of the Grill - Chad TV</title>
 </head>
+
 <body>
     <header>
         <div id="headerdiv">
@@ -21,9 +23,22 @@
     </header>
 
     <main>
+        <section id="intro">
+            <dialog open="">
+                <h2>Welcome to the Recipe list for <i>Knights of the Grill</i></h2>
+                <p>Please use this</p>
+                <form method="dialog">
+                    <button>Close</button>
+                </form>
+            </dialog>
+            <blockquote> Welcome to the official digital home of Knights of the Grill, the only place on the internet where the recipes are 10% ingredients and 90% pure, sigma energy. Born from the high-octane energy of Chad TV, this archive is dedicated to the legendary
+                techniques of Lewis and his squad of elite grill-masters. Forget the meat thermometers and the "balanced seasonings". We are here for the raw, chaotic energy of a perfectly seared patty. Whether you're looking to dominate your backyard
+                or just want to cook like a champion, our blueprints for culinary excellence are designed for those who treat every flip like a trophy-winning play. Grab your apron, fire up the charcoal, and prepare to feast like a Knight.
+            </blockquote>
+            </div>
+        </section>
         <section id="search-section" style="text-align: center; padding: 20px;">
-            <input type="text" id="recipe-search" placeholder="Search recipes or ingredients..." 
-                   style="width: 60%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ddd;">
+            <input type="text" id="recipe-search" placeholder="Search recipes or ingredients..." style="width: 60%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ddd;">
         </section>
 
         <section id="seasonal">
@@ -33,12 +48,55 @@
                 <button id="load-more" class="navbutton">Load More Recipes</button>
             </div>
         </section>
+
+        <section id="about">
+            <h2 class="centeredtext">About the Show </h2>
+            <div id="aboutFlex">
+                <img src="aboutPhoto.png" id="aboutPhoto" alt="about">
+                <blockquote>
+                    Knights of the Grill is the undisputed heavy hitter of Chad TV, a high-octane culinary spectacle where the sizzle of the charcoal is matched only by the intensity of the "bro-ship." Hosted by the legendary Lewis and his squad of elite grill-masters, the
+                    show is hailed as the greatest of all time because it ignores trivialities like "internal temperatures" or "balanced flavors" in favor of what truly matters: pure, unadulterated vibes and jawlines sharp enough to cut onions. It is
+                    a masterclass in backyard dominance that proves the secret to a perfect meal is not a recipe; it is the raw, chaotic energy of a man who treats a burger flip like a championship-winning play and every challenge a thing to mog.
+                </blockquote>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Show Times</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tuesday: 9AM-12PM, 4PM-6PM</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday: 12PM-5PM</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday: 12PM-5PM</td>
+                        </tr>
+                        <tr>
+                            <td>Friday: 12PM-10PM</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday: 9AM-9PM</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Come watch the show that is sweeping the nation!</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p><i>Knights of the Grill</i> is brought to you by Chad TV, Inc. 2026</p>
+        <p><i>Knights of the Grill</i> is brought to you by Chad TV, Inc. All rights reserved. 2026</p>
+        <a href="https://github.com/MewtwoRBGY/front-end-project">GitHub Available Here</a></p>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

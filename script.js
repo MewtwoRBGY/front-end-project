@@ -721,16 +721,16 @@ if (recipeContainer) {
 }
 
 function renderDetails() {
-    const recipe = allRecipes[10];
+    const rech = allRecipes[10];
     //const story = ;
 
     //${story[${recipe.id} - 1].story}
     const detailHTML = `
-        <h1>${recipe.name}</h1>
+        <h1>${rech.name}</h1>
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
-                <img src="${recipe.images[0]}" class="recipephoto" alt="completed">
+                <img src="${rech.images[0]}" class="recipephoto" alt="completed">
                 <blockquote> 
                 </blockquote>
             </div>
@@ -738,23 +738,23 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote> ${recipe.ingredients}
+                <blockquote> ${rech.ingredients}
                 </blockquote>
-                <img src="${recipe.images[1]}" class="recipephoto" alt="ingredients">
+                <img src="${rech.images[0]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-                <img src="${recipe.images[2]}" class="recipephoto" alt="prep">
-                <blockquote> ${recipe.steps}
+                <img src="${rech.images[0]}" class="recipephoto" alt="prep">
+                <blockquote> ${rech.steps}
                 </blockquote>
             </div>
         </div>
         <hr>
         <h1>Share with your fellow sigmas!</h1>
         <!-- RECIPE COMPLETE -->
-        <img src="${recipe.images[3]}" class="recipephoto" alt="completeAlt">
+        <img src="${rech.images[0]}" class="recipephoto" alt="completeAlt">
         <button>
             <p>Like</p>
         </button>
@@ -764,6 +764,43 @@ function renderDetails() {
     detailContainer.innerHTML = detailHTML;
 }
 
+async function loadObama() {
+    const files = [
+        'json/recipes/breakfast_recipes_part1.json',
+        'json/recipes/breakfast_recipes_part2.json',
+        'json/recipes/breakfast_recipes_part3.json',
+        'json/recipes/lunch_recipes_part1.json',
+        'json/recipes/lunch_recipes_part2.json',
+        'json/recipes/dinner_recipes_part1.json',
+        'json/recipes/dinner_recipes_part2.json',
+        'json/recipes/snacks_recipes.json',
+        'json/recipes/dessert_recipes_part1.json',
+        'json/recipes/dessert_recipes_part2.json',
+        'json/recipes/beverages_recipes.json',
+        'json/recipes/summer_recipes.json',
+        'json/recipes/winter_recipes.json',
+        'json/recipes/spring_recipes.json',
+        'json/recipes/autumn_recipes.json',
+        'json/recipes/appetizer_recipes.json'
+    ];
+
+    try {
+        const responses = await Promise.all(files.map(file => fetch(file)));
+
+        responses.forEach(res => {
+            if (!res.ok) throw new Error(`Could not find ${res.url}`);
+        });
+
+        const dataArrays = await Promise.all(responses.map(res => res.json()));
+
+        allRecipes = dataArrays.flat();
+    } catch (error) {
+        console.error("Data Load Error:", error);
+        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+    }
+}
+
 if (detailContainer) {
+    loadObama();
     renderDetails();
 }

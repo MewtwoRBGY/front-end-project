@@ -59,8 +59,8 @@ Guard: only runs on todo.html where #CreateTask exists
 const taskText = document.getElementById('WriteTask');
 const taskMake = document.getElementById('CreateTask');
 const taskList = document.getElementById('TaskDiv');
-const empty    = document.getElementById('NoTasks');
-let taskCount  = 0;
+const empty = document.getElementById('NoTasks');
+let taskCount = 0;
 
 if (taskMake) {
 
@@ -75,13 +75,13 @@ if (taskMake) {
             empty.style.display = "none"; // hide "no tasks" message
         }
 
-        const EachTask  = document.createElement('div');
-        const CheckBox  = document.createElement('input');
-        CheckBox.type   = "checkbox";
-        const TaskName  = document.createElement('span');
+        const EachTask = document.createElement('div');
+        const CheckBox = document.createElement('input');
+        CheckBox.type = "checkbox";
+        const TaskName = document.createElement('span');
         TaskName.innerText = newText;
         const DeleteBtn = document.createElement('input');
-        DeleteBtn.type  = "button";
+        DeleteBtn.type = "button";
         DeleteBtn.value = "Delete";
 
         EachTask.appendChild(CheckBox);
@@ -105,7 +105,7 @@ if (taskMake) {
 
     taskMake.addEventListener('click', addTask);
 
-    const toggleBtn   = document.getElementById('toggleBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
     const todoContent = document.getElementById('todoContent');
 
     toggleBtn.addEventListener('click', function() {
@@ -162,25 +162,27 @@ if (timerWindow) {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    let totalSeconds  = 0;
+    let totalSeconds = 0;
     let remainSeconds = 0;
     let timerInterval = null;
-    let isRunning     = false;
+    let isRunning = false;
 
-    const msgEl       = document.getElementById("timer-message");
-    const inputH      = document.getElementById("input-hours");
-    const inputM      = document.getElementById("input-minutes");
-    const inputS      = document.getElementById("input-seconds");
+    const msgEl = document.getElementById("timer-message");
+    const inputH = document.getElementById("input-hours");
+    const inputM = document.getElementById("input-minutes");
+    const inputS = document.getElementById("input-seconds");
     const progressBar = document.getElementById("progress-bar");
-    const btnStart    = document.getElementById("btn-start");
-    const btnPause    = document.getElementById("btn-pause");
-    const btnReset    = document.getElementById("btn-reset");
+    const btnStart = document.getElementById("btn-start");
+    const btnPause = document.getElementById("btn-pause");
+    const btnReset = document.getElementById("btn-reset");
     const minimizeBtn = document.getElementById("minimize-btn");
-    const closeBtn    = document.getElementById("close-btn");
-    const openBtn     = document.getElementById("open-timer-btn");
-    const titleBar    = document.getElementById("timer-titlebar");
+    const closeBtn = document.getElementById("close-btn");
+    const openBtn = document.getElementById("open-timer-btn");
+    const titleBar = document.getElementById("timer-titlebar");
 
-    let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+    let isDragging = false,
+        dragOffsetX = 0,
+        dragOffsetY = 0;
 
     titleBar.addEventListener("mousedown", function(e) {
         if (e.target.closest("#titlebar-controls")) return;
@@ -194,11 +196,11 @@ if (timerWindow) {
 
     document.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
-        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth  - timerWindow.offsetWidth));
-        let newTop  = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
+        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth - timerWindow.offsetWidth));
+        let newTop = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
         timerWindow.style.transform = "none";
         timerWindow.style.left = newLeft + "px";
-        timerWindow.style.top  = newTop  + "px";
+        timerWindow.style.top = newTop + "px";
     });
 
     document.addEventListener("mouseup", function() {
@@ -208,8 +210,8 @@ if (timerWindow) {
 
     function getInputSeconds() {
         return (parseInt(inputH.value) || 0) * 3600 +
-               (parseInt(inputM.value) || 0) * 60 +
-               (parseInt(inputS.value) || 0);
+            (parseInt(inputM.value) || 0) * 60 +
+            (parseInt(inputS.value) || 0);
     }
 
     function setDisplayFromSeconds(secs) {
@@ -242,7 +244,10 @@ if (timerWindow) {
         const secs = getInputSeconds();
         if (secs <= 0) { msgEl.textContent = "Set a time first, chef."; return; }
 
-        if (remainSeconds === 0) { totalSeconds = secs; remainSeconds = secs; }
+        if (remainSeconds === 0) {
+            totalSeconds = secs;
+            remainSeconds = secs;
+        }
 
         isRunning = true;
         setRunningStyle(true);
@@ -316,14 +321,15 @@ Used by the recipe fetching, rendering, and search system
 ============================================================
 */
 
-let allRecipes      = [];   // master list — all recipes from all JSON files
-let filteredRecipes = [];   // current working list — filtered by search query
-let currentIndex    = 0;    // tracks how far into filteredRecipes we've rendered
-const recipesPerPage = 4;   // how many cards to show per Load More click
+let allRecipes = []; // master list — all recipes from all JSON files
+let filteredRecipes = []; // current working list — filtered by search query
+let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
+const recipesPerPage = 4; // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
-const loadMoreBtn     = document.getElementById('load-more');
-const searchInput     = document.getElementById('recipe-search');
+const detailContainer = document.getElementById('recipedetails');
+const loadMoreBtn = document.getElementById('load-more');
+const searchInput = document.getElementById('recipe-search');
 
 
 /* 
@@ -363,7 +369,7 @@ async function loadAndMergeRecipes() {
 
         const dataArrays = await Promise.all(responses.map(res => res.json()));
 
-        allRecipes      = dataArrays.flat();
+        allRecipes = dataArrays.flat();
         filteredRecipes = [...allRecipes]; // start with all recipes visible
 
         renderBatch();
@@ -467,7 +473,7 @@ function renderBatch() {
 
     currentIndex += recipesPerPage;
 
-/* CHANGED: init hearts and ratings on the newly added cards. Must be called here, after insertAdjacentHTML, so the elements exist */
+    /* CHANGED: init hearts and ratings on the newly added cards. Must be called here, after insertAdjacentHTML, so the elements exist */
     initNewHeartButtons();
     initNewRatings();
 
@@ -489,7 +495,7 @@ function handleSearch(e) {
     const query = e.target.value.toLowerCase();
 
     filteredRecipes = allRecipes.filter(recipe => {
-        const matchName       = recipe.name.toLowerCase().includes(query);
+        const matchName = recipe.name.toLowerCase().includes(query);
         const matchIngredient = recipe.ingredients.some(ing => ing.toLowerCase().includes(query));
         return matchName || matchIngredient;
     });
@@ -591,13 +597,13 @@ function initNewRatings() {
     ratingSections.forEach(function(section) {
         section.dataset.init = "true"; /* mark as initialized */
 
-        const recipeKey   = section.dataset.recipe;
-        const starBtns    = section.querySelectorAll(".star");
-        const avgEl       = section.querySelector(".avg-rating");
-        const countEl     = section.querySelector(".rating-count");
+        const recipeKey = section.dataset.recipe;
+        const starBtns = section.querySelectorAll(".star");
+        const avgEl = section.querySelector(".avg-rating");
+        const countEl = section.querySelector(".rating-count");
         const reviewsList = section.querySelector(".reviews-list");
         const reviewInput = section.querySelector(".review-input");
-        const submitBtn   = section.querySelector(".submit-review");
+        const submitBtn = section.querySelector(".submit-review");
 
         let pendingRating = 0; /* tracks which star the user clicked */
 
@@ -605,7 +611,7 @@ function initNewRatings() {
         function loadRatings() {
             const saved = JSON.parse(localStorage.getItem("ratings-" + recipeKey)) || [];
             if (saved.length === 0) {
-                avgEl.textContent   = "☆☆☆☆☆";
+                avgEl.textContent = "☆☆☆☆☆";
                 countEl.textContent = "(0 ratings)";
                 return;
             }
@@ -616,7 +622,7 @@ function initNewRatings() {
             for (let i = 1; i <= 5; i++) {
                 stars += i <= Math.round(avg) ? "★" : "☆";
             }
-            avgEl.textContent   = stars;
+            avgEl.textContent = stars;
             countEl.textContent = "(" + saved.length + " rating" +
                 (saved.length !== 1 ? "s" : "") + " — avg: " + avg.toFixed(1) + ")";
         }
@@ -712,3 +718,48 @@ if (recipeContainer) {
     searchInput.addEventListener('input', handleSearch);
     loadAndMergeRecipes();
 }
+
+/*function renderDetails() {
+    const recipe = ;
+    const story = ;
+
+    batch.forEach(recipe => {
+        const HTML = `
+        <h1>${recipe.name}</h1>
+        <div>
+            <!-- RECIPE OVERVIEW -->
+            <div class="recipelayout">
+                <img src="${recipe.images[0]}" class="recipephoto" alt="completed">
+                <blockquote> ${story[${recipe.id} - 1].story}
+                </blockquote>
+            </div>
+            <hr>
+            <h1>Ingredients</h1>
+            <!-- RECIPE INGREDIENTS -->
+            <div class="recipelayout">
+                <blockquote> ${recipe.ingredients}
+                </blockquote>
+                <img src="${recipe.images[1]}" class="recipephoto" alt="ingredients">
+            </div>
+            <hr>
+            <!-- RECIPE PREP STEPS -->
+            <h1>Instructions</h1>
+            <div class="recipelayout">
+                <img src="${recipe.images[2]}" class="recipephoto" alt="prep">
+                <blockquote> ${recipe.steps}
+                </blockquote>
+            </div>
+        </div>
+        <hr>
+        <h1>Share with your fellow sigmas!</h1>
+        <!-- RECIPE COMPLETE -->
+        <img src="${recipe.images[3]}" class="recipephoto" alt="completeAlt">
+        <button>
+            <p>Like</p>
+        </button>
+        <button class="navbutton">
+            <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
+        </button>`;
+        detailContainer.insertAdjacentHTML('beforeend', cardHTML);
+    });
+}*/

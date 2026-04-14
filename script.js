@@ -227,7 +227,7 @@ if (timerWindow) {
     }
 
     function setMessage(category) {
-        msgEl.style.opacity = "0";
+        //msgEl.style.opacity = "0";
         setTimeout(function() {
             msgEl.textContent = getMessage(category);
             msgEl.style.opacity = "1";

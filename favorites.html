@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Knights of the Grill - Chad TV</title>
+    <title>Knights of the Grill - Favorites</title>
 </head>
 
 <body>
@@ -17,7 +17,6 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="recipelist.html">Recipes</a></li>
-                <!-- CHANGED: added Favorites nav link -->
                 <li><a href="favorites.html">Favorites</a></li>
                 <li><a href="todo.html">To-Do</a></li>
             </ul>
@@ -25,15 +24,23 @@
     </header>
 
     <main>
-        <section id="search-section" style="text-align: center; padding: 20px;">
-            <input type="text" id="recipe-search" placeholder="Search recipes or ingredients..." style="width: 60%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ddd;">
-        </section>
+        <section id="favorites-section">
+            <h2>Your Favorite Recipes</h2>
+            <p id="favorites-hint" style="font-style:italic; color:var(--reddish-brown); margin-bottom:20px;">
+                Recipes you've hearted will appear here. Click the ♥ on any recipe card to save it.
+            </p>
 
-        <section id="recipelist">
-            <h2>Recipes</h2>
-            <div class="featuredlist" id="recipe-container"></div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button id="load-more" class="navbutton">Load More Recipes</button>
+            <!-- favorites-container is what loadFavorites() in script.js looks for -->
+            <div class="featuredlist" id="favorites-container"></div>
+
+            <!-- shown when no favorites are saved yet -->
+            <div id="no-favorites" style="display:none; text-align:center; padding:40px;">
+                <p style="font-size:18px; color:var(--crimson-violet);">
+                    No favorites yet! Head to 
+                    <a href="index.html">Home</a> or 
+                    <a href="recipelist.html">Recipes</a> 
+                    and click the ♡ on any card to save it here.
+                </p>
             </div>
         </section>
     </main>

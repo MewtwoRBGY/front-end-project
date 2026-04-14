@@ -1298,3 +1298,26 @@ reuses fadeInUp so new reviews animate in
 .review-text {
     color: var(--light-gold);
 }
+
+/*
+=========================================
+FAVORITES PAGE
+CHANGED: added styles for favorites.html
+=========================================
+*/
+
+#favorites-section {
+    padding: 20px 30px;
+}
+
+#favorites-section h2 {
+    color: var(--crimson-violet);
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+/* empty state message shown when no favorites exist */
+#no-favorites a {
+    color: var(--crimson-violet);
+    font-weight: bold;
+}

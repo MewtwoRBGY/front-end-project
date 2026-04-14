@@ -722,60 +722,89 @@ if (recipeContainer) {
 }
 
 function renderDetails() {
-    const batch = allRecipes.slice(71, 72);
-    const story = allStories.slice(71, 72);
-    batch.forEach(recipe => {
-        let img1 = 0;
-        let img2 = 1;
-        let img3 = 2;
-        let img4 = 3;
-        if (img3 >= recipe.images.length) {
-            img3 = img1;
-        }
-        if (img4 >= recipe.images.length) {
-            img4 = recipe.images.length - 1;
-        }
-        const detailHTML = `
+    /* read the ?id= value from the URL
+       e.g. recipedetails.html?id=3 gives recipeId = 3 */
+    const params   = new URLSearchParams(window.location.search);
+    const recipeId = parseInt(params.get("id"));
+
+    /* find the matching recipe and story by id */
+    const recipe = allRecipes.find(r => r.id === recipeId);
+    const story  = allStories.find(s => s.id === recipeId);
+
+    if (!recipe) {
+        detailContainer.innerHTML = "<p>Recipe not found.</p>";
+        return;
+    }
+
+    /* handle recipes that have fewer than 4 images */
+    let img1 = 0;
+    let img2 = 1;
+    let img3 = 2;
+    let img4 = 3;
+    if (img2 >= recipe.images.length) img2 = 0;
+    if (img3 >= recipe.images.length) img3 = 0;
+    if (img4 >= recipe.images.length) img4 = recipe.images.length - 1;
+
+    const detailHTML = `
         <h1>${recipe.name}</h1>
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
                 <img src="images/images/${recipe.images[img1]}" class="recipephoto" alt="completed">
-                <blockquote>  
-                </blockquote>
+                <blockquote></blockquote>
             </div>
             <hr>
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote> ${recipe.ingredients}
-                </blockquote>
+                <blockquote>${recipe.ingredients}</blockquote>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-            <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
-                <blockquote> ${recipe.steps}
-                </blockquote>
+                <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
+                <blockquote>${recipe.steps}</blockquote>
             </div>
         </div>
         <hr>
         <h1>Share with your fellow sigmas!</h1>
         <!-- RECIPE COMPLETE -->
         <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
-        <button>
-            <p>Like</p>
-        </button>
+        <button class="heart-btn" data-card="${recipe.id}"
+                onclick="event.preventDefault();"
+                style="font-size:28px; margin-bottom:10px;">&#9825;</button>
+        <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
         </button>`;
-        detailContainer.innerHTML = detailHTML;
-    });
+
+    detailContainer.innerHTML = detailHTML;
+
+    /* init the heart button now that it's been injected into the DOM */
+    initNewHeartButtons();
 }
 
-async function loadObama() {
+
+/* 
+============================================================================
+FAVORITES PAGE
+CHANGED: added loadFavorites() to populate favorites.html
+
+   How it works:
+   - Reads every key in localStorage
+   - Filters for keys that start with "fav-" and have value "true"
+   - Extracts the card ID from each key (e.g. "fav-3" → "3")
+   - Waits for allRecipes to be loaded (same JSON fetch as index.html)
+   - Finds each matching recipe by id and renders it using the same
+     card HTML as renderBatch() so favorites look identical to normal cards
+   - If no favorites exist, shows the #no-favorites message instead
+=============================================================================
+*/
+
+async function loadFavorites() {
+    /* step 1: load all recipe JSON — same files as loadAndMergeRecipes() */
     const files = [
         'json/recipes/breakfast_recipes_part1.json',
         'json/recipes/breakfast_recipes_part2.json',
@@ -796,40 +825,93 @@ async function loadObama() {
     ];
 
     try {
-        const responses = await Promise.all(files.map(file => fetch(file)));
-
+        const responses  = await Promise.all(files.map(file => fetch(file)));
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
-
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-
-        allRecipes = dataArrays.flat();
+        allRecipes       = dataArrays.flat(); /* fill the global allRecipes array */
     } catch (error) {
-        console.error("Data Load Error:", error);
-        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+        console.error("Favorites load error:", error);
+        favoritesContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+        return;
     }
 
-    const flax = [
-        'json/recipes/All_recipe_stories.json'
-    ];
-
-    try {
-        const responses = await Promise.all(flax.map(file => fetch(file)));
-
-        responses.forEach(res => {
-            if (!res.ok) throw new Error(`Could not find ${res.url}`);
-        });
-
-        const dataArrays = await Promise.all(responses.map(res => res.json()));
-
-        allStories = dataArrays.flat();
-        renderDetails();
-    } catch (error) {
-        console.error("Data Load Error:", error);
-        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+/* 
+step 2: collect all favorited IDs from localStorage
+    localStorage.key(i) iterates every key stored in the browser
+    We look for keys that start with "fav-" and have value "true"
+*/
+    const favIds = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith("fav-") && localStorage.getItem(key) === "true") {
+            /* key is e.g. "fav-3" — slice(4) removes "fav-" leaving "3" */
+            favIds.push(key.slice(4));
+        }
     }
 
+    /* step 3: if nothing is favorited, show the empty state message */
+    const noFavEl = document.getElementById("no-favorites");
+    if (favIds.length === 0) {
+        favoritesContainer.style.display = "none";
+        if (noFavEl) noFavEl.style.display = "block";
+        return;
+    }
+
+    /* step 4: find each favorited recipe in allRecipes by matching id
+       recipe.id is a number in JSON, favIds entries are strings,
+       so we use == (loose equality) to match both "3" == 3           */
+    const favRecipes = allRecipes.filter(recipe => favIds.includes(String(recipe.id)));
+
+    /* step 5: render each favorited recipe using the same card HTML
+       as renderBatch() so they look identical to the homepage cards  */
+    favRecipes.forEach(recipe => {
+        const cardHTML = `
+            <a href="recipedetails.html?id=${recipe.id}" class="card-link">
+                <div class="recipe-card fade-in">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-header">
+                                <span class="card-number">No. ${recipe.id}</span>
+                                <!-- heart already filled since this card is favorited -->
+                                <button class="heart-btn favorited" data-card="${recipe.id}"
+                                        onclick="event.preventDefault();"
+                                        aria-label="Unfavorite">&#9829;</button>
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <div class="card-tags">
+                                <span class="tag">${recipe.season}</span>
+                                <span class="tag">${recipe.cuisine}</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="card-header">
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
+                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
+                            </div>
+                            <!-- note: unfavoriting a card here removes it from the page on next reload -->
+                        </div>
+
+                    </div>
+                </div>
+            </a>`;
+        favoritesContainer.insertAdjacentHTML('beforeend', cardHTML);
+    });
+
+    /* step 6: attach heart listeners so unfavoriting works here too */
+    initNewHeartButtons();
+}
+
+/* Guard: only runs on favorites.html where #favorites-container exists */
+if (favoritesContainer) {
+    loadFavorites();
 }
 
 if (detailContainer) {

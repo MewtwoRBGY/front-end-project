@@ -325,9 +325,9 @@ blockquote {
 }
 
 #aboutPhoto {
-    border-radius: 50%;
+    border-radius: 60%;
     height: 150px;
-    width: 150px;
+    width: 180px;
 }
 
 #logo {

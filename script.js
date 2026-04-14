@@ -62,6 +62,7 @@ const taskList = document.getElementById('TaskDiv');
 const empty = document.getElementById('NoTasks');
 let taskCount = 0;
 
+
 if (taskMake) {
 
     function addTask(event) {
@@ -721,8 +722,9 @@ if (recipeContainer) {
 
 /*function renderDetails() {
     const recipe = ;
-    const story = ;
+    //const story = ;
 
+    //${story[${recipe.id} - 1].story}
     batch.forEach(recipe => {
         const HTML = `
         <h1>${recipe.name}</h1>
@@ -730,7 +732,7 @@ if (recipeContainer) {
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
                 <img src="${recipe.images[0]}" class="recipephoto" alt="completed">
-                <blockquote> ${story[${recipe.id} - 1].story}
+                <blockquote> 
                 </blockquote>
             </div>
             <hr>

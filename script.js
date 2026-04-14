@@ -328,7 +328,7 @@ let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
 const recipesPerPage = 4; // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
-const detailContainer = document.getElementById('recipedetails');
+const detailContainer = document.getElementById('recipe-details');
 const loadMoreBtn = document.getElementById('load-more');
 const searchInput = document.getElementById('recipe-search');
 
@@ -720,13 +720,12 @@ if (recipeContainer) {
     loadAndMergeRecipes();
 }
 
-/*function renderDetails() {
-    const recipe = ;
+function renderDetails() {
+    const recipe = allRecipes[10];
     //const story = ;
 
     //${story[${recipe.id} - 1].story}
-    batch.forEach(recipe => {
-        const HTML = `
+    const detailHTML = `
         <h1>${recipe.name}</h1>
         <div>
             <!-- RECIPE OVERVIEW -->
@@ -762,6 +761,9 @@ if (recipeContainer) {
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
         </button>`;
-        detailContainer.insertAdjacentHTML('beforeend', cardHTML);
-    });
-}*/
+    detailContainer.innerHTML = detailHTML;
+}
+
+if (detailContainer) {
+    renderDetails();
+}

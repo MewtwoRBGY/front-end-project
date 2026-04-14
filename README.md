@@ -6,7 +6,7 @@ Joseph Racca
 -CSS, flex boxes
 -Presentation 3
 -Recipe Details Page
--About me styling
+-About styling
 
 Eljay Jimenez
 -Sitemap

@@ -330,6 +330,7 @@ const recipesPerPage = 4; // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
 const detailContainer = document.getElementById('recipe-details');
+const favoritesContainer = document.getElementById('favorites-container');
 const loadMoreBtn = document.getElementById('load-more');
 const searchInput = document.getElementById('recipe-search');
 
@@ -724,12 +725,12 @@ if (recipeContainer) {
 function renderDetails() {
     /* read the ?id= value from the URL
        e.g. recipedetails.html?id=3 gives recipeId = 3 */
-    const params   = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
     const recipeId = parseInt(params.get("id"));
 
     /* find the matching recipe and story by id */
     const recipe = allRecipes.find(r => r.id === recipeId);
-    const story  = allStories.find(s => s.id === recipeId);
+    const story = allStories.find(s => s.id === recipeId);
 
     if (!recipe) {
         detailContainer.innerHTML = "<p>Recipe not found.</p>";
@@ -825,23 +826,23 @@ async function loadFavorites() {
     ];
 
     try {
-        const responses  = await Promise.all(files.map(file => fetch(file)));
+        const responses = await Promise.all(files.map(file => fetch(file)));
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-        allRecipes       = dataArrays.flat(); /* fill the global allRecipes array */
+        allRecipes = dataArrays.flat(); /* fill the global allRecipes array */
     } catch (error) {
         console.error("Favorites load error:", error);
         favoritesContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
         return;
     }
 
-/* 
-step 2: collect all favorited IDs from localStorage
-    localStorage.key(i) iterates every key stored in the browser
-    We look for keys that start with "fav-" and have value "true"
-*/
+    /* 
+    step 2: collect all favorited IDs from localStorage
+        localStorage.key(i) iterates every key stored in the browser
+        We look for keys that start with "fav-" and have value "true"
+    */
     const favIds = [];
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -912,6 +913,63 @@ step 2: collect all favorited IDs from localStorage
 /* Guard: only runs on favorites.html where #favorites-container exists */
 if (favoritesContainer) {
     loadFavorites();
+}
+
+async function loadObama() {
+    const files = [
+        'json/recipes/breakfast_recipes_part1.json',
+        'json/recipes/breakfast_recipes_part2.json',
+        'json/recipes/breakfast_recipes_part3.json',
+        'json/recipes/lunch_recipes_part1.json',
+        'json/recipes/lunch_recipes_part2.json',
+        'json/recipes/dinner_recipes_part1.json',
+        'json/recipes/dinner_recipes_part2.json',
+        'json/recipes/snacks_recipes.json',
+        'json/recipes/dessert_recipes_part1.json',
+        'json/recipes/dessert_recipes_part2.json',
+        'json/recipes/beverages_recipes.json',
+        'json/recipes/summer_recipes.json',
+        'json/recipes/winter_recipes.json',
+        'json/recipes/spring_recipes.json',
+        'json/recipes/autumn_recipes.json',
+        'json/recipes/appetizer_recipes.json'
+    ];
+
+    try {
+        const responses = await Promise.all(files.map(file => fetch(file)));
+
+        responses.forEach(res => {
+            if (!res.ok) throw new Error(`Could not find ${res.url}`);
+        });
+
+        const dataArrays = await Promise.all(responses.map(res => res.json()));
+
+        allRecipes = dataArrays.flat();
+    } catch (error) {
+        console.error("Data Load Error:", error);
+        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+    }
+
+    const flax = [
+        'json/recipes/All_recipe_stories.json'
+    ];
+
+    try {
+        const responses = await Promise.all(flax.map(file => fetch(file)));
+
+        responses.forEach(res => {
+            if (!res.ok) throw new Error(`Could not find ${res.url}`);
+        });
+
+        const dataArrays = await Promise.all(responses.map(res => res.json()));
+
+        allStories = dataArrays.flat();
+        renderDetails();
+    } catch (error) {
+        console.error("Data Load Error:", error);
+        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+    }
+
 }
 
 if (detailContainer) {

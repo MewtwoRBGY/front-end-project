@@ -381,11 +381,10 @@ blockquote {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 5px;
-    display: flex;          
+    display: flex;
     flex-direction: column;
     cursor: pointer;
 }
-
 
 .card-front {
     z-index: 2;
@@ -410,7 +409,8 @@ blockquote {
 
 .recipe-card:hover .card-inner {
     transform: rotateY(180deg);
-  }
+}
+
 .recipe-card:hover {
     transform: translateY(-5px);
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
@@ -476,8 +476,8 @@ a.card-link .recipe-card:hover {
     justify-content: space-between;
     align-items: flex-start;
     gap: 10px;
-    flex-direction: column; 
-    flex-grow: 1;         
+    flex-direction: column;
+    flex-grow: 1;
     padding-bottom: 5px;
 }
 
@@ -528,8 +528,10 @@ a.card-link .recipe-card:hover {
     width: 180px;
     height: 180px;
     object-fit: cover;
-    display: block; /*  for margin auto to work */
-    margin: 10px auto; /* 10px top/bottom, 'auto' centers it left/right */
+    display: block;
+    /*  for margin auto to work */
+    margin: 10px auto;
+    /* 10px top/bottom, 'auto' centers it left/right */
     border-radius: 5px;
     border: 1px solid var(--crimson-violet);
     flex-shrink: 0;
@@ -650,7 +652,9 @@ the breakpoints are:
     }
 }
 
+
 /*recipelist.html card fixes*/
+
 .resultsgrid .card-body {
     flex-direction: row;
     align-items: center;
@@ -669,9 +673,11 @@ the breakpoints are:
     margin: 0;
 }
 
+
 /*TO-DO LSIT*/
 
-.completed { /*for the completed items to be crossed off*/
+.completed {
+    /*for the completed items to be crossed off*/
     text-decoration: line-through;
     color: gray;
 }
@@ -687,11 +693,10 @@ the breakpoints are:
     float: right;
     margin-right: 10px;
     margin-top: 3px;
-
 }
 
 .hidden {
-   display: none; 
+    display: none;
 }
 
 
@@ -701,21 +706,26 @@ the breakpoints are:
 ======
 */
 
+
 /* nav button that opens the timer */
+
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 20px; /* prevents button from hitting the edge */
+    padding-right: 20px;
+    /* prevents button from hitting the edge */
 }
 
 .timer-nav-btn {
     margin-left: 16px;
-    margin-right: 14px; /* accounts for the cube's right face sticking out */
-    font-size: 13px; /* slightly smaller so it fits comfortably */
+    margin-right: 14px;
+    /* accounts for the cube's right face sticking out */
+    font-size: 13px;
+    /* slightly smaller so it fits comfortably */
     padding: 0.4em 0.8em;
 }
- 
+
 #timer-window {
     position: fixed;
     top: 80px;
@@ -730,13 +740,15 @@ nav {
     user-select: none;
     transition: box-shadow 0.2s ease;
 }
- 
+
 #timer-window.dragging {
     box-shadow: 14px 14px 0px var(--midnight-violet);
     opacity: 0.93;
 }
- 
+
+
 /* timer title bar */
+
 #timer-titlebar {
     background: var(--crimson-violet);
     color: var(--light-gold);
@@ -751,14 +763,16 @@ nav {
     font-weight: 700;
     letter-spacing: 0.04em;
 }
- 
-#timer-titlebar:active { cursor: grabbing; }
- 
+
+#timer-titlebar:active {
+    cursor: grabbing;
+}
+
 #titlebar-controls {
     display: flex;
     gap: 6px;
 }
- 
+
 #titlebar-controls button {
     background: var(--reddish-brown);
     color: var(--light-gold);
@@ -775,12 +789,12 @@ nav {
     font-family: monospace;
     padding: 0;
 }
- 
+
 #titlebar-controls button:hover {
     background: var(--light-gold);
     color: var(--crimson-violet);
 }
- 
+
 #timer-body {
     padding: 20px 24px;
     display: flex;
@@ -788,8 +802,10 @@ nav {
     align-items: center;
     gap: 18px;
 }
- 
+
+
 /* timer messages display font */
+
 #timer-message {
     font-family: 'EB Garamond', serif;
     font-style: italic;
@@ -799,7 +815,7 @@ nav {
     min-height: 22px;
     transition: opacity 0.25s ease;
 }
- 
+
 #timer-display {
     display: flex;
     align-items: center;
@@ -808,9 +824,9 @@ nav {
     padding: 14px 22px;
     border-radius: 6px;
     border: 2px solid var(--crimson-violet);
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
- 
+
 .time-segment {
     width: 72px;
     background: transparent;
@@ -824,25 +840,27 @@ nav {
     letter-spacing: 3px;
     -moz-appearance: textfield;
 }
- 
+
 .time-segment::-webkit-outer-spin-button,
 .time-segment::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
- 
+
 .time-segment:focus {
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 4px;
     color: #fff8bf;
 }
- 
+
+
 /* glowing effect */
+
 .time-segment.running {
     color: #ffdd55;
     text-shadow: 0 0 10px rgba(255, 210, 60, 0.7);
 }
- 
+
 .time-sep {
     color: var(--light-gold);
     font-family: 'Courier Prime', monospace;
@@ -851,15 +869,17 @@ nav {
     line-height: 1;
     padding-bottom: 4px;
 }
- 
+
 #timer-controls {
     display: flex;
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
 }
- 
+
+
 /* cube buttons - same structure as Uiverse.io by gagan-gv */
+
 .btn {
     display: block;
     padding: 0.55em 1em;
@@ -874,13 +894,15 @@ nav {
     cursor: pointer;
     z-index: 1;
 }
- 
-.cube { 
-    position: relative; 
-    transition: all 0.5s; 
+
+.cube {
+    position: relative;
+    transition: all 0.5s;
 }
- 
+
+
 /* top face of the 3D cube */
+
 .cube .bg-top {
     position: absolute;
     height: 10px;
@@ -892,18 +914,27 @@ nav {
     margin: 0;
     transition: all 0.4s;
 }
- 
-.cube .bg-top .bg-inner { bottom: 0; }
- 
+
+.cube .bg-top .bg-inner {
+    bottom: 0;
+}
+
+
 /* front face */
+
 .cube .bg {
     position: absolute;
-    left: 0; bottom: 0; top: 0; right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
     background: var(--reddish-brown);
     transition: all 0.4s;
 }
- 
+
+
 /* right face */
+
 .cube .bg-right {
     position: absolute;
     background: var(--reddish-brown);
@@ -915,43 +946,61 @@ nav {
     transform: skew(0, -45deg);
     transition: all 0.4s;
 }
- 
-.cube .bg-right .bg-inner { left: 0; }
- 
+
+.cube .bg-right .bg-inner {
+    left: 0;
+}
+
+
 /* inner faces for hover color change */
+
 .cube .bg-inner {
     background: var(--light-gold);
     position: absolute;
-    left: 2px; right: 2px; top: 2px; bottom: 2px;
+    left: 2px;
+    right: 2px;
+    top: 2px;
+    bottom: 2px;
 }
- 
-.cube .text { position: relative; transition: all 0.4s; }
- 
+
+.cube .text {
+    position: relative;
+    transition: all 0.4s;
+}
+
+
 /* hover effects */
-.cube:hover .bg-inner { 
-    background: var(--crimson-violet); 
-    transition: all 0.4s; 
+
+.cube:hover .bg-inner {
+    background: var(--crimson-violet);
+    transition: all 0.4s;
 }
 
-.cube:hover .text { 
-    color: var(--light-gold); 
-    transition: all 0.4s; 
+.cube:hover .text {
+    color: var(--light-gold);
+    transition: all 0.4s;
 }
 
-.cube:hover .bg-right, .cube:hover .bg, .cube:hover .bg-top { 
+.cube:hover .bg-right,
+.cube:hover .bg,
+.cube:hover .bg-top {
     background: var(--midnight-violet);
 }
- 
-.cube:active { 
-    z-index: 9999; 
-    animation: cubeBounce 0.1s linear; 
+
+.cube:active {
+    z-index: 9999;
+    animation: cubeBounce 0.1s linear;
 }
- 
+
 @keyframes cubeBounce {
-    50% { transform: scale(0.9); }
+    50% {
+        transform: scale(0.9);
+    }
 }
- 
+
+
 /* progress bar */
+
 #progress-container {
     width: 100%;
     height: 10px;
@@ -960,31 +1009,43 @@ nav {
     overflow: hidden;
     border: 1px solid var(--crimson-violet);
 }
- 
+
 #progress-bar {
     height: 100%;
     width: 100%;
     background: linear-gradient(90deg, var(--midnight-violet), var(--crimson-violet), var(--reddish-brown), var(--light-gold));
     border-radius: 5px;
 }
- 
+
+
 /* minimized state */
-#timer-window.minimized #timer-body { display: none; }
-#timer-window.minimized { box-shadow: 4px 4px 0px var(--midnight-violet); }
- 
+
+#timer-window.minimized #timer-body {
+    display: none;
+}
+
+#timer-window.minimized {
+    box-shadow: 4px 4px 0px var(--midnight-violet);
+}
+
+
 /* done flash animation when time is up! */
+
 @keyframes doneFlash {
-    0%, 100% { 
-        border-color: var(--crimson-violet); 
-        box-shadow: 8px 8px 0px var(--midnight-violet); 
+    0%,
+    100% {
+        border-color: var(--crimson-violet);
+        box-shadow: 8px 8px 0px var(--midnight-violet);
     }
-    50% { 
-        border-color: var(--light-gold); 
-        box-shadow: 0 0 24px var(--light-gold); 
+    50% {
+        border-color: var(--light-gold);
+        box-shadow: 0 0 24px var(--light-gold);
     }
 }
- 
-#timer-window.done { animation: doneFlash 0.5s ease-in-out 6; }
+
+#timer-window.done {
+    animation: doneFlash 0.5s ease-in-out 6;
+}
 
 
 /* 
@@ -1003,50 +1064,76 @@ heartFloat: a floating ❤️ that rises upward and fades out
 ======================================================================
 */
 
-
 .heart-btn {
     background: none;
     border: none;
     font-style: 20px;
     cursor: pointer;
     color: var(--crimson-violet);
-    position: relative; /* needed so .heart-burst positions properly */
+    position: relative;
+    /* needed so .heart-burst positions properly */
 }
 
+
 /* filled red heart when clicked */
+
 .heart-btn.filled {
     color: #c0392b;
 }
 
+
 /* .popping is added by JS on click */
+
 .heart-btn.popping {
     animation: heartPop 0.3s ease;
 }
 
 @keyframes heartPop {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.4); } /* overshoot */
-    70% { transform: scale(0.9); } /* undershoot */
-    100% { transform: scale(1); } /* back to normal */
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.4);
+    }
+    /* overshoot */
+    70% {
+        transform: scale(0.9);
+    }
+    /* undershoot */
+    100% {
+        transform: scale(1);
+    }
+    /* back to normal */
 }
 
+
 /* the floating heart burst */
+
 .heart-burst {
     position: absolute;
     font-size: 20px;
     color: #c0392b;
     animation: heartFloat 0.8s ease forwards;
-
-    pointer-events: none; /* so it doesn't interfere with clicking the button again */
+    pointer-events: none;
+    /* so it doesn't interfere with clicking the button again */
     top: 0;
     left: 0;
     z-index: 100;
 }
 
 @keyframes heartFloat {
-    0% { transform: translateY(0) scale(1); opacity: 1; } /* start at normal size and fully visible */
-    100% { transform: translateY(-40px) scale(1.5); opacity: 0; } /* float up, grow, and fade out */
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    /* start at normal size and fully visible */
+    100% {
+        transform: translateY(-40px) scale(1.5);
+        opacity: 0;
+    }
+    /* float up, grow, and fade out */
 }
+
 
 /* 
 ============================================================
@@ -1067,9 +1154,16 @@ fade-in {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
 
 /*
 ======================================================================
@@ -1087,7 +1181,9 @@ Stars are grey by default — JS adds .selected to turn them gold.
     margin-top: 6px;
 }
 
+
 /* average start display - JS will write the start string here */
+
 .star-display {
     display: flex;
     align-items: center;
@@ -1095,52 +1191,59 @@ Stars are grey by default — JS adds .selected to turn them gold.
     margin-bottom: 5px;
     flex-wrap: wrap;
 }
- 
+
 .avg-rating {
     font-size: 16px;
     color: #d4a017;
     letter-spacing: 1px;
 }
- 
+
 .rating-count {
     font-size: 11px;
     color: var(--light-gold);
     font-style: italic;
 }
- 
+
+
 /* the 5 clickable star buttons */
+
 .star-input {
     display: flex;
     gap: 3px;
     margin-bottom: 7px;
 }
- 
+
 .star {
     background: none;
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: #888; /* grey by default */
+    color: #888;
+    /* grey by default */
     transition: color 0.15s ease, transform 0.15s ease;
     padding: 0;
     line-height: 1;
 }
- 
+
+
 /* hover and selected both turn gold and scale up slightly */
+
 .star:hover,
 .star.selected {
     color: #d4a017;
     transform: scale(1.2);
 }
- 
+
+
 /* review text area and submit button */
+
 .review-form {
     display: flex;
     flex-direction: column;
     gap: 5px;
     margin-bottom: 8px;
 }
- 
+
 .review-input {
     width: 100%;
     padding: 5px 7px;
@@ -1152,7 +1255,7 @@ Stars are grey by default — JS adds .selected to turn them gold.
     color: var(--midnight-violet);
     resize: vertical;
 }
- 
+
 .submit-review {
     align-self: flex-start;
     background-color: var(--crimson-violet);
@@ -1165,17 +1268,19 @@ Stars are grey by default — JS adds .selected to turn them gold.
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
- 
+
 .submit-review:hover {
     background-color: var(--reddish-brown);
 }
- 
+
+
 /* 
 each posted review
 reuses fadeInUp so new reviews animate in
 */
+
 .review-item {
-    background-color: rgba(255,248,191,0.15);
+    background-color: rgba(255, 248, 191, 0.15);
     border: 1px solid var(--crimson-violet);
     border-radius: 3px;
     padding: 5px 8px;
@@ -1183,13 +1288,13 @@ reuses fadeInUp so new reviews animate in
     font-size: 11px;
     animation: fadeInUp 0.3s ease both;
 }
- 
+
 .review-stars {
     color: #d4a017;
     font-size: 12px;
     margin-bottom: 2px;
 }
- 
+
 .review-text {
     color: var(--light-gold);
 }

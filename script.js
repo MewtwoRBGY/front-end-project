@@ -323,6 +323,7 @@ Used by the recipe fetching, rendering, and search system
 */
 
 let allRecipes = []; // master list — all recipes from all JSON files
+let allStories = [];
 let filteredRecipes = []; // current working list — filtered by search query
 let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
 const recipesPerPage = 4; // how many cards to show per Load More click
@@ -721,47 +722,47 @@ if (recipeContainer) {
 }
 
 function renderDetails() {
-    const rech = allRecipes[10];
-    //const story = ;
-
-    //${story[${recipe.id} - 1].story}
-    const detailHTML = `
-        <h1>${rech.name}</h1>
+    const batch = allRecipes.slice(currentIndex, currentIndex + 1);
+    const story = allStories.slice(currentIndex, currentIndex + 1);
+    batch.forEach(recipe => {
+        const detailHTML = `
+        <h1>${recipe.name}</h1>
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
-                <img src="${rech.images[0]}" class="recipephoto" alt="completed">
-                <blockquote> 
+                <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="completed">
+                <blockquote>  
                 </blockquote>
             </div>
             <hr>
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote> ${rech.ingredients}
+                <blockquote> ${recipe.ingredients}
                 </blockquote>
-                <img src="${rech.images[0]}" class="recipephoto" alt="ingredients">
+                <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-                <img src="${rech.images[0]}" class="recipephoto" alt="prep">
-                <blockquote> ${rech.steps}
+            <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="prep">
+                <blockquote> ${recipe.steps}
                 </blockquote>
             </div>
         </div>
         <hr>
         <h1>Share with your fellow sigmas!</h1>
         <!-- RECIPE COMPLETE -->
-        <img src="${rech.images[0]}" class="recipephoto" alt="completeAlt">
+        <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="completeAlt">
         <button>
             <p>Like</p>
         </button>
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
         </button>`;
-    detailContainer.innerHTML = detailHTML;
+        detailContainer.innerHTML = detailHTML;
+    });
 }
 
 async function loadObama() {
@@ -798,9 +799,29 @@ async function loadObama() {
         console.error("Data Load Error:", error);
         detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
     }
+
+    const flax = [
+        'json/recipes/All_recipe_stories.json'
+    ];
+
+    try {
+        const responses = await Promise.all(flax.map(file => fetch(file)));
+
+        responses.forEach(res => {
+            if (!res.ok) throw new Error(`Could not find ${res.url}`);
+        });
+
+        const dataArrays = await Promise.all(responses.map(res => res.json()));
+
+        allStories = dataArrays.flat();
+        renderDetails();
+    } catch (error) {
+        console.error("Data Load Error:", error);
+        detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
+    }
+
 }
 
 if (detailContainer) {
     loadObama();
-    renderDetails();
 }

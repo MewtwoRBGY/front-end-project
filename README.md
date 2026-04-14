@@ -5,7 +5,8 @@ Joseph Racca
 -HTML
 -CSS, flex boxes
 -Presentation 3
--Recipe Details Page styling
+-Recipe Details Page
+-About me styling
 
 Eljay Jimenez
 -Sitemap
@@ -13,6 +14,7 @@ Eljay Jimenez
 -CSS, Navbar and color scheme
 -Presentation 1
 -Recipe Cards
+-Cooking timer
 
 Seamus Sommers
 -Wireframe
@@ -20,6 +22,10 @@ Seamus Sommers
 -Slide images
 -Presentation 2
 -Animations
+-Recipe Cards
+-JSON fetching
+-To-do list
+-Search
 
 Pancake test from Taste of Home website
 Gigachad About Me Photo by Gemini

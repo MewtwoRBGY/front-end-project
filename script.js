@@ -722,15 +722,25 @@ if (recipeContainer) {
 }
 
 function renderDetails() {
-    const batch = allRecipes.slice(currentIndex, currentIndex + 1);
-    const story = allStories.slice(currentIndex, currentIndex + 1);
+    const batch = allRecipes.slice(71, 72);
+    const story = allStories.slice(71, 72);
     batch.forEach(recipe => {
+        let img1 = 0;
+        let img2 = 1;
+        let img3 = 2;
+        let img4 = 3;
+        if (img3 >= recipe.images.length) {
+            img3 = img1;
+        }
+        if (img4 >= recipe.images.length) {
+            img4 = recipe.images.length - 1;
+        }
         const detailHTML = `
         <h1>${recipe.name}</h1>
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
-                <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="completed">
+                <img src="images/images/${recipe.images[img1]}" class="recipephoto" alt="completed">
                 <blockquote>  
                 </blockquote>
             </div>
@@ -740,13 +750,13 @@ function renderDetails() {
             <div class="recipelayout">
                 <blockquote> ${recipe.ingredients}
                 </blockquote>
-                <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="ingredients">
+                <img src="images/images/${recipe.images[img2]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-            <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="prep">
+            <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
                 <blockquote> ${recipe.steps}
                 </blockquote>
             </div>
@@ -754,7 +764,7 @@ function renderDetails() {
         <hr>
         <h1>Share with your fellow sigmas!</h1>
         <!-- RECIPE COMPLETE -->
-        <img src="images/images/${recipe.images[0]}" class="recipephoto" alt="completeAlt">
+        <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
         <button>
             <p>Like</p>
         </button>

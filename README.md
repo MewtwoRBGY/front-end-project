@@ -15,6 +15,7 @@ Eljay Jimenez
 -Presentation 1
 -Recipe Cards
 -Cooking timer
+-Favorites Page and reviews
 
 Seamus Sommers
 -Wireframe

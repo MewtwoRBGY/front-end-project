@@ -549,14 +549,6 @@ padding: 0 !important;
 margin: 0 0px;  
 }
 
-.tag-stars {
-    display: block;
-    border-radius: 5px !important;
-    width: 100px;      /* length of the line */
-    height: 4px;      
-    padding: 0 !important;
-    margin: 0 0px;  
-    }
 
 .recipe-card .recipefeat {
     width: 180px;

@@ -649,7 +649,7 @@ function initNewRatings() {
                 }
                 item.innerHTML = `
                 
-                    <div class="review-stars"> <span class="tag-stars"> ${stars}</span></div>
+                    <div class="review-stars"> <span class="tag"> ${stars}</span></div>
                     <div class="review-text">${review.text}</div>`;
                 reviewsList.appendChild(item);
             });

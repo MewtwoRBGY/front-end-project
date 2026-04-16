@@ -434,6 +434,7 @@ function renderBatch() {
                             <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
+                                <span class="tag"> ${recipe.prep_time}</span>
                             </div>
                         </div>
 
@@ -442,8 +443,13 @@ function renderBatch() {
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
-                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
+
+                            <p class="ingredient-text">Ingredients List:</p>    
+                            <span class="tag line-tag"></span>                       
+                            <ul class="card-ingredients"> 
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                            </ul>
+                                
                             </div>
                             <!-- CHANGED: ratings section added for Ratings & Reviews feature -->
                             <!-- data-recipe is the unique key used to save/load from localStorage -->
@@ -642,7 +648,8 @@ function initNewRatings() {
                     stars += i <= review.stars ? "★" : "☆";
                 }
                 item.innerHTML = `
-                    <div class="review-stars">${stars}</div>
+                
+                    <div class="review-stars"> <span class="tag-stars"> ${stars}</span></div>
                     <div class="review-text">${review.text}</div>`;
                 reviewsList.appendChild(item);
             });

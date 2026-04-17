@@ -414,10 +414,9 @@ function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
  
     batch.forEach(recipe => {
-        // Determine initial heart state from localStorage
         const isFav = localStorage.getItem(`fav-${recipe.id}`) === 'true';
         const heartChar = isFav ? '♥' : '♡';
-    
+
         const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
@@ -435,7 +434,7 @@ function renderBatch() {
                                 <span class="tag">${recipe.prep_time}</span>
                             </div>
                         </div>
-    
+ 
                         <div class="card-back">
                             <div class="card-header">
                                 <button class="heart-btn" data-card="${recipe.id}" aria-label="Favorite">${heartChar}</button>
@@ -449,7 +448,26 @@ function renderBatch() {
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
                             </div>
+                            
+                            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                                <div class="star-display">
+                                    <span class="avg-rating">☆☆☆☆☆</span>
+                                    <span class="rating-count">(0 ratings)</span>
+                                </div>
+                                <div class="star-input">
+                                    <button class="star" data-value="1">★</button>
+                                    <button class="star" data-value="2">★</button>
+                                    <button class="star" data-value="3">★</button>
+                                    <button class="star" data-value="4">★</button>
+                                    <button class="star" data-value="5">★</button>
+                                </div>
+                                <div class="review-form">
+                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"></textarea>
+                                    <button class="submit-review">Post Review</button>
+                                </div>
+                                <div class="reviews-list"></div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </a>`;
@@ -458,12 +476,10 @@ function renderBatch() {
  
     currentIndex += recipesPerPage;
  
-    /* init hearts and ratings on the newly added cards.
-       Must be called after insertAdjacentHTML so the elements exist in the DOM */
+    // Re-initialize logic for the new elements
     initNewHeartButtons();
     initNewRatings();
  
-    // hide Load More button when all recipes are shown
     if (loadMoreBtn) {
         loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
     }
@@ -960,29 +976,26 @@ if (detailContainer) {
     loadObama();
 }
 
+
+/*HEART LOGIC*/
+
+/* --- Heart Logic --- */
 function initNewHeartButtons() {
-    const heartButtons = document.querySelectorAll('.heart-btn');
+    document.querySelectorAll('.heart-btn').forEach(btn => {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-    heartButtons.forEach(btn => {
-        // Use onclick to overwrite existing listeners and prevent duplicates
-        btn.onclick = function(event) {
-            event.preventDefault();
-            event.stopPropagation(); // CRITICAL: Stops the card link from firing
-
-            const recipeId = btn.getAttribute('data-card');
-            const key = `fav-${recipeId}`;
+            const id = btn.getAttribute('data-card');
+            const key = `fav-${id}`;
+            const newState = !(localStorage.getItem(key) === 'true');
             
-            // Toggle state in localStorage
-            const isFav = localStorage.getItem(key) === 'true';
-            const newState = !isFav;
             localStorage.setItem(key, newState);
-
-            // Find the parent card and update BOTH hearts (front and back)
-            const parentCard = btn.closest('.recipe-card');
-            const heartsInThisCard = parentCard.querySelectorAll('.heart-btn');
             
-            heartsInThisCard.forEach(heart => {
-                heart.innerHTML = newState ? '♥' : '♡';
+            // Sync all hearts on this specific card
+            const parent = btn.closest('.recipe-card');
+            parent.querySelectorAll('.heart-btn').forEach(h => {
+                h.innerHTML = newState ? '♥' : '♡';
             });
         };
     });

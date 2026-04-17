@@ -1,52 +1,3 @@
-//let masterItems = []; 
-/*function makeCards() {
-    const tbody = document.getElementByID('featuredlist');
-    if (!tbody) return;
-    let html = "";
-    sortedItems.forEach(item => {
-        html += `<a href="recipedetails.html" class="card-link">
-        <div class = "recipe-card" >
-            < div class = "card-inner" >
-            < div class = "card-front" >
-            < div class = "card-header" >
-            < span class = "card-number" > No. $(item.id) < /span> 
-            <span class = "card-heart" > &#9825;</span>
-            <h3 class= "card-title" > $(item.name) < /h3> < /div >
-            <img src = "$(item.images[0])" alt = "recipe" class = "recipefeat" >
-            < div class = "card-tags" >
-            < span class = "tag" > $(item.season) < /span>
-            <span class = "tag" > $(item.cuisine) < /span>
-            <span class = "tag" > Prep Time: $(item.prep_time) < /span> < /div >
-            </div>
-            <div class = "card-back" >
-            < div class = "card-header" >
-            < span class = "card-number" > No. $(item.id) < /span>
-            <span class = "card-heart" > &#9825;</span>
-            <h3 class= "card-title" > $(item.name) < /h3> < /div >
-            < div class = "card-body" >
-            < div class = "card-info" >
-            < ul >
-            < li > Approximate time to complete: $(item.prep_time) < /li>
-            <li > Required ingredients: $(item.ingredients) < /li> < /ul >
-            <div class = "card-tags" >
-            < span class = "tag" > $(item.season) < /span>
-            <span class = "tag" > $(item.cuisine) < /span>
-            <span class = "tag" > Prep Time: $(item.prep_time) < /span>
-            </div> </div> </div> </div> </div> </a> `
-    });
-    tbody.innerHTML = html;
-}*/
-
-/*
-    fetch("./json/winter_recipes.json")
-        .then(res => res.json())
-        .then(data => {
-            masterItems = data;
-            makeCards();
-        })
-        .catch(err => console.error("Could not load table1.json:", err));
-*/
-
 console.log("H3110 W0r1d");
 
 /*
@@ -414,7 +365,7 @@ function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
  
     batch.forEach(recipe => {
-        const cardHTML = `
+                const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
  
@@ -773,7 +724,7 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote>${recipe.ingredients}</blockquote>
+                <blockquote>${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</blockquote>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
@@ -781,7 +732,7 @@ function renderDetails() {
             <h1>Instructions</h1>
             <div class="recipelayout">
                 <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
-                <blockquote>${recipe.steps}</blockquote>
+                <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
         <hr>

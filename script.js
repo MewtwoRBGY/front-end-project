@@ -422,14 +422,15 @@ function renderBatch() {
                          accessible on both front and back states of the flip card.
                          position:absolute in CSS will anchor it to the card corner.
                          z-index keeps it above the flip animation layers.           -->
-                    <button class="heart-btn" data-card="${recipe.id}"
-                            onclick="event.preventDefault();"
-                            aria-label="Favorite">&#9825;</button>
+                   
  
                     <div class="card-inner">
  
                         <div class="card-front">
                             <div class="card-header">
+                            <button class="heart-btn" data-card="${recipe.id}"
+                            onclick="event.preventDefault();"
+                            aria-label="Favorite">&#9829;</button>
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
@@ -444,6 +445,11 @@ function renderBatch() {
  
                         <div class="card-back">
                             <div class="card-header">
+                            <button class="heart-btn" data-card="${recipe.id}"
+                            onclick="event.preventDefault();"
+                            aria-label="Favorite">&#9829;</button>
+                                <span class="card-number">No. ${recipe.id}</span>
+                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -559,7 +565,7 @@ function initNewHeartButtons() {
             e.stopPropagation(); /* stop click bubbling to parent <a> */
 
             const isFav = btn.classList.toggle("filled");
-            btn.innerHTML = isFav ? "&#9829;" : "&#9825;"; /* makes the heart filled or hollow */
+            btn.innerHTML = isFav ? "&#9829;" : "&#9829;"; /* makes the heart filled or hollow */
             localStorage.setItem("fav-" + cardId, isFav);
 
             /* retrigger heartPop: remove, force reflow, re-add */
@@ -784,7 +790,7 @@ function renderDetails() {
         <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
         <button class="heart-btn" data-card="${recipe.id}"
                 onclick="event.preventDefault();"
-                style="font-size:28px; margin-bottom:10px;">&#9825;</button>
+                style="font-size:28px; margin-bottom:10px;">&#9829;</button>
         <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>

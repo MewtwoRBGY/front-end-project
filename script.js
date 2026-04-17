@@ -412,58 +412,59 @@ CHANGED: added class="recipe-card fade-in" - triggers Animation 2
 
 function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
-
+ 
     batch.forEach(recipe => {
         const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
+ 
+                    <!-- CHANGED: heart-btn moved outside .card-inner so it stays
+                         accessible on both front and back states of the flip card.
+                         position:absolute in CSS will anchor it to the card corner.
+                         z-index keeps it above the flip animation layers.           -->
+                    <button class="heart-btn" data-card="${recipe.id}"
+                            onclick="event.preventDefault();"
+                            aria-label="Favorite">&#9825;</button>
+ 
                     <div class="card-inner">
-
+ 
                         <div class="card-front">
                             <div class="card-header">
                                 <span class="card-number">No. ${recipe.id}</span>
-                                <!-- CHANGED: heart button added for Animation 1 (heart favorite) -->
-                                <!-- event.preventDefault() stops the <a> link from firing on heart click -->
-                                <button class="heart-btn" data-card="${recipe.id}"
-                                        onclick="event.preventDefault();"
-                                        aria-label="Favorite">&#9825;</button>
+                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <!-- CHANGED: fixed path from images/ to images/images/ -->
                             <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
                             <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
-                                <span class="tag"> ${recipe.prep_time}</span>
+                                <span class="tag">${recipe.prep_time}</span>
                             </div>
                         </div>
-
+ 
                         <div class="card-back">
                             <div class="card-header">
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
-
-                            <p class="ingredient-text">Ingredients List:</p>    
-                            <span class="tag line-tag"></span>                       
-                            <ul class="card-ingredients"> 
-                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                            </ul>
-                                
+                                <p class="ingredient-text">Ingredients List:</p>
+                                <span class="tag line-tag"></span>
+                                <ul class="card-ingredients">
+                                    ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                                </ul>
                             </div>
-                            <!-- CHANGED: ratings section added for Ratings & Reviews feature -->
-                            <!-- data-recipe is the unique key used to save/load from localStorage -->
+                            <!-- ratings section — data-recipe is the localStorage key -->
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
-                                    <span class="avg-rating">☆☆☆☆☆</span>
+                                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                                     <span class="rating-count">(0 ratings)</span>
                                 </div>
                                 <div class="star-input">
-                                    <button class="star" data-value="1" onclick="event.preventDefault();">★</button>
-                                    <button class="star" data-value="2" onclick="event.preventDefault();">★</button>
-                                    <button class="star" data-value="3" onclick="event.preventDefault();">★</button>
-                                    <button class="star" data-value="4" onclick="event.preventDefault();">★</button>
-                                    <button class="star" data-value="5" onclick="event.preventDefault();">★</button>
+                                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
                                 </div>
                                 <div class="review-form">
                                     <textarea class="review-input" placeholder="Leave a review..." rows="2"
@@ -473,19 +474,20 @@ function renderBatch() {
                                 <div class="reviews-list"></div>
                             </div>
                         </div>
-
+ 
                     </div>
                 </div>
             </a>`;
         recipeContainer.insertAdjacentHTML('beforeend', cardHTML);
     });
-
+ 
     currentIndex += recipesPerPage;
-
-    /* CHANGED: init hearts and ratings on the newly added cards. Must be called here, after insertAdjacentHTML, so the elements exist */
+ 
+    /* init hearts and ratings on the newly added cards.
+       Must be called after insertAdjacentHTML so the elements exist in the DOM */
     initNewHeartButtons();
     initNewRatings();
-
+ 
     // hide Load More button when all recipes are shown
     if (loadMoreBtn) {
         loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
@@ -548,15 +550,15 @@ function initNewHeartButtons() {
 
         /* restore saved favorite state on page load */
         if (localStorage.getItem("fav-" + cardId) === "true") {
-            btn.classList.add("favorited");
-            btn.innerHTML = "&#9829;"; /* filled heart ♥ */
+            btn.classList.add("filled");
+            btn.innerHTML = "&#9829;"; /* filled heart ❤️ */
         }
 
         btn.addEventListener("click", function(e) {
             e.preventDefault(); /* stop card link from navigating */
             e.stopPropagation(); /* stop click bubbling to parent <a> */
 
-            const isFav = btn.classList.toggle("favorited");
+            const isFav = btn.classList.toggle("filled");
             btn.innerHTML = isFav ? "&#9829;" : "&#9825;"; /* makes the heart filled or hollow */
             localStorage.setItem("fav-" + cardId, isFav);
 

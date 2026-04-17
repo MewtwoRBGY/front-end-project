@@ -358,6 +358,7 @@ blockquote {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     perspective: 1000px;
     cursor: default;
+    position: relative; /* CHANGED: needed so heart-btn absolute position anchors here */
 }
 
 .image-flipper-container {
@@ -453,6 +454,7 @@ a.card-link .recipe-card:hover {
     color: var(--crimson-violet);
     font-weight: bold;
     white-space: nowrap;
+    margin-left: 22px;
 }
 
 
@@ -1093,18 +1095,22 @@ heartFloat: a floating ❤️ that rises upward and fades out
 .heart-btn {
     background: none;
     border: none;
-    font-style: 20px;
+    font-size: 16px; /* slightly smaller so it's less intrusive */
     cursor: pointer;
     color: var(--crimson-violet);
-    position: relative;
-    /* needed so .heart-burst positions properly */
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    z-index: 10;
+    line-height: 1;
+    padding: 0;
 }
 
 
 /* filled red heart when clicked */
 
-.heart-btn.filled {
-    color: #c0392b;
+.heart-btn.filled, .heart-btn.favorited {
+    color: red;
 }
 
 

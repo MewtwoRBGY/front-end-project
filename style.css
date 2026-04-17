@@ -377,10 +377,12 @@ blockquote {
 
 .image-flipper-container:hover .card-inner {
     transform: rotateY(180deg);
+    
 }
 
 .card-front,
 .card-back {
+    justify-content: flex-start;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -401,7 +403,9 @@ blockquote {
     transform: rotateY(180deg);
     overflow-y: auto; 
     font-size: 12px;
-    padding: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
 }
 p.ingredient-text {
     background-color: transparent !important; 
@@ -447,6 +451,8 @@ a.card-link .recipe-card:hover {
     justify-content: left;
     gap: 0px;
     border-bottom: 1px solid var(--crimson-violet);
+    margin-top: 0px !important;
+    padding-top: 0px !important;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
@@ -1096,16 +1102,17 @@ heartFloat: a floating ❤️ that rises upward and fades out
 
 .heart-btn {
     background: none;
-    border:1px solid #320A28;
-    font-size: 16px; /* slightly smaller so it's less intrusive */
+    border:transparent;
+    font-size: 16px; /* slightly smaller so it's less intrusive this comment makes no sense*/
     cursor: pointer;
-    color: var(--crimson-violet);
+    color:#e9c4b1;
     position: absolute;
     top: 6px;
     left: 8px;
     z-index: 10;
     line-height: 1;
-    padding: 0;
+    padding: 2px;
+    padding-top: 0px;
 }
 
 
@@ -1113,6 +1120,7 @@ heartFloat: a floating ❤️ that rises upward and fades out
 
 .heart-btn.filled, .heart-btn.favorited {
     color: red;
+
 }
 
 

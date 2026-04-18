@@ -739,12 +739,33 @@ function renderDetails() {
         <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
-        </button>`;
+        </button>
+        <!-- ratings section — data-recipe is the localStorage key -->
+                            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                                <div class="star-display">
+                                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                                    <span class="rating-count">(0 ratings)</span>
+                                </div>
+                                <div class="star-input">
+                                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
+                                </div>
+                                <div class="review-form">
+                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                                              onclick="event.preventDefault();"></textarea>
+                                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
+                                </div>
+                                <div class="reviews-list"></div>
+                            </div>`;
 
     detailContainer.innerHTML = detailHTML;
 
     /* init the heart button now that it's been injected into the DOM */
     initNewHeartButtons();
+    initNewRatings();
 }
 
 

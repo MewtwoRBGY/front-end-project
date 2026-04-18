@@ -1373,6 +1373,7 @@ the breakpoints are:
         flex-direction: column;
     }
     .featuredlist {
+        align-items: center;
         grid-template-columns: repeat(2, 1fr);
     }
     .resultsgrid {
@@ -1395,6 +1396,7 @@ the breakpoints are:
     }
     .review-input {
         font-size: 30px;
+        width: 90%;
     }
     .submit-review {
         font-size: 30px;
@@ -1453,6 +1455,7 @@ the breakpoints are:
         width: 120px;
     }
     .featuredlist {
+        align-items: center;
         grid-template-columns: 1fr;
     }
     .resultsgrid {
@@ -1465,23 +1468,5 @@ the breakpoints are:
     footer {
         font-size: 14px;
         padding: 10px;
-    }
-    .star-input button {
-        font-size: 50px;
-    }
-    .review-input {
-        font-size: 30px;
-    }
-    .submit-review {
-        font-size: 30px;
-    }
-    .reviews-list {
-        font-size: 30px;
-    }
-    .review-stars {
-        font-size: 30px;
-    }
-    .review-text {
-        font-size: 30px;
     }
 }

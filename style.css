@@ -334,6 +334,7 @@ blockquote {
 #recipe-complete {
     background-color: var(--crimson-violet);
     padding: 10px;
+    width: 100%;
 }
 
 

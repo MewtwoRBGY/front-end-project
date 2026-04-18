@@ -379,9 +379,6 @@ function renderBatch() {
  
                         <div class="card-front">
                             <div class="card-header">
-                            <button class="heart-btn" data-card="${recipe.id}"
-                            onclick="event.preventDefault();"
-                            aria-label="Favorite">&#9829;</button>
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
@@ -399,7 +396,6 @@ function renderBatch() {
                             <button class="heart-btn" data-card="${recipe.id}"
                             onclick="event.preventDefault();"
                             aria-label="Favorite">&#9829;</button>
-                                <span class="card-number">No. ${recipe.id}</span>
                                 <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>

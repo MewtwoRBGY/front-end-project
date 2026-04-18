@@ -1285,6 +1285,23 @@ the breakpoints are:
 */
 
 
+/*1200px media query*/
+
+@media (max-width: 1200px) {
+    nav ul li a {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    /*featured lists goes from 3 columns to 2 columns*/
+    .featuredlist {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .resultsgrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
 /*850px media query*/
 
 @media (max-width: 850px) {

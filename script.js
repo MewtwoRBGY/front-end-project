@@ -735,7 +735,7 @@ function renderDetails() {
         <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
         <button class="heart-btn" data-card="${recipe.id}"
                 onclick="event.preventDefault();"
-                style="font-size:28px; margin-bottom:10px;">&#9829;</button>
+                style="font-size:28px; margin-bottom:10px;">&#9825;</button>
         <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
         <button class="navbutton">
             <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>

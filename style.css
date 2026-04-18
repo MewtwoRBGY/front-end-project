@@ -1347,10 +1347,6 @@ the breakpoints are:
         align-content: center;
         align-items: center;
     }
-    #aboutPhoto {
-        height: 300px;
-        width: 300px;
-    }
     #featuredFlex {
         flex-direction: column;
     }

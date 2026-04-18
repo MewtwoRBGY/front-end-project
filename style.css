@@ -1103,15 +1103,18 @@ heartFloat: a floating ❤️ that rises upward and fades out
 */
 
 .heart-btn {
-    background: transparent !important;
-    border: none !important;
-    color: var(--crimson-violet) !important;
-    font-size: 22px;
+    background: none;
+    border:transparent;
+    font-size: 16px; /* slightly smaller so it's less intrusive this comment makes no sense*/
     cursor: pointer;
-    padding: 0 !important;
-    z-index: 50;
-    transition: transform 0.2s ease;
+    color:#e9c4b1;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    z-index: 10;
     line-height: 1;
+    padding: 2px;
+    padding-top: 0px;
 }
 
 

@@ -1,52 +1,3 @@
-//let masterItems = []; 
-/*function makeCards() {
-    const tbody = document.getElementByID('featuredlist');
-    if (!tbody) return;
-    let html = "";
-    sortedItems.forEach(item => {
-        html += `<a href="recipedetails.html" class="card-link">
-        <div class = "recipe-card" >
-            < div class = "card-inner" >
-            < div class = "card-front" >
-            < div class = "card-header" >
-            < span class = "card-number" > No. $(item.id) < /span> 
-            <span class = "card-heart" > &#9825;</span>
-            <h3 class= "card-title" > $(item.name) < /h3> < /div >
-            <img src = "$(item.images[0])" alt = "recipe" class = "recipefeat" >
-            < div class = "card-tags" >
-            < span class = "tag" > $(item.season) < /span>
-            <span class = "tag" > $(item.cuisine) < /span>
-            <span class = "tag" > Prep Time: $(item.prep_time) < /span> < /div >
-            </div>
-            <div class = "card-back" >
-            < div class = "card-header" >
-            < span class = "card-number" > No. $(item.id) < /span>
-            <span class = "card-heart" > &#9825;</span>
-            <h3 class= "card-title" > $(item.name) < /h3> < /div >
-            < div class = "card-body" >
-            < div class = "card-info" >
-            < ul >
-            < li > Approximate time to complete: $(item.prep_time) < /li>
-            <li > Required ingredients: $(item.ingredients) < /li> < /ul >
-            <div class = "card-tags" >
-            < span class = "tag" > $(item.season) < /span>
-            <span class = "tag" > $(item.cuisine) < /span>
-            <span class = "tag" > Prep Time: $(item.prep_time) < /span>
-            </div> </div> </div> </div> </div> </a> `
-    });
-    tbody.innerHTML = html;
-}*/
-
-/*
-    fetch("./json/winter_recipes.json")
-        .then(res => res.json())
-        .then(data => {
-            masterItems = data;
-            makeCards();
-        })
-        .catch(err => console.error("Could not load table1.json:", err));
-*/
-
 console.log("H3110 W0r1d");
 
 /*
@@ -412,19 +363,27 @@ CHANGED: added class="recipe-card fade-in" - triggers Animation 2
 
 function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
- 
-    batch.forEach(recipe => {
-        const isFav = localStorage.getItem(`fav-${recipe.id}`) === 'true';
-        const heartChar = isFav ? '♥' : '♡';
 
-        const cardHTML = `
+    batch.forEach(recipe => {
+                const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
+ 
+                    <!-- CHANGED: heart-btn moved outside .card-inner so it stays
+                         accessible on both front and back states of the flip card.
+                         position:absolute in CSS will anchor it to the card corner.
+                         z-index keeps it above the flip animation layers.           -->
+                   
+ 
                     <div class="card-inner">
+ 
                         <div class="card-front">
                             <div class="card-header">
-                                <button class="heart-btn" data-card="${recipe.id}" aria-label="Favorite">${heartChar}</button>
+                            <button class="heart-btn" data-card="${recipe.id}"
+                            onclick="event.preventDefault();"
+                            aria-label="Favorite">&#9829;</button>
                                 <span class="card-number">No. ${recipe.id}</span>
+                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
@@ -437,8 +396,11 @@ function renderBatch() {
  
                         <div class="card-back">
                             <div class="card-header">
-                                <button class="heart-btn" data-card="${recipe.id}" aria-label="Favorite">${heartChar}</button>
+                            <button class="heart-btn" data-card="${recipe.id}"
+                            onclick="event.preventDefault();"
+                            aria-label="Favorite">&#9829;</button>
                                 <span class="card-number">No. ${recipe.id}</span>
+                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -448,26 +410,28 @@ function renderBatch() {
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
                             </div>
-                            
+                            <!-- ratings section — data-recipe is the localStorage key -->
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
-                                    <span class="avg-rating">☆☆☆☆☆</span>
+                                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                                     <span class="rating-count">(0 ratings)</span>
                                 </div>
                                 <div class="star-input">
-                                    <button class="star" data-value="1">★</button>
-                                    <button class="star" data-value="2">★</button>
-                                    <button class="star" data-value="3">★</button>
-                                    <button class="star" data-value="4">★</button>
-                                    <button class="star" data-value="5">★</button>
+                                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
                                 </div>
                                 <div class="review-form">
-                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"></textarea>
-                                    <button class="submit-review">Post Review</button>
+                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                                              onclick="event.preventDefault();"></textarea>
+                                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
                                 </div>
                                 <div class="reviews-list"></div>
                             </div>
                         </div>
+ 
                     </div>
                 </div>
             </a>`;
@@ -758,7 +722,7 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote>${recipe.ingredients}</blockquote>
+                <blockquote>${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</blockquote>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" alt="ingredients">
             </div>
             <hr>
@@ -766,7 +730,7 @@ function renderDetails() {
             <h1>Instructions</h1>
             <div class="recipelayout">
                 <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
-                <blockquote>${recipe.steps}</blockquote>
+                <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
         <hr>
@@ -974,29 +938,4 @@ async function loadObama() {
 
 if (detailContainer) {
     loadObama();
-}
-
-
-/*HEART LOGIC*/
-
-/* --- Heart Logic --- */
-function initNewHeartButtons() {
-    document.querySelectorAll('.heart-btn').forEach(btn => {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const id = btn.getAttribute('data-card');
-            const key = `fav-${id}`;
-            const newState = !(localStorage.getItem(key) === 'true');
-            
-            localStorage.setItem(key, newState);
-            
-            // Sync all hearts on this specific card
-            const parent = btn.closest('.recipe-card');
-            parent.querySelectorAll('.heart-btn').forEach(h => {
-                h.innerHTML = newState ? '♥' : '♡';
-            });
-        };
-    });
 }

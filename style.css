@@ -1336,6 +1336,9 @@ the breakpoints are:
     #aboutFlex {
         flex-direction: column;
     }
+    #intro {
+        flex-direction: column;
+    }
     #featuredFlex {
         flex-direction: column;
     }
@@ -1357,22 +1360,22 @@ the breakpoints are:
         margin-bottom: 15px;
     }
     .star-input button {
-        font-size: 40px;
+        font-size: 50px;
     }
     .review-input {
-        font-size: 20px;
+        font-size: 30px;
     }
     .submit-review {
-        font-size: 20px;
+        font-size: 30px;
     }
     .reviews-list {
-        font-size: 20px;
+        font-size: 30px;
     }
     .review-stars {
-        font-size: 20px;
+        font-size: 30px;
     }
     .review-text {
-        font-size: 20px;
+        font-size: 30px;
     }
 }
 

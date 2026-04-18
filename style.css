@@ -1343,6 +1343,7 @@ the breakpoints are:
         flex-direction: column;
         justify-content: center;
         align-content: center;
+        align-items: center;
     }
     #featuredFlex {
         flex-direction: column;
@@ -1365,7 +1366,7 @@ the breakpoints are:
         margin-bottom: 15px;
     }
     .star-input button {
-        font-size: 100px;
+        font-size: 50px;
     }
     .review-input {
         font-size: 30px;

@@ -352,7 +352,7 @@ blockquote {
 }
 
 #ingredphoto {
-    /*margin-left: auto;*/
+    margin-left: auto;
 }
 
 #aboutPhoto {
@@ -1385,6 +1385,10 @@ the breakpoints are:
     #about {
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+    #ingredphoto {
+        margin-left: 0px;
+        margin-right: auto;
     }
     .star-input button {
         font-size: 50px;

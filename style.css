@@ -629,6 +629,12 @@ the breakpoints are:
         margin-top: 15px;
         margin-bottom: 15px;
     }
+    .review-input {
+        font-size: 12px;
+    }
+    .review-text {
+        font-size: 20px;
+    }
 }
 
 
@@ -686,6 +692,12 @@ the breakpoints are:
     footer {
         font-size: 14px;
         padding: 10px;
+    }
+    .review-input {
+        font-size: 15px;
+    }
+    .review-text {
+        font-size: 28px;
     }
 }
 

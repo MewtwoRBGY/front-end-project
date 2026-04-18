@@ -729,9 +729,10 @@ function renderDetails() {
                 <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
+        <!-- RECIPE COMPLETE -->
+        <div id="recipe-complete">
         <hr>
         <h1>Share with your fellow sigmas!</h1>
-        <!-- RECIPE COMPLETE -->
         <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
         <button class="heart-btn" data-card="${recipe.id}"
                 onclick="event.preventDefault();"
@@ -759,7 +760,7 @@ function renderDetails() {
                                     <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
                                 </div>
                                 <div class="reviews-list"></div>
-                            </div>`;
+                            </div>         </div>`;
 
     detailContainer.innerHTML = detailHTML;
 

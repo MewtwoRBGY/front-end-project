@@ -315,6 +315,10 @@ blockquote {
     margin-right: 0px;
 }
 
+#recipe-complete {
+    background-color: var(--crimson-violet);
+}
+
 
 /* Images */
 

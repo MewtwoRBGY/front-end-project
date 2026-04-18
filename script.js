@@ -925,6 +925,7 @@ async function loadFavorites() {
 
     /* step 6: attach heart listeners so unfavoriting works here too */
     initNewHeartButtons();
+    initNewRatings();
 }
 
 /* Guard: only runs on favorites.html where #favorites-container exists */

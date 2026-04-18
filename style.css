@@ -1342,6 +1342,7 @@ the breakpoints are:
     #intro {
         flex-direction: column;
         justify-content: center;
+        align-content: center;
     }
     #featuredFlex {
         flex-direction: column;

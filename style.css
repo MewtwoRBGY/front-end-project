@@ -317,6 +317,7 @@ blockquote {
 
 #recipe-complete {
     background-color: var(--crimson-violet);
+    padding: 10px;
 }
 
 
@@ -1274,6 +1275,10 @@ button {
     color: var(--light-gold);
 }
 
+.star-display span {
+    font-size: 25px;
+}
+
 
 /*media queries (please keep them at the very bottom
 
@@ -1346,8 +1351,20 @@ the breakpoints are:
         margin-top: 15px;
         margin-bottom: 15px;
     }
+    .star-input button {
+        font-size: 40px;
+    }
     .review-input {
-        font-size: 12px;
+        font-size: 20px;
+    }
+    .submit-review {
+        font-size: 20px;
+    }
+    .reviews-list {
+        font-size: 20px;
+    }
+    .review-stars {
+        font-size: 20px;
     }
     .review-text {
         font-size: 20px;
@@ -1410,10 +1427,22 @@ the breakpoints are:
         font-size: 14px;
         padding: 10px;
     }
+    .star-input button {
+        font-size: 40px;
+    }
     .review-input {
-        font-size: 15px;
+        font-size: 20px;
+    }
+    .submit-review {
+        font-size: 20px;
+    }
+    .reviews-list {
+        font-size: 20px;
+    }
+    .review-stars {
+        font-size: 20px;
     }
     .review-text {
-        font-size: 28px;
+        font-size: 20px;
     }
 }

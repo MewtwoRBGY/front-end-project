@@ -731,7 +731,6 @@ function renderDetails() {
         </div>
         <!-- RECIPE COMPLETE -->
         <div id="recipe-complete">
-        <hr>
         <h1>Share with your fellow sigmas!</h1>
         <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
         <button class="heart-btn" data-card="${recipe.id}"

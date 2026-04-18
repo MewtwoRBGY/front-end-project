@@ -1228,6 +1228,15 @@ Stars are grey by default — JS adds .selected to turn them gold.
 
 
 /* 
+For recipe details page
+*/
+
+#recipe-details .review-input {
+    width: 90%;
+}
+
+
+/* 
 each posted review
 reuses fadeInUp so new reviews animate in
 */
@@ -1250,6 +1259,15 @@ reuses fadeInUp so new reviews animate in
 
 .review-text {
     color: var(--light-gold);
+}
+
+
+/* 
+For recipe details page
+*/
+
+#recipe-details .review-item {
+    width: 80%;
 }
 
 
@@ -1397,7 +1415,6 @@ the breakpoints are:
     }
     .review-input {
         font-size: 30px;
-        width: 90%;
     }
     .submit-review {
         font-size: 30px;

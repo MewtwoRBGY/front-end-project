@@ -1287,7 +1287,7 @@ the breakpoints are:
 
 /*1200px media query*/
 
-@media (max-width: 1200px) {
+@media (max-width: 1350px) {
     nav ul li a {
         font-size: 14px;
         padding: 6px 10px;
@@ -1302,9 +1302,9 @@ the breakpoints are:
 }
 
 
-/*850px media query*/
+/*950px media query*/
 
-@media (max-width: 850px) {
+@media (max-width: 1020px) {
     nav ul li a {
         font-size: 14px;
         padding: 6px 10px;
@@ -1357,7 +1357,7 @@ the breakpoints are:
 
 /*600px media query*/
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     /*navigation bar: reducing gaps so links don't go over each other*/
     nav ul {
         gap: 10px;

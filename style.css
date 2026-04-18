@@ -1336,6 +1336,9 @@ the breakpoints are:
     #intro blockquote {
         text-align: center;
     }
+    #intro figure {
+        justify-self: center;
+    }
     #aboutFlex {
         flex-direction: column;
     }

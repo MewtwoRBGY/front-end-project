@@ -247,6 +247,7 @@ blockquote {
 #intro {
     padding: 10px;
     margin: 30px;
+    display: flex;
 }
 
 #seasonal {
@@ -1278,6 +1279,11 @@ button {
     font-size: 25px;
 }
 
+figcaption {
+    text-align: center;
+    color: var(--crimson-violet);
+}
+
 
 /*media queries (please keep them at the very bottom
 
@@ -1427,21 +1433,21 @@ the breakpoints are:
         padding: 10px;
     }
     .star-input button {
-        font-size: 40px;
+        font-size: 50px;
     }
     .review-input {
-        font-size: 20px;
+        font-size: 30px;
     }
     .submit-review {
-        font-size: 20px;
+        font-size: 30px;
     }
     .reviews-list {
-        font-size: 20px;
+        font-size: 30px;
     }
     .review-stars {
-        font-size: 20px;
+        font-size: 30px;
     }
     .review-text {
-        font-size: 20px;
+        font-size: 30px;
     }
 }

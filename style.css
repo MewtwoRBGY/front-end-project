@@ -1333,6 +1333,9 @@ the breakpoints are:
 
 @media (max-width: 740px) {
     /*about section where the photo stacks above the text*/
+    #intro blockquote {
+        text-align: center;
+    }
     #aboutFlex {
         flex-direction: column;
     }

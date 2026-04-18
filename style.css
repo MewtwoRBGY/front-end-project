@@ -337,9 +337,9 @@ blockquote {
 }
 
 #aboutPhoto {
-    border-radius: 60%;
-    height: 150px;
-    width: 180px;
+    height: 200px;
+    width: 200px;
+    justify-self: center;
 }
 
 #logo {

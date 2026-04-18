@@ -7,6 +7,8 @@ Joseph Racca
 -Presentation 3
 -Recipe Details Page
 -About styling
+-Mobile styling
+-Featured recipe
 
 Eljay Jimenez
 -Sitemap
@@ -16,6 +18,7 @@ Eljay Jimenez
 -Recipe Cards
 -Cooking timer
 -Favorites Page and reviews
+-Mobile styling
 
 Seamus Sommers
 -Wireframe
@@ -27,6 +30,7 @@ Seamus Sommers
 -JSON fetching
 -To-do list
 -Search
+-Mobile styling
 
 Pancake test from Taste of Home website
 Gigachad About Me Photo by Gemini

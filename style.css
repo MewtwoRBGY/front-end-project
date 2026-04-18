@@ -339,7 +339,6 @@ blockquote {
 #aboutPhoto {
     height: 200px;
     width: 200px;
-    justify-self: center;
 }
 
 #logo {
@@ -1338,12 +1337,19 @@ the breakpoints are:
     }
     #aboutFlex {
         flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
     }
     #intro {
         flex-direction: column;
         justify-content: center;
         align-content: center;
         align-items: center;
+    }
+    #aboutPhoto {
+        height: 300px;
+        width: 300px;
     }
     #featuredFlex {
         flex-direction: column;

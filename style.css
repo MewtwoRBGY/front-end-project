@@ -1194,7 +1194,6 @@ Stars are grey by default — JS adds .selected to turn them gold.
     align-self: flex-start;
     background-color: var(--crimson-violet);
     color: var(--light-gold);
-    border: none;
     border-radius: 4px;
     padding: 4px 12px;
     font-family: 'EB Garamond', serif;

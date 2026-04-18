@@ -851,40 +851,71 @@ async function loadFavorites() {
        as renderBatch() so they look identical to the homepage cards  */
     favRecipes.forEach(recipe => {
         const cardHTML = `
-            <a href="recipedetails.html?id=${recipe.id}" class="card-link">
-                <div class="recipe-card fade-in">
-                    <div class="card-inner">
+        <a href="recipedetails.html?id=${recipe.id}" class="card-link">
+        <div class="recipe-card fade-in">
 
-                        <div class="card-front">
-                            <div class="card-header">
-                                <span class="card-number">No. ${recipe.id}</span>
-                                <!-- heart already filled since this card is favorited -->
-                                <button class="heart-btn favorited" data-card="${recipe.id}"
-                                        onclick="event.preventDefault();"
-                                        aria-label="Unfavorite">&#9829;</button>
-                                <h3 class="card-title">${recipe.name}</h3>
-                            </div>
-                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
-                            <div class="card-tags">
-                                <span class="tag">${recipe.season}</span>
-                                <span class="tag">${recipe.cuisine}</span>
-                            </div>
-                        </div>
+            <!-- CHANGED: heart-btn moved outside .card-inner so it stays
+                 accessible on both front and back states of the flip card.
+                 position:absolute in CSS will anchor it to the card corner.
+                 z-index keeps it above the flip animation layers.           -->
+           
 
-                        <div class="card-back">
-                            <div class="card-header">
-                                <h3 class="card-title">${recipe.name}</h3>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0, 3).join(', ')}...</p>
-                                <p><strong>Prep Time:</strong> ${recipe.prep_time}</p>
-                            </div>
-                            <!-- note: unfavoriting a card here removes it from the page on next reload -->
-                        </div>
+            <div class="card-inner">
 
+                <div class="card-front">
+                    <div class="card-header">
+                        <span class="card-number">No. ${recipe.id}</span>
+                        <!-- CHANGED: heart-btn removed from here, moved above -->
+                        <h3 class="card-title">${recipe.name}</h3>
+                    </div>
+                    <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                    <div class="card-tags">
+                        <span class="tag">${recipe.season}</span>
+                        <span class="tag">${recipe.cuisine}</span>
+                        <span class="tag">${recipe.prep_time}</span>
                     </div>
                 </div>
-            </a>`;
+
+                <div class="card-back">
+                    <div class="card-header">
+                    <button class="heart-btn" data-card="${recipe.id}"
+                    onclick="event.preventDefault();"
+                    aria-label="Favorite">&#9829;</button>
+                        <!-- CHANGED: heart-btn removed from here, moved above -->
+                        <h3 class="card-title">${recipe.name}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="ingredient-text">Ingredients List:</p>
+                        <span class="tag line-tag"></span>
+                        <ul class="card-ingredients">
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <!-- ratings section — data-recipe is the localStorage key -->
+                    <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                        <div class="star-display">
+                            <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                            <span class="rating-count">(0 ratings)</span>
+                        </div>
+                        <div class="star-input">
+                            <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                            <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                            <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                            <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                            <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
+                        </div>
+                        <div class="review-form">
+                            <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                                      onclick="event.preventDefault();"></textarea>
+                            <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
+                        </div>
+                        <div class="reviews-list"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </a>`
         favoritesContainer.insertAdjacentHTML('beforeend', cardHTML);
     });
 

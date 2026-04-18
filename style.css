@@ -1365,7 +1365,7 @@ the breakpoints are:
         margin-bottom: 15px;
     }
     .star-input button {
-        font-size: 50px;
+        font-size: 100px;
     }
     .review-input {
         font-size: 30px;
@@ -1441,7 +1441,7 @@ the breakpoints are:
         padding: 10px;
     }
     .star-input button {
-        font-size: 100px;
+        font-size: 50px;
     }
     .review-input {
         font-size: 30px;

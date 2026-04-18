@@ -724,13 +724,13 @@ function renderDetails() {
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
                 <blockquote>${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</blockquote>
-                <img src="images/images/${recipe.images[img2]}" class="recipephoto" alt="ingredients">
+                <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-                <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
+                <img src="images/images/${recipe.images[img3]}" class="recipephoto"alt="prep">
                 <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
@@ -742,9 +742,6 @@ function renderDetails() {
                 onclick="event.preventDefault();"
                 style="font-size:28px; margin-bottom:10px;">&#9825;</button>
         <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
-        <button class="navbutton">
-            <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
-        </button>
         <!-- ratings section — data-recipe is the localStorage key -->
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
@@ -764,7 +761,10 @@ function renderDetails() {
                                     <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
                                 </div>
                                 <div class="reviews-list"></div>
-                            </div>         </div>`;
+                            </div>                 <button class="navbutton">
+                            <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
+                        </button>
+                        </div>`;
 
     detailContainer.innerHTML = detailHTML;
 

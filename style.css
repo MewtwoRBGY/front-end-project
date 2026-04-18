@@ -209,6 +209,7 @@ nav ul li a:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    margin: 15px;
 }
 
 .navbutton a {
@@ -287,11 +288,25 @@ blockquote {
 
 .recipelayout {
     display: flex;
-    padding: 5px;
+    padding: 10px;
     margin: 20px;
 }
 
-#headerdiv {
+.recipelayout img {
+    height: 250px;
+    width: 250px;
+}
+
+#recipe-complete img {
+    height: 250px;
+    width: 250px;
+}
+
+#recipe-details h1 {
+    margin: 10px;
+}
+
+.rec #headerdiv {
     display: flex;
     align-items: center;
     align-content: center;
@@ -334,6 +349,10 @@ blockquote {
 .recipephoto {
     height: 150px;
     width: 150px;
+}
+
+#ingredphoto {
+    /*margin-left: auto;*/
 }
 
 #aboutPhoto {

@@ -1249,6 +1249,7 @@ reuses fadeInUp so new reviews animate in
     margin-bottom: 4px;
     font-size: 11px;
     animation: fadeInUp 0.3s ease both;
+    word-wrap: break-word;
 }
 
 .review-stars {

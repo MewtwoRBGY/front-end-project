@@ -116,6 +116,26 @@ html {
     --toasted-almond: #CB9173;
     --light-gold: #fff8bf;
     --tan: #e9c4b1;
+    --text: rgb(0, 0, 0);
+}
+
+.darkmode {
+    --midnight-violet: #320A28;
+    --crimson-violet: #300e1d;
+    --reddish-brown: #3f1f1c;
+    --toasted-almond: #CB9173;
+    --light-gold: #fff8bf;
+    --tan: #000000;
+    --text: rgb(255, 255, 255);
+}
+
+#theme-switch {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 10px;
+    background-color: var(--text);
+    display: flex;
 }
 
 body {
@@ -435,7 +455,7 @@ blockquote {
 
 p.ingredient-text {
     background-color: transparent !important;
-    color: #000000 !important;
+    color: var(--text);
     font-weight: bold !important;
     font-size: 1rem;
     margin-top: 10px;
@@ -1307,6 +1327,15 @@ TYPOGRAPHY
 
 blockquote {
     font-size: 28px;
+    color: var(--text);
+}
+
+p,
+tr,
+h1,
+h2,
+div {
+    color: var(--text);
 }
 
 button {

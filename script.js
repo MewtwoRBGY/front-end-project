@@ -1074,3 +1074,25 @@ function renderFeatured() {
 if (detailContainer) {
     loadObama();
 }
+
+
+let darkmode = localStorage.getItem('darkmode');
+const themeSwitch = document.getElementById('theme-switch');
+themeSwitch.addEventListener("click", () => {
+    darkmode = localStorage.getItem('darkmode');
+    darkmode !== "active" ? enableDarkMode() : disableDarkmode()
+})
+
+function enableDarkMode() {
+    document.body.classList.add('darkmode');
+    localStorage.setItem('darkmode', 'active');
+}
+
+function disableDarkmode() {
+    document.body.classList.remove('darkmode');
+    localStorage.setItem('darkmode', null);
+}
+
+if(darkmode === "active") {
+    enableDarkMode();
+}

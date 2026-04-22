@@ -991,7 +991,9 @@ async function loadObama() {
 }
 
 function renderFeatured() {
-    const recipe = allRecipes[15];
+    const d = new Date();
+    let index = ((d.getDate() + d.getMonth()) * d.getFullYear()) % allRecipes.length;
+    const recipe = allRecipes[index];
 
                 const cardHTML = `
                 <figure>
@@ -1060,7 +1062,7 @@ function renderFeatured() {
                     </div>
                 </div>
             </a>
-            <figcaption><i>Check out our featured recipe!</i></figcaption>
+            <figcaption><i>Check out today's featured recipe!</i></figcaption>
             </figure>`;
     featuredContainer.innerHTML = cardHTML;
  

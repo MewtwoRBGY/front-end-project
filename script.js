@@ -282,6 +282,7 @@ const recipesPerPage = 4; // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
 const featuredContainer = document.getElementById('featured-recipe');
+const seasonalContainer = document.getElementById('seasonal');
 const detailContainer = document.getElementById('recipe-details');
 const favoritesContainer = document.getElementById('favorites-container');
 const loadMoreBtn = document.getElementById('load-more');
@@ -327,7 +328,28 @@ async function loadAndMergeRecipes() {
 
         allRecipes = dataArrays.flat();
         filteredRecipes = [...allRecipes]; // start with all recipes visible
-
+        if (seasonalContainer) {
+            const d = new Date();
+            let index = d.getMonth();
+            let matchSeason;
+            if (index < 6 && index >= 3) {
+                matchSeason = "Spring";
+            } else if (index < 8 && index >= 5) {
+                matchSeason = "Summer";
+            } else if (index >= 8 && index < 11) {
+                matchSeason = "Autumn";
+            } else {
+                matchSeason = "Winter";
+            }
+            console.log("Filter");
+            filteredRecipes = allRecipes.filter(recipe => {
+                if (recipe.season === matchSeason) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        }
         renderBatch();
         if (featuredContainer) {
             renderFeatured();

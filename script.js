@@ -334,9 +334,9 @@ async function loadAndMergeRecipes() {
             let matchSeason;
             if (index < 6 && index >= 3) {
                 matchSeason = "Spring";
-            } else if (index < 8 && index >= 5) {
+            } else if (index < 9 && index >= 5) {
                 matchSeason = "Summer";
-            } else if (index >= 8 && index < 11) {
+            } else if (index >= 9 && index < 11) {
                 matchSeason = "Autumn";
             } else {
                 matchSeason = "Winter";
@@ -704,8 +704,12 @@ Guard: only runs on index.html where #recipe-container exists
 */
 
 if (recipeContainer) {
-    loadMoreBtn.addEventListener('click', renderBatch);
-    searchInput.addEventListener('input', handleSearch);
+    if(loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', renderBatch);
+    }
+    if(searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+    }
     loadAndMergeRecipes();
 }
 
@@ -1115,11 +1119,13 @@ themeSwitch.addEventListener("click", () => {
 })
 
 function enableDarkMode() {
+    themeSwitch.textContent = "Turn on Light Mode";
     document.body.classList.add('darkmode');
     localStorage.setItem('darkmode', 'active');
 }
 
 function disableDarkmode() {
+    themeSwitch.textContent = "Turn on Knight Mode";
     document.body.classList.remove('darkmode');
     localStorage.setItem('darkmode', null);
 }

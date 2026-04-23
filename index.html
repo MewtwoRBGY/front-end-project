@@ -15,17 +15,17 @@
     <header>
         <div id="headerdiv">
 
-        <div class ="image-flipper-container">
-        <div class="card-inner">
-            <div class="card-front">
-                <img src="logo.png" id="logo" alt="logo">
+            <div class="image-flipper-container">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="logo.png" id="logo" alt="logo">
+                    </div>
+                    <div class="card-back">
+                        <a href="index.html"> <img src="FinalNanoLogo.png" id="logo" alt="logo"></a>
+
+                    </div>
+                </div>
             </div>
-            <div class="card-back">
-                <a href="index.html"> <img src="FinalNanoLogo.png" id="logo" alt="logo"></a>
-               
-            </div>
-          </div>
-         </div>
 
             <h1>Knights of the Grill</h1>
         </div>
@@ -37,16 +37,13 @@
                 <li><a href="favorites.html">Favorites</a></li>
                 <li><a href="todo.html">ToDo</a></li>
             </ul>
-            <section id="search-section" style="text-align: center; padding: 20px;">
-                <input type="text" id="recipe-search" placeholder="Search recipes or ingredients..." style="width: 60%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ddd;">
-            </section>
+            <button id="theme-switch">
+                Turn on Knight Time
+            </button>
         </nav>
     </header>
 
     <main>
-        <button id="theme-switch">
-            
-        </button>
         <section id="intro">
             <!-- CHANGED: Shortened intro -->
             <blockquote> Welcome to the official digital home of Knights of the Grill, the only place on the internet where the recipes are 10% ingredients and 90% pure, sigma energy. Read about the legendary techniques of Lewis and his squad of elite grill-masters.
@@ -60,9 +57,6 @@
         <section id="seasonal">
             <h2>Seasonal Recipes</h2>
             <div class="featuredlist" id="recipe-container"></div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button id="load-more" class="navbutton">Load More Recipes</button>
-            </div>
         </section>
 
 

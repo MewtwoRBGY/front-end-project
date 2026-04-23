@@ -430,7 +430,7 @@ ul li.checked::before {
 .image-flipper-container {
     width: 120px;
     height: 120px;
-    cursor: help;
+    cursor:auto;
     perspective: 1000px;
 }
 
@@ -506,6 +506,9 @@ a.card-link .recipe-card:hover {
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
+
+/*Logo flip*/
+
 
 
 /*card header*/

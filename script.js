@@ -717,7 +717,7 @@ function renderDetails() {
 
     /* find the matching recipe and story by id */
     const recipe = allRecipes.find(r => r.id === recipeId);
-    const story = allStories.find(s => s.id === recipeId);
+    const story  = allStories.find(s => s.id === recipeId);
 
     if (!recipe) {
         detailContainer.innerHTML = "<p>Recipe not found.</p>";
@@ -734,7 +734,15 @@ function renderDetails() {
     if (img4 >= recipe.images.length) img4 = recipe.images.length - 1;
 
     const detailHTML = `
-        <h1>${recipe.name}</h1>
+        <!-- recipe name + heart button side by side at the top -->
+        <div style="display:flex; align-items:center; gap:12px; margin:10px;">
+            <h1 style="margin:0;">${recipe.name}</h1>
+            <button class="heart-btn" data-card="${recipe.id}"
+                    onclick="event.preventDefault();"
+                    style="font-size:28px; position:static;"
+                    aria-label="Favorite this recipe">&#9825;</button>
+        </div>
+
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
@@ -745,52 +753,52 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <ul id="checklist">${recipe.ingredients.map(ing => `<li> <input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
+                <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h1>Instructions</h1>
             <div class="recipelayout">
-                <img src="images/images/${recipe.images[img3]}" class="recipephoto"alt="prep">
+                <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
                 <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
+
         <!-- RECIPE COMPLETE -->
         <div id="recipe-complete">
-        <h1>Share with your fellow sigmas!</h1>
-        <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
-        <button class="heart-btn" data-card="${recipe.id}"
-                onclick="event.preventDefault();"
-                style="font-size:28px; margin-bottom:10px;">&#9825;</button>
-        <p style="font-style:italic; color:var(--crimson-violet); margin-bottom:16px;">Click to favorite this recipe</p>
-        <!-- ratings section — data-recipe is the localStorage key -->
-                            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
-                                <div class="star-display">
-                                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
-                                    <span class="rating-count">(0 ratings)</span>
-                                </div>
-                                <div class="star-input">
-                                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
-                                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
-                                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
-                                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
-                                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
-                                </div>
-                                <div class="review-form">
-                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
-                                              onclick="event.preventDefault();"></textarea>
-                                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
-                                </div>
-                                <div class="reviews-list"></div>
-                            </div>                 <button class="navbutton">
-                            <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
-                        </button>
-                        </div>`;
+            <h1>Share with your fellow sigmas!</h1>
+            <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
+
+            <!-- ratings section — data-recipe is the localStorage key -->
+            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                <div class="star-display">
+                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                    <span class="rating-count">(0 ratings)</span>
+                </div>
+                <div class="star-input">
+                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
+                </div>
+                <div class="review-form">
+                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                              onclick="event.preventDefault();"></textarea>
+                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
+                </div>
+                <div class="reviews-list"></div>
+            </div>
+
+            <button class="navbutton">
+                <a href="recipelist.html" title="Go to All Recipes">All Recipes</a>
+            </button>
+        </div>`;
 
     detailContainer.innerHTML = detailHTML;
 
-    /* init the heart button now that it's been injected into the DOM */
+    /* init the heart button and ratings now that they've been injected into the DOM */
     initNewHeartButtons();
     initNewRatings();
 }

@@ -326,6 +326,27 @@ blockquote {
     margin: 10px;
 }
 
+#checklist {
+    font-size: 28px;
+    color: var(--text);
+    padding: 10px;
+    list-style-type: none;
+}
+
+.ingCheck {
+    width: 25px;
+    height: 25px;
+}
+
+ul li.checked {
+    background: var(--reddish-brown);
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background: var(--crimson-violet);
+}
+
 .rec #headerdiv {
     display: flex;
     align-items: center;

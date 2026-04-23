@@ -10,6 +10,7 @@ Joseph Racca
 -Mobile styling
 -Featured recipe/Recipe of the day
 -Dark mode
+-Ingredients checklist
 
 Eljay Jimenez
 -Sitemap
@@ -36,7 +37,7 @@ Seamus Sommers
 Pancake test from Taste of Home website
 Gigachad About Me Photo by Gemini
 Website intro and about me text by Gemini
-
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_todo for checklist
 https://www.youtube.com/watch?v=_gKEUYarehE for dark mode
 Logo by Gemini 
 Chats:

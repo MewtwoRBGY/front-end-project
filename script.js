@@ -723,7 +723,7 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <div class="recipelayout">
-                <blockquote>${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</blockquote>
+                <ul id="checklist">${recipe.ingredients.map(ing => `<li> <input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
@@ -772,6 +772,7 @@ function renderDetails() {
     initNewHeartButtons();
     initNewRatings();
 }
+
 
 
 /* 

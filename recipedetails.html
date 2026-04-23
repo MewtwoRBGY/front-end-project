@@ -75,11 +75,24 @@
 
                 <!-- editable HH:MM:SS display -->
                 <div id="timer-display">
-                    <input type="number" id="input-hours" class="time-segment" value="00" min="0" max="99">
+                    <div class="time-segment-group">
+                        <input type="number" id="input-hours" class="time-segment" value="00" min="0" max="99">
+                        <span class="time-label">Hours</span>
+                    </div>
+
                     <span class="time-sep">:</span>
-                    <input type="number" id="input-minutes" class="time-segment" value="00" min="0" max="59">
+
+                    <div class="time-segment-group">
+                        <input type="number" id="input-minutes" class="time-segment" value="00" min="0" max="59">
+                        <span class="time-label">Minutes</span>
+                    </div>
+
                     <span class="time-sep">:</span>
-                    <input type="number" id="input-seconds" class="time-segment" value="00" min="0" max="59">
+
+                    <div class="time-segment-group">
+                        <input type="number" id="input-seconds" class="time-segment" value="00" min="0" max="59">
+                        <span class="time-label">Seconds</span>
+                    </div>
                 </div>
 
                 <!-- cube buttons from UIVERSE-->

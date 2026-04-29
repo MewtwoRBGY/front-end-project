@@ -21,6 +21,8 @@ Eljay Jimenez
 -Cooking timer
 -Favorites Page and reviews
 -Mobile styling
+-Dark Mode and Seizure Mode
+-Dynamic Search and Filtering
 
 Seamus Sommers
 -Wireframe

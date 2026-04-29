@@ -853,6 +853,8 @@ function renderDetails() {
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
             <button id="check-switch">Display Checklist</button>
+            <button id="set-size">Set Size</button>
+            <textarea id="ingred-input" placeholder="Input serving size..."></textarea>
             <div class="recipelayout">
                 <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
                 <ul id="ingredlist">${recipe.ingredients.map(ing => `<li> ${ing}</li>`).join('')}</ul>
@@ -904,6 +906,8 @@ function renderDetails() {
     initNewHeartButtons();
     initNewRatings();
     const checkSwitch = document.getElementById('check-switch');
+    const setSize = document.getElementById('set-size');
+    const inputSize = document.getElementById('ingred-input');
     const clist = document.getElementById("checklist");
     const ilist = document.getElementById("ingredlist");
         if(checkSwitch) {
@@ -919,6 +923,10 @@ function renderDetails() {
             checkSwitch.textContent = "Display Checklist";
         }
         });
+        if(setSize) {
+            setSize.addEventListener("click", function() {
+                
+        }); }
     }
 }
 

@@ -120,6 +120,23 @@ with screen smaller than 850pz + responsive
     color: var(--crimson-violet);
 }
 
+#set-size {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+    transition: background-color 0.3s ease;
+}
+
+#set-size:hover {
+    background-color: var(--light-gold);
+    color: var(--crimson-violet);
+}
+
 .ingCheck {
     accent-color: var(--light-gold);
     scale: 2;

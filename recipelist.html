@@ -9,21 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Knights of the Grill - Chad TV</title>
     <link rel="icon" type="image/x-icon" href="logo.png">
-
 </head>
 
 <body>
     <header>
         <div id="headerdiv">
-
             <div class="image-flipper-container">
                 <div class="card-inner">
                     <div class="card-front">
                         <img src="logo.png" id="logo" alt="logo">
                     </div>
                     <div class="card-back">
-                        <a href="index.html"> <img src="FinalNanoLogo.png" id="logo" alt="logo"></a>
-
+                        <a href="index.html"><img src="FinalNanoLogo.png" id="logo" alt="logo"></a>
                     </div>
                 </div>
             </div>
@@ -33,19 +30,73 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="recipelist.html">Recipes</a></li>
-                <!-- CHANGED: added Favorites nav link -->
                 <li><a href="favorites.html">Favorites</a></li>
                 <li><a href="todo.html">ToDo</a></li>
             </ul>
-            <button id="theme-switch">
-                Turn on Knight Time
-            </button>
+            <!-- CHANGED: wrapped both buttons so they stay grouped on the right -->
+            <div id="mode-buttons">
+                <button id="theme-switch">Turn on Knight Mode</button>
+                <button id="seizure-switch">Seizure Mode</button>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section id="search-section" style="text-align: center; padding: 20px;">
-            <input type="text" id="recipe-search" placeholder="Search recipes or ingredients..." style="width: 60%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ddd;">
+        <!-- ============================================================
+             CHANGED: added full search + filter + sort UI bar
+             Previously this page only had a plain search input.
+             Now it has:
+             - Text search (name or ingredient) — Advanced Dynamic Search
+             - Season dropdown filter                — Dynamic Filter
+             - Cuisine dropdown filter               — Dynamic Filter
+             - Sort by dropdown                      — Dynamic Filter & Sorting
+             All controls trigger applyFiltersAndSort() in script.js
+             ============================================================ -->
+        <section id="search-section">
+            <div id="filter-bar">
+
+                <!-- text search — searches name AND ingredients -->
+                <input type="text" id="recipe-search"
+                       placeholder="Search recipes or ingredients..."
+                       aria-label="Search recipes">
+
+                <!-- season filter -->
+                <select id="filter-season" aria-label="Filter by season">
+                    <option value="">All Seasons</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
+                    <option value="Winter">Winter</option>
+                </select>
+
+                <!-- cuisine filter -->
+                <select id="filter-cuisine" aria-label="Filter by cuisine">
+                    <option value="">All Cuisines</option>
+                    <option value="American">American</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Mediterranean">Mediterranean</option>
+                    <option value="Asian">Asian</option>
+                    <option value="French">French</option>
+                    <option value="Indian">Indian</option>
+                </select>
+
+                <!-- sort options -->
+                <select id="sort-by" aria-label="Sort recipes">
+                    <option value="">Sort: Default</option>
+                    <option value="name-asc">Name: A → Z</option>
+                    <option value="name-desc">Name: Z → A</option>
+                    <option value="prep-asc">Prep Time: Shortest First</option>
+                    <option value="prep-desc">Prep Time: Longest First</option>
+                </select>
+
+                <!-- reset button clears all filters -->
+                <button id="reset-filters" class="navbutton">Reset</button>
+
+            </div>
+
+            <!-- live result count — JS updates this -->
+            <p id="results-count" style="font-style:italic; margin: 0 20px 10px;"></p>
         </section>
 
         <section id="recipelist">

@@ -5,7 +5,6 @@ Color Palette:
 - Reddish Brown: #8E443D
 - Toasted Almond: #ACB9173
 - Light Gold: #E0D68A
-- Tan: #E9C4B1;
 
 Task 3:
 Goal: style the site for a visually appealing interface.
@@ -116,43 +115,6 @@ html {
     --toasted-almond: #CB9173;
     --light-gold: #fff8bf;
     --tan: #e9c4b1;
-    --text: rgb(0, 0, 0);
-}
-
-.darkmode {
-    --midnight-violet: #320A28;
-    --crimson-violet: #300e1d;
-    --reddish-brown: #3f1f1c;
-    --toasted-almond: #CB9173;
-    --light-gold: #fff8bf;
-    --tan: #000000;
-    --text: rgb(255, 255, 255);
-}
-
-p,
-tr,
-h1,
-h2,
-div {
-    color: var(--text);
-}
-
-#theme-switch {
-    height: 60px;
-    width: 35%;
-    margin: 10px;
-    background-color: var(--text);
-    color: var(--tan);
-    border-color: #2c2d2d;
-    text-decoration: none;
-    border-radius: 15px;
-    padding: 6px 12px;
-    display: inline-block;
-}
-
-#theme-switch:hover {
-    background-color: var(--crimson-violet);
-    color: var(--light-gold);
 }
 
 body {
@@ -246,7 +208,6 @@ nav ul li a:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 15px;
 }
 
 .navbutton a {
@@ -285,12 +246,11 @@ blockquote {
 #intro {
     padding: 10px;
     margin: 30px;
-    display: flex;
 }
 
 #seasonal {
     background-color: var(--crimson-violet);
-    padding: 40px;
+    padding: 20px;
     margin-top: 30px;
 }
 
@@ -325,46 +285,11 @@ blockquote {
 
 .recipelayout {
     display: flex;
-    padding: 10px;
+    padding: 5px;
     margin: 20px;
 }
 
-.recipelayout img {
-    height: 250px;
-    width: 250px;
-}
-
-#recipe-complete img {
-    height: 250px;
-    width: 250px;
-}
-
-#recipe-details h1 {
-    margin: 10px;
-}
-
-#checklist {
-    font-size: 28px;
-    color: var(--text);
-    padding: 10px;
-    list-style-type: none;
-}
-
-.ingCheck {
-    width: 25px;
-    height: 25px;
-}
-
-ul li.checked {
-    background: var(--reddish-brown);
-    text-decoration: line-through;
-}
-
-ul li.checked::before {
-    background: var(--crimson-violet);
-}
-
-.rec #headerdiv {
+#headerdiv {
     display: flex;
     align-items: center;
     align-content: center;
@@ -389,12 +314,6 @@ ul li.checked::before {
     margin-right: 0px;
 }
 
-#recipe-complete {
-    background-color: var(--crimson-violet);
-    padding: 10px;
-    width: 100%;
-}
-
 
 /* Images */
 
@@ -410,13 +329,10 @@ ul li.checked::before {
     width: 150px;
 }
 
-#ingredphoto {
-    margin-left: auto;
-}
-
 #aboutPhoto {
-    height: 200px;
-    width: 200px;
+    border-radius: 60%;
+    height: 150px;
+    width: 180px;
 }
 
 #logo {
@@ -447,7 +363,7 @@ ul li.checked::before {
 .image-flipper-container {
     width: 120px;
     height: 120px;
-    cursor: auto;
+    cursor: help;
     perspective: 1000px;
 }
 
@@ -465,7 +381,6 @@ ul li.checked::before {
 
 .card-front,
 .card-back {
-    justify-content: flex-start;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -484,23 +399,19 @@ ul li.checked::before {
 
 .card-back {
     transform: rotateY(180deg);
-    overflow-y: auto;
+    overflow-y: auto; 
     font-size: 12px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
-
 p.ingredient-text {
-    background-color: transparent !important;
-    color: var(--text);
-    font-weight: bold !important;
+    background-color: transparent !important; 
+    color: #000000 !important;              
+    font-weight: bold !important;          
     font-size: 1rem;
     margin-top: 10px;
-    margin-bottom: 0px !important;
-    /* remove space below "Ingredients" */
-    padding: 0 !important;
-    border-radius: 0 !important;
+    margin-bottom: 0px !important; /* remove space below "Ingredients" */
+    padding: 0 !important;                 
+    border-radius: 0 !important;                    
 }
 
 .recipe-card:hover .card-inner {
@@ -525,22 +436,14 @@ a.card-link .recipe-card:hover {
 }
 
 
-/*Logo flip*/
-
-
 /*card header*/
 
 .card-header {
-    position: sticky;
-    top: 0;
-    background-color: #CB9173;
     display: flex;
     align-items: center;
     justify-content: left;
-    gap: 0px;
+    gap: 10px;
     border-bottom: 1px solid var(--crimson-violet);
-    margin-top: 0px !important;
-    padding-top: 0px !important;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
@@ -550,7 +453,6 @@ a.card-link .recipe-card:hover {
     color: var(--crimson-violet);
     font-weight: bold;
     white-space: nowrap;
-    margin-left: 22px;
 }
 
 
@@ -629,6 +531,7 @@ a.card-link .recipe-card:hover {
     border-radius: 12px;
 }
 
+
 .card-back .tag {
     background-color: var(--crimson-violet);
     color: var(--light-gold);
@@ -639,13 +542,13 @@ a.card-link .recipe-card:hover {
 }
 
 .line-tag {
-    display: block;
-    width: 100px;
-    /* length of the line */
-    height: 4px;
-    padding: 0 !important;
-    margin: 0 0px;
+display: block;
+width: 100px;      /* length of the line */
+height: 4px;      
+padding: 0 !important;
+margin: 0 0px;  
 }
+
 
 .recipe-card .recipefeat {
     width: 180px;
@@ -658,6 +561,121 @@ a.card-link .recipe-card:hover {
     border-radius: 5px;
     border: 1px solid var(--crimson-violet);
     flex-shrink: 0;
+}
+
+
+/*media queries (please keep them at the very bottom
+
+the breakpoints are:
+
+850px: for landscape tablets or small desktop screens
+740px: for portrait tablets or large phones
+600px: for small phones
+*/
+
+
+/*850px media query*/
+
+@media (max-width: 850px) {
+    nav ul li a {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    /*featured lists goes from 3 columns to 2 columns*/
+    .featuredlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resultsgrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*740px media query*/
+
+@media (max-width: 740px) {
+    /*about section where the photo stacks above the text*/
+    #aboutFlex {
+        flex-direction: column;
+    }
+    #featuredFlex {
+        flex-direction: column;
+    }
+    .recipelayout {
+        flex-direction: column;
+    }
+    .featuredlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resultsgrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /*intro/about sections: adjusting margins so stuff doesn't feel cramped*/
+    #intro {
+        margin: 20px;
+    }
+    #about {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+
+/*600px media query*/
+
+@media (max-width: 600px) {
+    /*navigation bar: reducing gaps so links don't go over each other*/
+    nav ul {
+        gap: 10px;
+    }
+    nav ul li a {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+    header {
+        padding: 8px 10px;
+    }
+    #intro {
+        margin: 10px 5px;
+    }
+    #seasonal {
+        margin-top: 10px;
+        padding: 10px;
+    }
+    #about {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+    #recipelist {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+    .recipefeat {
+        height: 120px;
+        width: 120px;
+    }
+    .recipephoto {
+        height: 120px;
+        width: 120px;
+    }
+    #aboutPhoto {
+        height: 120px;
+        width: 120px;
+    }
+    .featuredlist {
+        grid-template-columns: 1fr;
+    }
+    .resultsgrid {
+        grid-template-columns: 1fr;
+    }
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+    }
+    footer {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
 
@@ -849,33 +867,6 @@ nav {
     -moz-appearance: textfield;
 }
 
-.time-segment-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 72px;
-}
-
-.time-label {
-    color: var(--toasted-almond);
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    opacity: 0.7;
-    margin-top: 2px;
-}
-
-.time-sep {
-    color: var(--light-gold);
-    font-family: 'Courier Prime', monospace;
-    font-size: 46px;
-    font-weight: 700;
-    line-height: 1;
-    padding-bottom: 0;
-    padding-bottom: 18px;
-}
-
 .time-segment::-webkit-outer-spin-button,
 .time-segment::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -1001,7 +992,6 @@ nav {
 .cube .text {
     position: relative;
     transition: all 0.4s;
-    color: var(--crimson-violet) !important;
 }
 
 
@@ -1013,7 +1003,7 @@ nav {
 }
 
 .cube:hover .text {
-    color: var(--light-gold) !important;
+    color: var(--light-gold);
     transition: all 0.4s;
 }
 
@@ -1102,26 +1092,19 @@ heartFloat: a floating ❤️ that rises upward and fades out
 
 .heart-btn {
     background: none;
-    border: transparent;
-    font-size: 16px;
-    /* slightly smaller so it's less intrusive this comment makes no sense*/
+    border: none;
+    font-style: 20px;
     cursor: pointer;
-    color: #e9c4b1;
+    color: var(--crimson-violet);
     position: relative;
-    top: 6px;
-    left: 8px;
-    z-index: 10;
-    line-height: 1;
-    padding: 2px;
-    padding-top: 0px;
+    /* needed so .heart-burst positions properly */
 }
 
 
 /* filled red heart when clicked */
 
-.heart-btn.filled,
-.heart-btn.favorited {
-    color: red;
+.heart-btn.filled {
+    color: #c0392b;
 }
 
 
@@ -1303,6 +1286,7 @@ Stars are grey by default — JS adds .selected to turn them gold.
     align-self: flex-start;
     background-color: var(--crimson-violet);
     color: var(--light-gold);
+    border: none;
     border-radius: 4px;
     padding: 4px 12px;
     font-family: 'EB Garamond', serif;
@@ -1317,18 +1301,463 @@ Stars are grey by default — JS adds .selected to turn them gold.
 
 
 /* 
-For recipe details page
-*/
-
-#recipe-details .review-input {
-    width: 80%;
-}
-
-
-/* 
 each posted review
 reuses fadeInUp so new reviews animate in
 */
+
+.review-item {
+    background-color: rgba(255, 248, 191, 0.15);
+    border: 1px solid var(--crimson-violet);
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    animation: fadeInUp 0.3s ease both;
+}
+
+.review-stars {
+    color: #d4a017;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.review-text {
+    color: var(--light-gold);
+}
+
+/*
+=========================================
+FAVORITES PAGE
+CHANGED: added styles for favorites.html
+=========================================
+*/
+
+#favorites-section {
+    padding: 20px 30px;
+}
+
+#favorites-section h2 {
+    color: var(--crimson-violet);
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+/* empty state message shown when no favorites exist */
+#no-favorites a {
+    color: var(--crimson-violet);
+    font-weight: bold;
+}
+
+/*
+============================================================
+DARK MODE FIXES
+============================================================
+*/
+
+/* CHANGED: intro section text needs explicit light color in dark mode
+   so it stays readable against the black --tan background           */
+body.darkmode #intro blockquote,
+body.darkmode #intro p,
+body.darkmode #intro div {
+    color: var(--light-gold);
+}
+
+/* CHANGED: about section text same fix */
+body.darkmode #about blockquote,
+body.darkmode #about p,
+body.darkmode #about td,
+body.darkmode #about th {
+    color: var(--light-gold);
+}
+
+/*
+============================================================
+TIMER DARK MODE LOCK
+CHANGED: pins each timer element to its own specific color
+so dark mode variables never affect the timer appearance.
+Uses targeted selectors instead of the wildcard * which was
+causing the format to break.
+============================================================
+*/
+
+/* timer window outer shell stays light gold */
+#timer-window {
+    background: #fff8bf !important;
+}
+
+/* title bar stays crimson with light gold text */
+#timer-titlebar {
+    background: var(--crimson-violet) !important;
+    color: var(--light-gold) !important;
+}
+
+/* minimize and close buttons stay visible */
+#titlebar-controls button {
+    background: var(--reddish-brown) !important;
+    color: var(--light-gold) !important;
+    border: 1px solid var(--light-gold) !important;
+}
+
+#titlebar-controls button:hover {
+    background: var(--light-gold) !important;
+    color: var(--crimson-violet) !important;
+}
+
+/* timer title text */
+#timer-title {
+    color: var(--light-gold) !important;
+}
+
+/* message text below title */
+#timer-message {
+    color: var(--crimson-violet) !important;
+}
+
+/* timer body background */
+#timer-body {
+    background: #fff8bf !important;
+}
+
+/* the dark number display stays dark with light gold digits */
+#timer-display {
+    background: var(--midnight-violet) !important;
+}
+
+/* digit inputs — light gold text on dark background
+   CHANGED: removed -webkit-text-fill-color which was causing
+   the dark box on the seconds input in light mode           */
+#timer-display .time-segment {
+    color: var(--light-gold) !important;
+    background: transparent !important;
+}
+
+/* focused input stays light gold */
+#timer-display .time-segment:focus {
+    background: rgba(255,255,255,0.07) !important;
+    color: var(--light-gold) !important;
+}
+
+/* running glow stays yellow */
+#timer-display .time-segment.running {
+    color: #ffdd55 !important;
+}
+
+/* colons between digits */
+#timer-display .time-sep {
+    color: var(--light-gold) !important;
+}
+
+
+/*
+============================================================
+DARK MODE
+============================================================
+*/
+
+:root {
+    --text: rgb(0, 0, 0);
+}
+
+.darkmode {
+    --midnight-violet: #320A28;
+    --crimson-violet:  #300e1d;
+    --reddish-brown:   #3f1f1c;
+    --toasted-almond:  #CB9173;
+    --light-gold:      #fff8bf;
+    --tan:             #000000;
+    --text:            rgb(255, 255, 255);
+}
+
+p, tr, h1, h2, div {
+    color: var(--text);
+}
+
+/* CHANGED: intro and about text stays visible in dark mode */
+body.darkmode #intro blockquote,
+body.darkmode #intro p,
+body.darkmode #about blockquote,
+body.darkmode #about p,
+body.darkmode #about td,
+body.darkmode #about th {
+    color: var(--light-gold);
+}
+
+#theme-switch,
+#seizure-switch {
+    height: 40px;
+    padding: 6px 14px;
+    margin: 4px 6px;
+    background-color: var(--light-gold);
+    color: var(--crimson-violet);
+    border: 2px solid var(--crimson-violet);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+#theme-switch:hover,
+#seizure-switch:hover {
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+}
+
+/* CHANGED: groups both buttons together on right side of nav */
+#mode-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    padding-right: 14px;
+}
+
+
+/*
+============================================================
+FILTER BAR — recipelist.html
+============================================================
+*/
+
+#filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 20px;
+    background-color: var(--reddish-brown);
+    border-radius: 6px;
+    margin: 10px 0 0 0;
+    width: fit-content;
+}
+
+#filter-bar #recipe-search {
+    flex: 1;
+    min-width: 180px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-family: 'EB Garamond', serif;
+    border-radius: 6px;
+    border: 2px solid var(--light-gold);
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+}
+
+#filter-bar select {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    font-family: 'EB Garamond', serif;
+    border-radius: 6px;
+    border: 2px solid var(--light-gold);
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#filter-bar select:hover {
+    background-color: var(--midnight-violet);
+}
+
+#filter-bar #reset-filters {
+    background-color: var(--midnight-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#filter-bar #reset-filters:hover {
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+}
+
+#results-count {
+    color: var(--reddish-brown);
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+@media (max-width: 700px) {
+    #filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+    }
+    #filter-bar #recipe-search,
+    #filter-bar select {
+        width: 100%;
+    }
+}
+
+
+/*
+============================================================
+HEART FAVORITE ANIMATIONS
+============================================================
+*/
+
+.heart-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--crimson-violet);
+    position: relative;
+    top: 6px;
+    left: 8px;
+    z-index: 10;
+    line-height: 1;
+    padding: 2px;
+    padding-top: 0px;
+}
+
+.heart-btn.filled,
+.heart-btn.favorited {
+    color: red;
+}
+
+.heart-btn.popping {
+    animation: heartPop 0.3s ease;
+}
+
+@keyframes heartPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.4); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.heart-burst {
+    position: absolute;
+    font-size: 20px;
+    color: #c0392b;
+    animation: heartFloat 0.8s ease forwards;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+@keyframes heartFloat {
+    0%   { transform: translateY(0) scale(1);   opacity: 1; }
+    100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+}
+
+
+/*
+============================================================
+FADE-IN ANIMATION
+============================================================
+*/
+
+.fade-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/*
+============================================================
+RATINGS & REVIEWS
+============================================================
+*/
+
+.ratings-section {
+    border-top: 1px solid var(--crimson-violet);
+    padding-top: 8px;
+    margin-top: 6px;
+}
+
+.star-display {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.avg-rating {
+    font-size: 16px;
+    color: #d4a017;
+    letter-spacing: 1px;
+}
+
+.rating-count {
+    font-size: 11px;
+    color: var(--light-gold);
+    font-style: italic;
+}
+
+.star-input {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 7px;
+}
+
+.star {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.15s ease, transform 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.star:hover,
+.star.selected {
+    color: #d4a017;
+    transform: scale(1.2);
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.review-input {
+    width: 100%;
+    padding: 5px 7px;
+    border: 1px solid var(--crimson-violet);
+    border-radius: 4px;
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+    resize: vertical;
+}
+
+.submit-review {
+    align-self: flex-start;
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: none;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-review:hover {
+    background-color: var(--reddish-brown);
+}
 
 .review-item {
     background-color: rgba(255, 248, 191, 0.15);
@@ -1351,21 +1780,16 @@ reuses fadeInUp so new reviews animate in
     color: var(--light-gold);
 }
 
+#recipe-details .review-input { width: 80%; }
+#recipe-details .review-item  { width: 80%; }
 
-/* 
-For recipe details page
-*/
-
-#recipe-details .review-item {
-    width: 80%;
-}
+.star-display span { font-size: 25px; }
 
 
 /*
-=========================================
+============================================================
 FAVORITES PAGE
-CHANGED: added styles for favorites.html
-=========================================
+============================================================
 */
 
 #favorites-section {
@@ -1378,9 +1802,6 @@ CHANGED: added styles for favorites.html
     margin-bottom: 8px;
 }
 
-
-/* empty state message shown when no favorites exist */
-
 #no-favorites a {
     color: var(--crimson-violet);
     font-weight: bold;
@@ -1388,205 +1809,106 @@ CHANGED: added styles for favorites.html
 
 
 /*
+============================================================
+SEIZURE MODE
+============================================================
+*/
+
+@keyframes seizureFlash {
+    0%   { background-color: #ff0000; color: #00ffff; }
+    10%  { background-color: #ff6600; color: #0000ff; }
+    20%  { background-color: #ffff00; color: #ff00ff; }
+    30%  { background-color: #00ff00; color: #ff0000; }
+    40%  { background-color: #00ffff; color: #ffff00; }
+    50%  { background-color: #0000ff; color: #ff6600; }
+    60%  { background-color: #9900ff; color: #00ff00; }
+    70%  { background-color: #ff00ff; color: #ffff00; }
+    80%  { background-color: #ff0066; color: #00ffff; }
+    90%  { background-color: #00ff99; color: #ff0000; }
+    100% { background-color: #ff0000; color: #00ffff; }
+}
+
+@keyframes seizureSpin {
+    0%   { transform: rotate(0deg)  scale(1); }
+    25%  { transform: rotate(5deg)  scale(1.02); }
+    50%  { transform: rotate(-5deg) scale(0.98); }
+    75%  { transform: rotate(3deg)  scale(1.01); }
+    100% { transform: rotate(0deg)  scale(1); }
+}
+
+@keyframes seizureText {
+    0%   { color: #ff0000; text-shadow: 3px 3px 0px #00ffff; }
+    25%  { color: #ffff00; text-shadow: -3px -3px 0px #ff00ff; }
+    50%  { color: #00ff00; text-shadow: 3px -3px 0px #ff0000; }
+    75%  { color: #00ffff; text-shadow: -3px 3px 0px #ffff00; }
+    100% { color: #ff0000; text-shadow: 3px 3px 0px #00ffff; }
+}
+
+/* image color spaz */
+@keyframes seizureImage {
+    0%   { filter: hue-rotate(0deg)   brightness(1)   contrast(1)   saturate(1); }
+    15%  { filter: hue-rotate(60deg)  brightness(1.5) contrast(2)   saturate(3); }
+    30%  { filter: hue-rotate(120deg) brightness(0.5) contrast(3)   saturate(5); }
+    45%  { filter: hue-rotate(180deg) brightness(2)   contrast(1)   saturate(2); }
+    60%  { filter: hue-rotate(240deg) brightness(1.2) contrast(4)   saturate(4); }
+    75%  { filter: hue-rotate(300deg) brightness(0.8) contrast(2)   saturate(6); }
+    100% { filter: hue-rotate(360deg) brightness(1)   contrast(1)   saturate(1); }
+}
+
+body.seizure-mode                  { animation: seizureFlash 0.2s linear infinite; }
+body.seizure-mode img              { animation: seizureImage 0.15s linear infinite !important; }
+body.seizure-mode .recipe-card     { animation: seizureSpin 0.15s linear infinite; }
+body.seizure-mode header           { animation: seizureFlash 0.15s linear infinite reverse; }
+body.seizure-mode .tag             { animation: seizureFlash 0.1s linear infinite, seizureSpin 0.3s linear infinite; }
+body.seizure-mode nav ul li a      { animation: seizureSpin 0.2s linear infinite; display: inline-block; }
+
+body.seizure-mode h1,
+body.seizure-mode h2,
+body.seizure-mode h3,
+body.seizure-mode p,
+body.seizure-mode span,
+body.seizure-mode li,
+body.seizure-mode a {
+    animation: seizureText 0.1s linear infinite;
+}
+
+
 /*
-=========================================
-TYPOGRAPHY
-=========================================
+============================================================
+TIMER CUBE BUTTON TEXT FIX
+CHANGED: prevents dark mode "p, h1, div { color: var(--text) }"
+from making cube button text invisible in dark mode.
+The .cube .text div inherits white from the global rule.
+!important is needed to override that global selector.
+============================================================
 */
 
-blockquote {
-    font-size: 28px;
-    color: var(--text);
+.cube .text {
+    position: relative;
+    transition: all 0.4s;
+    color: var(--crimson-violet) !important;
 }
 
-p,
-tr,
-h1,
-h2,
-div {
-    color: var(--text);
-}
-
-button {
-    color: var(--light-gold);
-}
-
-.star-display span {
-    font-size: 25px;
-}
-
-figcaption {
-    text-align: center;
-    color: var(--crimson-violet);
+.cube:hover .text {
+    color: var(--light-gold) !important;
 }
 
 
-/*media queries (please keep them at the very bottom
-
-the breakpoints are:
-
-850px: for landscape tablets or small desktop screens
-740px: for portrait tablets or large phones
-600px: for small phones
+/*
+============================================================
+TIME LABEL FIX
+CHANGED: forces Hours/Minutes/Seconds labels to stay
+toasted almond color in both light and dark mode.
+The global div/span color rule was making them dark.
+============================================================
 */
 
-
-/*1200px media query*/
-
-@media (max-width: 1350px) {
-    nav ul li a {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-    /*featured lists goes from 3 columns to 2 columns*/
-    .featuredlist {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .resultsgrid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-/*950px media query*/
-
-@media (max-width: 1020px) {
-    nav ul li a {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-    /*featured lists goes from 3 columns to 2 columns*/
-    .featuredlist {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .resultsgrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-/*740px media query*/
-
-@media (max-width: 740px) {
-    /*about section where the photo stacks above the text*/
-    #intro blockquote {
-        text-align: center;
-    }
-    #aboutFlex {
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-    }
-    #intro {
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-    }
-    #featuredFlex {
-        flex-direction: column;
-    }
-    .recipelayout {
-        flex-direction: column;
-    }
-    .featuredlist {
-        align-items: center;
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .resultsgrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    /*intro/about sections: adjusting margins so stuff doesn't feel cramped*/
-    #intro {
-        margin: 20px;
-    }
-    #about {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-    #ingredphoto {
-        margin-left: 0px;
-        margin-right: auto;
-    }
-    .star-input button {
-        font-size: 50px;
-    }
-    .review-input {
-        font-size: 30px;
-    }
-    #recipe-details .review-input {
-        font-size: 30px;
-    }
-    .submit-review {
-        font-size: 30px;
-    }
-    .reviews-list {
-        font-size: 30px;
-    }
-    .review-stars {
-        font-size: 30px;
-    }
-    .review-text {
-        font-size: 30px;
-    }
-}
-
-
-/*600px media query*/
-
-@media (max-width: 700px) {
-    /*navigation bar: reducing gaps so links don't go over each other*/
-    nav ul {
-        gap: 10px;
-    }
-    nav ul li a {
-        font-size: 14px;
-        padding: 4px 8px;
-    }
-    header {
-        padding: 8px 10px;
-    }
-    #intro {
-        margin: 10px 5px;
-    }
-    #seasonal {
-        margin-top: 10px;
-        padding: 20px;
-    }
-    #about {
-        margin: 10px 5px;
-        padding: 10px;
-    }
-    #recipelist {
-        margin: 10px 5px;
-        padding: 10px;
-    }
-    .recipefeat {
-        height: 120px;
-        width: 120px;
-    }
-    .recipephoto {
-        height: 120px;
-        width: 120px;
-    }
-    #aboutPhoto {
-        height: 120px;
-        width: 120px;
-    }
-    .featuredlist {
-        align-items: center;
-        grid-template-columns: 1fr;
-    }
-    .resultsgrid {
-        grid-template-columns: 1fr;
-    }
-    .card-body {
-        flex-direction: column;
-        align-items: center;
-    }
-    footer {
-        font-size: 14px;
-        padding: 10px;
-    }
+.time-label {
+    color: var(--toasted-almond) !important;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0.85;
+    margin-top: 2px;
 }

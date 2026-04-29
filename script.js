@@ -10,9 +10,8 @@ Guard: only runs on todo.html where #CreateTask exists
 const taskText = document.getElementById('WriteTask');
 const taskMake = document.getElementById('CreateTask');
 const taskList = document.getElementById('TaskDiv');
-const empty = document.getElementById('NoTasks');
-let taskCount = 0;
-
+const empty    = document.getElementById('NoTasks');
+let taskCount  = 0;
 
 if (taskMake) {
 
@@ -27,13 +26,13 @@ if (taskMake) {
             empty.style.display = "none"; // hide "no tasks" message
         }
 
-        const EachTask = document.createElement('div');
-        const CheckBox = document.createElement('input');
-        CheckBox.type = "checkbox";
-        const TaskName = document.createElement('span');
+        const EachTask  = document.createElement('div');
+        const CheckBox  = document.createElement('input');
+        CheckBox.type   = "checkbox";
+        const TaskName  = document.createElement('span');
         TaskName.innerText = newText;
         const DeleteBtn = document.createElement('input');
-        DeleteBtn.type = "button";
+        DeleteBtn.type  = "button";
         DeleteBtn.value = "Delete";
 
         EachTask.appendChild(CheckBox);
@@ -57,14 +56,13 @@ if (taskMake) {
 
     taskMake.addEventListener('click', addTask);
 
-    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleBtn   = document.getElementById('toggleBtn');
     const todoContent = document.getElementById('todoContent');
 
     toggleBtn.addEventListener('click', function() {
         todoContent.classList.toggle('hidden');
         toggleBtn.textContent = todoContent.classList.contains('hidden') ? "Show List" : "Hide List";
     });
-
 }
 
 
@@ -114,27 +112,25 @@ if (timerWindow) {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    let totalSeconds = 0;
+    let totalSeconds  = 0;
     let remainSeconds = 0;
     let timerInterval = null;
-    let isRunning = false;
+    let isRunning     = false;
 
-    const msgEl = document.getElementById("timer-message");
-    const inputH = document.getElementById("input-hours");
-    const inputM = document.getElementById("input-minutes");
-    const inputS = document.getElementById("input-seconds");
+    const msgEl       = document.getElementById("timer-message");
+    const inputH      = document.getElementById("input-hours");
+    const inputM      = document.getElementById("input-minutes");
+    const inputS      = document.getElementById("input-seconds");
     const progressBar = document.getElementById("progress-bar");
-    const btnStart = document.getElementById("btn-start");
-    const btnPause = document.getElementById("btn-pause");
-    const btnReset = document.getElementById("btn-reset");
+    const btnStart    = document.getElementById("btn-start");
+    const btnPause    = document.getElementById("btn-pause");
+    const btnReset    = document.getElementById("btn-reset");
     const minimizeBtn = document.getElementById("minimize-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const openBtn = document.getElementById("open-timer-btn");
-    const titleBar = document.getElementById("timer-titlebar");
+    const closeBtn    = document.getElementById("close-btn");
+    const openBtn     = document.getElementById("open-timer-btn");
+    const titleBar    = document.getElementById("timer-titlebar");
 
-    let isDragging = false,
-        dragOffsetX = 0,
-        dragOffsetY = 0;
+    let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
 
     titleBar.addEventListener("mousedown", function(e) {
         if (e.target.closest("#titlebar-controls")) return;
@@ -148,11 +144,11 @@ if (timerWindow) {
 
     document.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
-        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth - timerWindow.offsetWidth));
-        let newTop = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
+        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth  - timerWindow.offsetWidth));
+        let newTop  = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
         timerWindow.style.transform = "none";
         timerWindow.style.left = newLeft + "px";
-        timerWindow.style.top = newTop + "px";
+        timerWindow.style.top  = newTop  + "px";
     });
 
     document.addEventListener("mouseup", function() {
@@ -162,8 +158,8 @@ if (timerWindow) {
 
     function getInputSeconds() {
         return (parseInt(inputH.value) || 0) * 3600 +
-            (parseInt(inputM.value) || 0) * 60 +
-            (parseInt(inputS.value) || 0);
+               (parseInt(inputM.value) || 0) * 60  +
+               (parseInt(inputS.value) || 0);
     }
 
     function setDisplayFromSeconds(secs) {
@@ -196,10 +192,7 @@ if (timerWindow) {
         const secs = getInputSeconds();
         if (secs <= 0) { msgEl.textContent = "Set a time first, chef."; return; }
 
-        if (remainSeconds === 0) {
-            totalSeconds = secs;
-            remainSeconds = secs;
-        }
+        if (remainSeconds === 0) { totalSeconds = secs; remainSeconds = secs; }
 
         isRunning = true;
         setRunningStyle(true);
@@ -237,8 +230,8 @@ if (timerWindow) {
 
     btnReset.addEventListener("click", function() {
         clearInterval(timerInterval);
-        isRunning = false;
-        totalSeconds = 0;
+        isRunning     = false;
+        totalSeconds  = 0;
         remainSeconds = 0;
         setRunningStyle(false);
         setDisplayFromSeconds(0);
@@ -273,23 +266,31 @@ Used by the recipe fetching, rendering, and search system
 ============================================================
 */
 
-let allRecipes = []; // master list — all recipes from all JSON files
-let featuredRecipes = []; // For featured recipes
-let allStories = [];
-let filteredRecipes = []; // current working list — filtered by search query
-let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
+let allRecipes      = []; // master list — all recipes from all JSON files
+let featuredRecipes = []; // for featured recipe on homepage
+let allStories      = [];
+let filteredRecipes = []; // current working list — filtered by search/filter
+let currentIndex    = 0;  // tracks how far into filteredRecipes we've rendered
 const recipesPerPage = 4; // how many cards to show per Load More click
 
-const recipeContainer = document.getElementById('recipe-container');
-const featuredContainer = document.getElementById('featured-recipe');
-const seasonalContainer = document.getElementById('seasonal');
-const detailContainer = document.getElementById('recipe-details');
+const recipeContainer    = document.getElementById('recipe-container');
+const featuredContainer  = document.getElementById('featured-recipe');
+const seasonalContainer  = document.getElementById('seasonal');
+const detailContainer    = document.getElementById('recipe-details');
 const favoritesContainer = document.getElementById('favorites-container');
-const loadMoreBtn = document.getElementById('load-more');
-const searchInput = document.getElementById('recipe-search');
+const loadMoreBtn        = document.getElementById('load-more');
+const searchInput        = document.getElementById('recipe-search');
+
+/* CHANGED: added references for the new filter/sort controls on recipelist.html
+   These will be null on other pages — the guards below handle that safely       */
+const filterSeason  = document.getElementById('filter-season');
+const filterCuisine = document.getElementById('filter-cuisine');
+const sortSelect    = document.getElementById('sort-by');
+const resetFilters  = document.getElementById('reset-filters');
+const resultsCount  = document.getElementById('results-count');
 
 
-/* 
+/*
 ==================================================================
 TASK 6: DATA FETCHING
 Loads all JSON files in parallel using Promise.all,
@@ -326,31 +327,25 @@ async function loadAndMergeRecipes() {
 
         const dataArrays = await Promise.all(responses.map(res => res.json()));
 
-        allRecipes = dataArrays.flat();
+        allRecipes      = dataArrays.flat();
         filteredRecipes = [...allRecipes]; // start with all recipes visible
+
+        /* on index.html the seasonal section filters by current month */
         if (seasonalContainer) {
             const d = new Date();
             let index = d.getMonth();
             let matchSeason;
-            if (index < 6 && index >= 3) {
-                matchSeason = "Spring";
-            } else if (index < 9 && index >= 5) {
-                matchSeason = "Summer";
-            } else if (index >= 9 && index < 11) {
-                matchSeason = "Autumn";
-            } else {
-                matchSeason = "Winter";
-            }
+            if (index >= 3 && index < 6)  matchSeason = "Spring";
+            else if (index >= 6 && index < 9) matchSeason = "Summer";
+            else if (index >= 9 && index < 11) matchSeason = "Autumn";
+            else matchSeason = "Winter";
+
             console.log("Filter");
-            filteredRecipes = allRecipes.filter(recipe => {
-                if (recipe.season === matchSeason) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+            filteredRecipes = allRecipes.filter(recipe => recipe.season === matchSeason);
         }
+
         renderBatch();
+
         if (featuredContainer) {
             renderFeatured();
         }
@@ -366,25 +361,20 @@ async function loadAndMergeRecipes() {
 TASK 6: RENDER BATCH
 Displays the next 4 recipes from filteredRecipes.
 
-CHANGED: added class="recipe-card fade-in" - triggers Animation 2
-            (cards fade up from below when they appear)
+CHANGED: added class="recipe-card fade-in" — triggers Animation 2
+         (cards fade up from below when they appear)
 
-   CHANGED: added heart-btn button inside card-header — Animation 1
-            (heart pops and floats when clicked to favorite a recipe)
-            onclick="event.preventDefault()" stops the card link
-            from navigating when the heart button is clicked
+CHANGED: heart-btn is inside card-back header so it stays accessible
+         when the card is flipped. initNewHeartButtons() attaches listeners
+         after insertAdjacentHTML so the elements exist in the DOM.
 
-   CHANGED: fixed image path from images/ to images/images/
-            to match the actual folder structure in the project
+CHANGED: fixed image path from images/ to images/images/
 
-   CHANGED: added ratings-section inside card-back — Ratings & Reviews
-            data-recipe="recipe-${recipe.id}" is the unique localStorage
-            key that ties this section to a specific recipe
+CHANGED: ratings-section inside card-back for Ratings & Reviews feature.
+         data-recipe="recipe-${recipe.id}" is the unique localStorage key.
 
-   CHANGED: calls initNewHeartButtons() and initNewRatings() after
-            inserting cards — these functions attach event listeners
-            to the newly created elements. They must run AFTER
-            insertAdjacentHTML so the elements exist in the DOM
+CHANGED: calls initNewHeartButtons() and initNewRatings() after inserting
+         cards so newly created elements get their event listeners attached.
 =========================================================================
 */
 
@@ -392,22 +382,15 @@ function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
 
     batch.forEach(recipe => {
-                const cardHTML = `
+        const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
- 
-                    <!-- CHANGED: heart-btn moved outside .card-inner so it stays
-                         accessible on both front and back states of the flip card.
-                         position:absolute in CSS will anchor it to the card corner.
-                         z-index keeps it above the flip animation layers.           -->
-                   
- 
+
                     <div class="card-inner">
- 
+
                         <div class="card-front">
                             <div class="card-header">
                                 <span class="card-number">No. ${recipe.id}</span>
-                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
@@ -417,13 +400,12 @@ function renderBatch() {
                                 <span class="tag">${recipe.prep_time}</span>
                             </div>
                         </div>
- 
+
                         <div class="card-back">
                             <div class="card-header">
-                            <button class="heart-btn" data-card="${recipe.id}"
-                            onclick="event.preventDefault();"
-                            aria-label="Favorite">&#9829;</button>
-                                <!-- CHANGED: heart-btn removed from here, moved above -->
+                                <button class="heart-btn" data-card="${recipe.id}"
+                                        onclick="event.preventDefault();"
+                                        aria-label="Favorite">&#9829;</button>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -454,19 +436,19 @@ function renderBatch() {
                                 <div class="reviews-list"></div>
                             </div>
                         </div>
- 
+
                     </div>
                 </div>
             </a>`;
         recipeContainer.insertAdjacentHTML('beforeend', cardHTML);
     });
- 
+
     currentIndex += recipesPerPage;
- 
+
     // Re-initialize logic for the new elements
     initNewHeartButtons();
     initNewRatings();
- 
+
     if (loadMoreBtn) {
         loadMoreBtn.style.display = (currentIndex >= filteredRecipes.length) ? 'none' : 'inline-block';
     }
@@ -475,22 +457,90 @@ function renderBatch() {
 
 /*
 ============================================================
-TASK 7: SEARCH / FILTER
-Filters allRecipes by name or ingredient as the user types
+TASK 7: ADVANCED DYNAMIC SEARCH + DYNAMIC FILTER & SORTING
+
+CHANGED: replaced the old single handleSearch() with
+applyFiltersAndSort() which handles all four controls at once:
+  1. Text search    — filters by name OR any ingredient
+  2. Season filter  — exact match on recipe.season
+  3. Cuisine filter — exact match on recipe.cuisine
+  4. Sort           — sorts filtered results by name or prep time
+
+All four controls call applyFiltersAndSort() on any change.
+The results count below the filter bar updates live so the
+user always knows how many recipes match their current filters.
+
+How prep time sorting works:
+  recipe.prep_time is a string like "20 min" or "1 hr 10 min"
+  parsePrepTime() converts it to total minutes as a number
+  so we can compare values correctly (not alphabetically)
 ============================================================
 */
 
-function handleSearch(e) {
-    const query = e.target.value.toLowerCase();
+/* converts prep_time strings like "20 min" or "1 hr 10 min"
+   into a plain number of minutes for sorting purposes        */
+function parsePrepTime(prepStr) {
+    if (!prepStr) return 0;
+    let total = 0;
+    const hrMatch  = prepStr.match(/(\d+)\s*h/i);
+    if (hrMatch)  total += parseInt(hrMatch[1]) * 60;
+    const minMatch = prepStr.match(/(\d+)\s*m/i);
+    if (minMatch) total += parseInt(minMatch[1]);
+    if (total === 0) {
+        const plain = parseInt(prepStr);
+        if (!isNaN(plain)) total = plain;
+    }
+    return total;
+}
 
+function applyFiltersAndSort() {
+    /* read current values from all four controls */
+    const query   = searchInput   ? searchInput.value.trim().toLowerCase() : "";
+    const season  = filterSeason  ? filterSeason.value                      : "";
+    const cuisine = filterCuisine ? filterCuisine.value                     : "";
+    const sortBy  = sortSelect    ? sortSelect.value                        : "";
+
+    /* step 1: filter allRecipes against all active criteria */
     filteredRecipes = allRecipes.filter(recipe => {
-        const matchName = recipe.name.toLowerCase().includes(query);
-        const matchIngredient = recipe.ingredients.some(ing => ing.toLowerCase().includes(query));
-        return matchName || matchIngredient;
+
+        /* text search — matches name OR any ingredient */
+        if (query) {
+            const matchName       = recipe.name.toLowerCase().includes(query);
+            const matchIngredient = recipe.ingredients.some(ing =>
+                ing.toLowerCase().includes(query)
+            );
+            if (!matchName && !matchIngredient) return false;
+        }
+
+        /* season filter — skip if dropdown is "" (All Seasons) */
+        if (season && recipe.season !== season) return false;
+
+        /* cuisine filter — skip if dropdown is "" (All Cuisines) */
+        if (cuisine && recipe.cuisine !== cuisine) return false;
+
+        return true; /* recipe passed all active filters */
     });
 
-    // reset and re-render from the beginning with the filtered list
-    recipeContainer.innerHTML = '';
+    /* step 2: sort the filtered results */
+    if (sortBy === "name-asc") {
+        filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "name-desc") {
+        filteredRecipes.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortBy === "prep-asc") {
+        filteredRecipes.sort((a, b) => parsePrepTime(a.prep_time) - parsePrepTime(b.prep_time));
+    } else if (sortBy === "prep-desc") {
+        filteredRecipes.sort((a, b) => parsePrepTime(b.prep_time) - parsePrepTime(a.prep_time));
+    }
+
+    /* step 3: update the live results count */
+    if (resultsCount) {
+        resultsCount.textContent = filteredRecipes.length === allRecipes.length
+            ? ""
+            : `${filteredRecipes.length} recipe${filteredRecipes.length !== 1 ? "s" : ""} found`;
+    }
+
+    /* step 4: re-render from the start with the new filtered+sorted list */
+    recipeContainer.innerHTML = "";
     currentIndex = 0;
     renderBatch();
 }
@@ -499,23 +549,23 @@ function handleSearch(e) {
 /*
 ============================================================
 CHANGED: ANIMATION 1 - HEART FAVORITE
-   
-Called by renderBatch() after each batch of cards is inserted
-   
+
+Called by renderBatch() after each batch of cards is inserted.
+
 Uses querySelectorAll(".heart-btn:not([data-init])") to find
 only buttons that haven't been initialized yet — this prevents
-duplicate event listeners when Load More adds more cards
-   
+duplicate event listeners when Load More adds more cards.
+
 On click:
-   - toggles .favorited class (red filled heart vs hollow)
+   - toggles .filled class (red filled heart vs hollow)
    - saves favorite state to localStorage
    - triggers heartPop CSS animation via .popping class
      (void btn.offsetWidth forces a reflow so animation restarts)
-   - creates a floating .heart-burst <span> that rises and fades,
+   - creates a floating .heart-burst span that rises and fades,
      then removes itself when the animation ends
    - e.stopPropagation() prevents the click from bubbling up
      to the parent <a> tag and navigating away
-============================================================ 
+============================================================
 */
 
 function initNewHeartButtons() {
@@ -529,20 +579,20 @@ function initNewHeartButtons() {
         /* restore saved favorite state on page load */
         if (localStorage.getItem("fav-" + cardId) === "true") {
             btn.classList.add("filled");
-            btn.innerHTML = "&#9829;"; /* filled heart ❤️ */
+            btn.innerHTML = "&#9829;"; /* filled heart */
         }
 
         btn.addEventListener("click", function(e) {
-            e.preventDefault(); /* stop card link from navigating */
+            e.preventDefault();  /* stop card link from navigating */
             e.stopPropagation(); /* stop click bubbling to parent <a> */
 
             const isFav = btn.classList.toggle("filled");
-            btn.innerHTML = isFav ? "&#9829;" : "&#9829;"; /* makes the heart filled or hollow */
+            btn.innerHTML = isFav ? "&#9829;" : "&#9825;"; /* filled or hollow heart */
             localStorage.setItem("fav-" + cardId, isFav);
 
             /* retrigger heartPop: remove, force reflow, re-add */
             btn.classList.remove("popping");
-            void btn.offsetWidth; /* forces browser to recalculate layout,resetting the animation so it can fire again */
+            void btn.offsetWidth; /* forces layout recalc so animation restarts */
             btn.classList.add("popping");
 
             /* create the floating heart burst */
@@ -561,15 +611,15 @@ function initNewHeartButtons() {
 }
 
 
-/* 
+/*
 ==============================================================================
 CHANGED: RATINGS & REVIEWS
-   
+
 Called by renderBatch() after each batch of cards is inserted.
 Same :not([data-init]) pattern as hearts to avoid duplicates.
-   
+
 Per recipe:
-   - "ratings-recipe-{id}" in localStorage = array of numbers i.e. [4,5,3]
+   - "ratings-recipe-{id}" in localStorage = array of numbers e.g. [4,5,3]
    - "reviews-recipe-{id}" in localStorage = array of {stars, text} objects
    - loadRatings() sums the array and displays the average
    - loadReviews() renders all saved review objects into .reviews-list
@@ -586,13 +636,13 @@ function initNewRatings() {
     ratingSections.forEach(function(section) {
         section.dataset.init = "true"; /* mark as initialized */
 
-        const recipeKey = section.dataset.recipe;
-        const starBtns = section.querySelectorAll(".star");
-        const avgEl = section.querySelector(".avg-rating");
-        const countEl = section.querySelector(".rating-count");
+        const recipeKey   = section.dataset.recipe;
+        const starBtns    = section.querySelectorAll(".star");
+        const avgEl       = section.querySelector(".avg-rating");
+        const countEl     = section.querySelector(".rating-count");
         const reviewsList = section.querySelector(".reviews-list");
         const reviewInput = section.querySelector(".review-input");
-        const submitBtn = section.querySelector(".submit-review");
+        const submitBtn   = section.querySelector(".submit-review");
 
         let pendingRating = 0; /* tracks which star the user clicked */
 
@@ -600,18 +650,19 @@ function initNewRatings() {
         function loadRatings() {
             const saved = JSON.parse(localStorage.getItem("ratings-" + recipeKey)) || [];
             if (saved.length === 0) {
-                avgEl.textContent = "☆☆☆☆☆";
+                avgEl.innerHTML   = "&#9734;&#9734;&#9734;&#9734;&#9734;";
                 countEl.textContent = "(0 ratings)";
                 return;
             }
-            /* reduce adds all numbers: [4,5,3] → 12 */
+            /* reduce adds all numbers: [4,5,3] = 12 */
             const sum = saved.reduce(function(a, b) { return a + b; }, 0);
             const avg = sum / saved.length;
             let stars = "";
             for (let i = 1; i <= 5; i++) {
+                /* CHANGED: unicode chars so innerHTML renders correctly */
                 stars += i <= Math.round(avg) ? "★" : "☆";
             }
-            avgEl.textContent = stars;
+            avgEl.innerHTML   = stars;  /* CHANGED: innerHTML not textContent so &#9733; renders as star not literal text */
             countEl.textContent = "(" + saved.length + " rating" +
                 (saved.length !== 1 ? "s" : "") + " — avg: " + avg.toFixed(1) + ")";
         }
@@ -625,17 +676,17 @@ function initNewRatings() {
                 item.classList.add("review-item");
                 let stars = "";
                 for (let i = 1; i <= 5; i++) {
+                    /* CHANGED: use unicode directly so innerHTML renders them as stars */
                     stars += i <= review.stars ? "★" : "☆";
                 }
                 item.innerHTML = `
-                
-                    <div class="review-stars"> <span class="tag"> ${stars}</span></div>
+                    <div class="review-stars"><span class="tag">${stars}</span></div>
                     <div class="review-text">${review.text}</div>`;
                 reviewsList.appendChild(item);
             });
         }
 
-        /* hover highlights stars up to the cursor, resets on mouse leave */
+        /* hover highlights stars up to cursor, resets on mouse leave */
         starBtns.forEach(function(star) {
             star.addEventListener("mouseenter", function() {
                 const val = parseInt(star.dataset.value);
@@ -699,24 +750,64 @@ function initNewRatings() {
 /*
 ==============================================================
 INITIALIZATION
-Guard: only runs on index.html where #recipe-container exists
+Guard: only runs on pages where #recipe-container exists
+       (index.html and recipelist.html both have this element)
 ==============================================================
 */
 
 if (recipeContainer) {
-    if(loadMoreBtn) {
+    if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', renderBatch);
     }
-    if(searchInput) {
-        searchInput.addEventListener('input', handleSearch);
+
+    /* CHANGED: text search now calls applyFiltersAndSort so search
+       and the filter dropdowns always work together                  */
+    if (searchInput) {
+        searchInput.addEventListener('input', applyFiltersAndSort);
     }
+
+    /* CHANGED: wire up the three filter/sort dropdowns on recipelist.html
+       Each fires applyFiltersAndSort on change so results update instantly */
+    if (filterSeason) {
+        filterSeason.addEventListener('change', applyFiltersAndSort);
+    }
+    if (filterCuisine) {
+        filterCuisine.addEventListener('change', applyFiltersAndSort);
+    }
+    if (sortSelect) {
+        sortSelect.addEventListener('change', applyFiltersAndSort);
+    }
+
+    /* CHANGED: reset button clears all four controls and re-renders everything */
+    if (resetFilters) {
+        resetFilters.addEventListener('click', function() {
+            if (searchInput)   searchInput.value   = "";
+            if (filterSeason)  filterSeason.value  = "";
+            if (filterCuisine) filterCuisine.value = "";
+            if (sortSelect)    sortSelect.value     = "";
+            if (resultsCount)  resultsCount.textContent = "";
+            filteredRecipes = [...allRecipes];
+            recipeContainer.innerHTML = "";
+            currentIndex = 0;
+            renderBatch();
+        });
+    }
+
     loadAndMergeRecipes();
 }
+
+
+/*
+============================================================
+RECIPE DETAIL PAGE
+Guard: only runs on recipedetails.html where #recipe-details exists
+============================================================
+*/
 
 function renderDetails() {
     /* read the ?id= value from the URL
        e.g. recipedetails.html?id=3 gives recipeId = 3 */
-    const params = new URLSearchParams(window.location.search);
+    const params   = new URLSearchParams(window.location.search);
     const recipeId = parseInt(params.get("id"));
 
     /* find the matching recipe and story by id */
@@ -808,25 +899,23 @@ function renderDetails() {
 }
 
 
-
-/* 
+/*
 ============================================================================
 FAVORITES PAGE
-CHANGED: added loadFavorites() to populate favorites.html
+Guard: only runs on favorites.html where #favorites-container exists
 
-   How it works:
+How it works:
    - Reads every key in localStorage
    - Filters for keys that start with "fav-" and have value "true"
-   - Extracts the card ID from each key (e.g. "fav-3" → "3")
-   - Waits for allRecipes to be loaded (same JSON fetch as index.html)
-   - Finds each matching recipe by id and renders it using the same
-     card HTML as renderBatch() so favorites look identical to normal cards
+   - Extracts the card ID from each key (e.g. "fav-3" -> "3")
+   - Loads all recipe JSON then finds matching recipes by id
+   - Renders them using the same card HTML as renderBatch()
    - If no favorites exist, shows the #no-favorites message instead
 =============================================================================
 */
 
 async function loadFavorites() {
-    /* step 1: load all recipe JSON — same files as loadAndMergeRecipes() */
+    /* step 1: load all recipe JSON */
     const files = [
         'json/recipes/breakfast_recipes_part1.json',
         'json/recipes/breakfast_recipes_part2.json',
@@ -847,19 +936,19 @@ async function loadFavorites() {
     ];
 
     try {
-        const responses = await Promise.all(files.map(file => fetch(file)));
+        const responses  = await Promise.all(files.map(file => fetch(file)));
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-        allRecipes = dataArrays.flat(); /* fill the global allRecipes array */
+        allRecipes = dataArrays.flat();
     } catch (error) {
         console.error("Favorites load error:", error);
         favoritesContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
         return;
     }
 
-    /* 
+    /*
     step 2: collect all favorited IDs from localStorage
         localStorage.key(i) iterates every key stored in the browser
         We look for keys that start with "fav-" and have value "true"
@@ -883,78 +972,64 @@ async function loadFavorites() {
 
     /* step 4: find each favorited recipe in allRecipes by matching id
        recipe.id is a number in JSON, favIds entries are strings,
-       so we use == (loose equality) to match both "3" == 3           */
+       so we use String() to convert both sides for comparison       */
     const favRecipes = allRecipes.filter(recipe => favIds.includes(String(recipe.id)));
 
-    /* step 5: render each favorited recipe using the same card HTML
-       as renderBatch() so they look identical to the homepage cards  */
+    /* step 5: render each favorited recipe using the same card HTML as renderBatch() */
     favRecipes.forEach(recipe => {
         const cardHTML = `
-        <a href="recipedetails.html?id=${recipe.id}" class="card-link">
-        <div class="recipe-card fade-in">
-
-            <!-- CHANGED: heart-btn moved outside .card-inner so it stays
-                 accessible on both front and back states of the flip card.
-                 position:absolute in CSS will anchor it to the card corner.
-                 z-index keeps it above the flip animation layers.           -->
-           
-
-            <div class="card-inner">
-
-                <div class="card-front">
-                    <div class="card-header">
-                        <span class="card-number">No. ${recipe.id}</span>
-                        <!-- CHANGED: heart-btn removed from here, moved above -->
-                        <h3 class="card-title">${recipe.name}</h3>
-                    </div>
-                    <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
-                    <div class="card-tags">
-                        <span class="tag">${recipe.season}</span>
-                        <span class="tag">${recipe.cuisine}</span>
-                        <span class="tag">${recipe.prep_time}</span>
+            <a href="recipedetails.html?id=${recipe.id}" class="card-link">
+                <div class="recipe-card fade-in">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-header">
+                                <span class="card-number">No. ${recipe.id}</span>
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <div class="card-tags">
+                                <span class="tag">${recipe.season}</span>
+                                <span class="tag">${recipe.cuisine}</span>
+                                <span class="tag">${recipe.prep_time}</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-header">
+                                <button class="heart-btn filled" data-card="${recipe.id}"
+                                        onclick="event.preventDefault();"
+                                        aria-label="Unfavorite">&#9829;</button>
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="ingredient-text">Ingredients List:</p>
+                                <span class="tag line-tag"></span>
+                                <ul class="card-ingredients">
+                                    ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="ratings-section" data-recipe="recipe-${recipe.id}">
+                                <div class="star-display">
+                                    <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                                    <span class="rating-count">(0 ratings)</span>
+                                </div>
+                                <div class="star-input">
+                                    <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
+                                    <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
+                                </div>
+                                <div class="review-form">
+                                    <textarea class="review-input" placeholder="Leave a review..." rows="2"
+                                              onclick="event.preventDefault();"></textarea>
+                                    <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
+                                </div>
+                                <div class="reviews-list"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-back">
-                    <div class="card-header">
-                    <button class="heart-btn" data-card="${recipe.id}"
-                    onclick="event.preventDefault();"
-                    aria-label="Favorite">&#9829;</button>
-                        <!-- CHANGED: heart-btn removed from here, moved above -->
-                        <h3 class="card-title">${recipe.name}</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="ingredient-text">Ingredients List:</p>
-                        <span class="tag line-tag"></span>
-                        <ul class="card-ingredients">
-                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <!-- ratings section — data-recipe is the localStorage key -->
-                    <div class="ratings-section" data-recipe="recipe-${recipe.id}">
-                        <div class="star-display">
-                            <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
-                            <span class="rating-count">(0 ratings)</span>
-                        </div>
-                        <div class="star-input">
-                            <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
-                            <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
-                            <button class="star" data-value="3" onclick="event.preventDefault();">&#9733;</button>
-                            <button class="star" data-value="4" onclick="event.preventDefault();">&#9733;</button>
-                            <button class="star" data-value="5" onclick="event.preventDefault();">&#9733;</button>
-                        </div>
-                        <div class="review-form">
-                            <textarea class="review-input" placeholder="Leave a review..." rows="2"
-                                      onclick="event.preventDefault();"></textarea>
-                            <button class="submit-review" onclick="event.preventDefault();">Post Review</button>
-                        </div>
-                        <div class="reviews-list"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </a>`
+            </a>`;
         favoritesContainer.insertAdjacentHTML('beforeend', cardHTML);
     });
 
@@ -967,6 +1042,14 @@ async function loadFavorites() {
 if (favoritesContainer) {
     loadFavorites();
 }
+
+
+/*
+============================================================
+RECIPE DETAIL DATA LOADING
+Guard: only runs on recipedetails.html where #recipe-details exists
+============================================================
+*/
 
 async function loadObama() {
     const files = [
@@ -989,64 +1072,59 @@ async function loadObama() {
     ];
 
     try {
-        const responses = await Promise.all(files.map(file => fetch(file)));
-
+        const responses  = await Promise.all(files.map(file => fetch(file)));
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
-
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-
         allRecipes = dataArrays.flat();
     } catch (error) {
         console.error("Data Load Error:", error);
         detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
     }
 
-    const flax = [
-        'json/recipes/All_recipe_stories.json'
-    ];
+    const flax = ['json/recipes/All_recipe_stories.json'];
 
     try {
-        const responses = await Promise.all(flax.map(file => fetch(file)));
-
+        const responses  = await Promise.all(flax.map(file => fetch(file)));
         responses.forEach(res => {
             if (!res.ok) throw new Error(`Could not find ${res.url}`);
         });
-
         const dataArrays = await Promise.all(responses.map(res => res.json()));
-
         allStories = dataArrays.flat();
         renderDetails();
     } catch (error) {
         console.error("Data Load Error:", error);
         detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
     }
-
 }
 
+if (detailContainer) {
+    loadObama();
+}
+
+
+/*
+============================================================
+FEATURED RECIPE
+Renders a single daily featured recipe on index.html
+Uses date math to pick a different recipe each day
+============================================================
+*/
+
 function renderFeatured() {
-    const d = new Date();
-    let index = ((d.getDate() + d.getMonth()) * d.getFullYear()) % allRecipes.length;
+    const d     = new Date();
+    let index   = ((d.getDate() + d.getMonth()) * d.getFullYear()) % allRecipes.length;
     const recipe = allRecipes[index];
 
-                const cardHTML = `
-                <figure>
+    const cardHTML = `
+        <figure>
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
- 
-                    <!-- CHANGED: heart-btn moved outside .card-inner so it stays
-                         accessible on both front and back states of the flip card.
-                         position:absolute in CSS will anchor it to the card corner.
-                         z-index keeps it above the flip animation layers.           -->
-                   
- 
                     <div class="card-inner">
- 
                         <div class="card-front">
                             <div class="card-header">
                                 <span class="card-number">No. ${recipe.id}</span>
-                                <!-- CHANGED: heart-btn removed from here, moved above -->
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
@@ -1056,13 +1134,11 @@ function renderFeatured() {
                                 <span class="tag">${recipe.prep_time}</span>
                             </div>
                         </div>
- 
                         <div class="card-back">
                             <div class="card-header">
-                            <button class="heart-btn" data-card="${recipe.id}"
-                            onclick="event.preventDefault();"
-                            aria-label="Favorite">&#9829;</button>
-                                <!-- CHANGED: heart-btn removed from here, moved above -->
+                                <button class="heart-btn" data-card="${recipe.id}"
+                                        onclick="event.preventDefault();"
+                                        aria-label="Favorite">&#9829;</button>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -1072,7 +1148,6 @@ function renderFeatured() {
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
                             </div>
-                            <!-- ratings section — data-recipe is the localStorage key -->
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
                                     <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
@@ -1093,43 +1168,81 @@ function renderFeatured() {
                                 <div class="reviews-list"></div>
                             </div>
                         </div>
- 
                     </div>
                 </div>
             </a>
             <figcaption><i>Check out today's featured recipe!</i></figcaption>
-            </figure>`;
+        </figure>`;
+
     featuredContainer.innerHTML = cardHTML;
- 
+
     // Re-initialize logic for the new elements
     initNewHeartButtons();
     initNewRatings();
 }
 
-if (detailContainer) {
-    loadObama();
-}
 
+/*
+============================================================
+DARK MODE
+Persists across page loads using localStorage
 
-let darkmode = localStorage.getItem('darkmode');
-const themeSwitch = document.getElementById('theme-switch');
-themeSwitch.addEventListener("click", () => {
-    darkmode = localStorage.getItem('darkmode');
-    darkmode !== "active" ? enableDarkMode() : disableDarkmode()
-})
+CHANGED: added if (themeSwitch) guard so the script does not
+crash on pages where the button hasn't loaded yet.
+Without this guard, themeSwitch.addEventListener on a null
+element throws an error that kills ALL listeners below it,
+which is why the seizure button was also broken.
+============================================================
+*/
 
-function enableDarkMode() {
-    themeSwitch.textContent = "Turn on Light Mode";
+/* apply saved dark mode preference on every page load
+   runs before button is found so it doesn't flash light then dark */
+if (localStorage.getItem('darkmode') === "active") {
     document.body.classList.add('darkmode');
-    localStorage.setItem('darkmode', 'active');
 }
 
-function disableDarkmode() {
-    themeSwitch.textContent = "Turn on Knight Mode";
-    document.body.classList.remove('darkmode');
-    localStorage.setItem('darkmode', null);
-}
+/* wait until DOM is fully ready before touching the button */
+document.addEventListener("DOMContentLoaded", function() {
 
-if(darkmode === "active") {
-    enableDarkMode();
+    const themeSwitch = document.getElementById('theme-switch');
+
+    /* update button text to match current state on load */
+    if (themeSwitch) {
+        themeSwitch.textContent = localStorage.getItem('darkmode') === "active"
+            ? "Turn on Light Mode"
+            : "Turn on Knight Mode";
+
+        /* click toggles dark mode on and off */
+        themeSwitch.addEventListener("click", function() {
+            if (localStorage.getItem('darkmode') === "active") {
+                /* currently dark — switch to light */
+                document.body.classList.remove('darkmode');
+                localStorage.setItem('darkmode', null);
+                themeSwitch.textContent = "Turn on Knight Mode";
+            } else {
+                /* currently light — switch to dark */
+                document.body.classList.add('darkmode');
+                localStorage.setItem('darkmode', 'active');
+                themeSwitch.textContent = "Turn on Light Mode";
+            }
+        });
+    }
+});
+
+
+/*
+============================================================
+SEIZURE MODE
+Toggles flashing rainbow animations on everything
+CHANGED: added if (seizureSwitch) guard for same reason
+============================================================
+*/
+
+const seizureSwitch = document.getElementById('seizure-switch');
+
+if (seizureSwitch) {
+    seizureSwitch.addEventListener("click", function() {
+        const isOn = document.body.classList.toggle('seizure-mode');
+        seizureSwitch.textContent = isOn ? "Stop the Seizure!" : "Seizure Mode";
+    });
 }

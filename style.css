@@ -103,10 +103,6 @@ with screen smaller than 850pz + responsive
 
 */
 
-li {
-    display: list-item;
-}
-
 #check-switch {
     text-decoration: none;
     border-radius: 5px;
@@ -122,6 +118,12 @@ li {
 #check-switch:hover {
     background-color: var(--light-gold);
     color: var(--crimson-violet);
+}
+
+.ingCheck {
+    accent-color: var(--light-gold);
+    scale: 2;
+    margin: 10px;
 }
 
 body,

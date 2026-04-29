@@ -103,6 +103,27 @@ with screen smaller than 850pz + responsive
 
 */
 
+li {
+    display: list-item;
+}
+
+#check-switch {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+    transition: background-color 0.3s ease;
+}
+
+#check-switch:hover {
+    background-color: var(--light-gold);
+    color: var(--crimson-violet);
+}
+
 body,
 html {
     margin: 0;
@@ -329,6 +350,10 @@ blockquote {
     width: 150px;
 }
 
+#ingredphoto {
+    margin-left: auto;
+}
+
 #aboutPhoto {
     border-radius: 60%;
     height: 150px;
@@ -399,19 +424,21 @@ blockquote {
 
 .card-back {
     transform: rotateY(180deg);
-    overflow-y: auto; 
+    overflow-y: auto;
     font-size: 12px;
     padding: 5px;
 }
+
 p.ingredient-text {
-    background-color: transparent !important; 
-    color: #000000 !important;              
-    font-weight: bold !important;          
+    background-color: transparent !important;
+    color: #000000 !important;
+    font-weight: bold !important;
     font-size: 1rem;
     margin-top: 10px;
-    margin-bottom: 0px !important; /* remove space below "Ingredients" */
-    padding: 0 !important;                 
-    border-radius: 0 !important;                    
+    margin-bottom: 0px !important;
+    /* remove space below "Ingredients" */
+    padding: 0 !important;
+    border-radius: 0 !important;
 }
 
 .recipe-card:hover .card-inner {
@@ -531,7 +558,6 @@ a.card-link .recipe-card:hover {
     border-radius: 12px;
 }
 
-
 .card-back .tag {
     background-color: var(--crimson-violet);
     color: var(--light-gold);
@@ -542,13 +568,13 @@ a.card-link .recipe-card:hover {
 }
 
 .line-tag {
-display: block;
-width: 100px;      /* length of the line */
-height: 4px;      
-padding: 0 !important;
-margin: 0 0px;  
+    display: block;
+    width: 100px;
+    /* length of the line */
+    height: 4px;
+    padding: 0 !important;
+    margin: 0 0px;
 }
-
 
 .recipe-card .recipefeat {
     width: 180px;
@@ -617,6 +643,10 @@ the breakpoints are:
     #about {
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+    #ingredphoto {
+        margin-left: 0px;
+        margin-right: auto;
     }
 }
 
@@ -1325,6 +1355,7 @@ reuses fadeInUp so new reviews animate in
     color: var(--light-gold);
 }
 
+
 /*
 =========================================
 FAVORITES PAGE
@@ -1342,11 +1373,14 @@ CHANGED: added styles for favorites.html
     margin-bottom: 8px;
 }
 
+
 /* empty state message shown when no favorites exist */
+
 #no-favorites a {
     color: var(--crimson-violet);
     font-weight: bold;
 }
+
 
 /*
 ============================================================
@@ -1354,21 +1388,26 @@ DARK MODE FIXES
 ============================================================
 */
 
+
 /* CHANGED: intro section text needs explicit light color in dark mode
    so it stays readable against the black --tan background           */
+
 body.darkmode #intro blockquote,
 body.darkmode #intro p,
 body.darkmode #intro div {
     color: var(--light-gold);
 }
 
+
 /* CHANGED: about section text same fix */
+
 body.darkmode #about blockquote,
 body.darkmode #about p,
 body.darkmode #about td,
 body.darkmode #about th {
     color: var(--light-gold);
 }
+
 
 /*
 ============================================================
@@ -1380,18 +1419,24 @@ causing the format to break.
 ============================================================
 */
 
+
 /* timer window outer shell stays light gold */
+
 #timer-window {
     background: #fff8bf !important;
 }
 
+
 /* title bar stays crimson with light gold text */
+
 #timer-titlebar {
     background: var(--crimson-violet) !important;
     color: var(--light-gold) !important;
 }
 
+
 /* minimize and close buttons stay visible */
+
 #titlebar-controls button {
     background: var(--reddish-brown) !important;
     color: var(--light-gold) !important;
@@ -1403,46 +1448,62 @@ causing the format to break.
     color: var(--crimson-violet) !important;
 }
 
+
 /* timer title text */
+
 #timer-title {
     color: var(--light-gold) !important;
 }
 
+
 /* message text below title */
+
 #timer-message {
     color: var(--crimson-violet) !important;
 }
 
+
 /* timer body background */
+
 #timer-body {
     background: #fff8bf !important;
 }
 
+
 /* the dark number display stays dark with light gold digits */
+
 #timer-display {
     background: var(--midnight-violet) !important;
 }
 
+
 /* digit inputs — light gold text on dark background
    CHANGED: removed -webkit-text-fill-color which was causing
    the dark box on the seconds input in light mode           */
+
 #timer-display .time-segment {
     color: var(--light-gold) !important;
     background: transparent !important;
 }
 
+
 /* focused input stays light gold */
+
 #timer-display .time-segment:focus {
-    background: rgba(255,255,255,0.07) !important;
+    background: rgba(255, 255, 255, 0.07) !important;
     color: var(--light-gold) !important;
 }
 
+
 /* running glow stays yellow */
+
 #timer-display .time-segment.running {
     color: #ffdd55 !important;
 }
 
+
 /* colons between digits */
+
 #timer-display .time-sep {
     color: var(--light-gold) !important;
 }
@@ -1460,19 +1521,25 @@ DARK MODE
 
 .darkmode {
     --midnight-violet: #320A28;
-    --crimson-violet:  #300e1d;
-    --reddish-brown:   #3f1f1c;
-    --toasted-almond:  #CB9173;
-    --light-gold:      #fff8bf;
-    --tan:             #000000;
-    --text:            rgb(255, 255, 255);
+    --crimson-violet: #300e1d;
+    --reddish-brown: #3f1f1c;
+    --toasted-almond: #CB9173;
+    --light-gold: #fff8bf;
+    --tan: #000000;
+    --text: rgb(255, 255, 255);
 }
 
-p, tr, h1, h2, div {
+p,
+tr,
+h1,
+h2,
+div {
     color: var(--text);
 }
 
+
 /* CHANGED: intro and about text stays visible in dark mode */
+
 body.darkmode #intro blockquote,
 body.darkmode #intro p,
 body.darkmode #about blockquote,
@@ -1505,7 +1572,9 @@ body.darkmode #about th {
     color: var(--light-gold);
 }
 
+
 /* CHANGED: groups both buttons together on right side of nav */
+
 #mode-buttons {
     display: flex;
     align-items: center;
@@ -1629,10 +1698,18 @@ HEART FAVORITE ANIMATIONS
 }
 
 @keyframes heartPop {
-    0%   { transform: scale(1); }
-    40%  { transform: scale(1.4); }
-    70%  { transform: scale(0.9); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.4);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .heart-burst {
@@ -1647,8 +1724,14 @@ HEART FAVORITE ANIMATIONS
 }
 
 @keyframes heartFloat {
-    0%   { transform: translateY(0) scale(1);   opacity: 1; }
-    100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-40px) scale(1.5);
+        opacity: 0;
+    }
 }
 
 
@@ -1663,8 +1746,14 @@ FADE-IN ANIMATION
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
@@ -1780,10 +1869,17 @@ RATINGS & REVIEWS
     color: var(--light-gold);
 }
 
-#recipe-details .review-input { width: 80%; }
-#recipe-details .review-item  { width: 80%; }
+#recipe-details .review-input {
+    width: 80%;
+}
 
-.star-display span { font-size: 25px; }
+#recipe-details .review-item {
+    width: 80%;
+}
+
+.star-display span {
+    font-size: 25px;
+}
 
 
 /*
@@ -1815,52 +1911,144 @@ SEIZURE MODE
 */
 
 @keyframes seizureFlash {
-    0%   { background-color: #ff0000; color: #00ffff; }
-    10%  { background-color: #ff6600; color: #0000ff; }
-    20%  { background-color: #ffff00; color: #ff00ff; }
-    30%  { background-color: #00ff00; color: #ff0000; }
-    40%  { background-color: #00ffff; color: #ffff00; }
-    50%  { background-color: #0000ff; color: #ff6600; }
-    60%  { background-color: #9900ff; color: #00ff00; }
-    70%  { background-color: #ff00ff; color: #ffff00; }
-    80%  { background-color: #ff0066; color: #00ffff; }
-    90%  { background-color: #00ff99; color: #ff0000; }
-    100% { background-color: #ff0000; color: #00ffff; }
+    0% {
+        background-color: #ff0000;
+        color: #00ffff;
+    }
+    10% {
+        background-color: #ff6600;
+        color: #0000ff;
+    }
+    20% {
+        background-color: #ffff00;
+        color: #ff00ff;
+    }
+    30% {
+        background-color: #00ff00;
+        color: #ff0000;
+    }
+    40% {
+        background-color: #00ffff;
+        color: #ffff00;
+    }
+    50% {
+        background-color: #0000ff;
+        color: #ff6600;
+    }
+    60% {
+        background-color: #9900ff;
+        color: #00ff00;
+    }
+    70% {
+        background-color: #ff00ff;
+        color: #ffff00;
+    }
+    80% {
+        background-color: #ff0066;
+        color: #00ffff;
+    }
+    90% {
+        background-color: #00ff99;
+        color: #ff0000;
+    }
+    100% {
+        background-color: #ff0000;
+        color: #00ffff;
+    }
 }
 
 @keyframes seizureSpin {
-    0%   { transform: rotate(0deg)  scale(1); }
-    25%  { transform: rotate(5deg)  scale(1.02); }
-    50%  { transform: rotate(-5deg) scale(0.98); }
-    75%  { transform: rotate(3deg)  scale(1.01); }
-    100% { transform: rotate(0deg)  scale(1); }
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(5deg) scale(1.02);
+    }
+    50% {
+        transform: rotate(-5deg) scale(0.98);
+    }
+    75% {
+        transform: rotate(3deg) scale(1.01);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
 }
 
 @keyframes seizureText {
-    0%   { color: #ff0000; text-shadow: 3px 3px 0px #00ffff; }
-    25%  { color: #ffff00; text-shadow: -3px -3px 0px #ff00ff; }
-    50%  { color: #00ff00; text-shadow: 3px -3px 0px #ff0000; }
-    75%  { color: #00ffff; text-shadow: -3px 3px 0px #ffff00; }
-    100% { color: #ff0000; text-shadow: 3px 3px 0px #00ffff; }
+    0% {
+        color: #ff0000;
+        text-shadow: 3px 3px 0px #00ffff;
+    }
+    25% {
+        color: #ffff00;
+        text-shadow: -3px -3px 0px #ff00ff;
+    }
+    50% {
+        color: #00ff00;
+        text-shadow: 3px -3px 0px #ff0000;
+    }
+    75% {
+        color: #00ffff;
+        text-shadow: -3px 3px 0px #ffff00;
+    }
+    100% {
+        color: #ff0000;
+        text-shadow: 3px 3px 0px #00ffff;
+    }
 }
+
 
 /* image color spaz */
+
 @keyframes seizureImage {
-    0%   { filter: hue-rotate(0deg)   brightness(1)   contrast(1)   saturate(1); }
-    15%  { filter: hue-rotate(60deg)  brightness(1.5) contrast(2)   saturate(3); }
-    30%  { filter: hue-rotate(120deg) brightness(0.5) contrast(3)   saturate(5); }
-    45%  { filter: hue-rotate(180deg) brightness(2)   contrast(1)   saturate(2); }
-    60%  { filter: hue-rotate(240deg) brightness(1.2) contrast(4)   saturate(4); }
-    75%  { filter: hue-rotate(300deg) brightness(0.8) contrast(2)   saturate(6); }
-    100% { filter: hue-rotate(360deg) brightness(1)   contrast(1)   saturate(1); }
+    0% {
+        filter: hue-rotate(0deg) brightness(1) contrast(1) saturate(1);
+    }
+    15% {
+        filter: hue-rotate(60deg) brightness(1.5) contrast(2) saturate(3);
+    }
+    30% {
+        filter: hue-rotate(120deg) brightness(0.5) contrast(3) saturate(5);
+    }
+    45% {
+        filter: hue-rotate(180deg) brightness(2) contrast(1) saturate(2);
+    }
+    60% {
+        filter: hue-rotate(240deg) brightness(1.2) contrast(4) saturate(4);
+    }
+    75% {
+        filter: hue-rotate(300deg) brightness(0.8) contrast(2) saturate(6);
+    }
+    100% {
+        filter: hue-rotate(360deg) brightness(1) contrast(1) saturate(1);
+    }
 }
 
-body.seizure-mode                  { animation: seizureFlash 0.2s linear infinite; }
-body.seizure-mode img              { animation: seizureImage 0.15s linear infinite !important; }
-body.seizure-mode .recipe-card     { animation: seizureSpin 0.15s linear infinite; }
-body.seizure-mode header           { animation: seizureFlash 0.15s linear infinite reverse; }
-body.seizure-mode .tag             { animation: seizureFlash 0.1s linear infinite, seizureSpin 0.3s linear infinite; }
-body.seizure-mode nav ul li a      { animation: seizureSpin 0.2s linear infinite; display: inline-block; }
+body.seizure-mode {
+    animation: seizureFlash 0.2s linear infinite;
+}
+
+body.seizure-mode img {
+    animation: seizureImage 0.15s linear infinite !important;
+}
+
+body.seizure-mode .recipe-card {
+    animation: seizureSpin 0.15s linear infinite;
+}
+
+body.seizure-mode header {
+    animation: seizureFlash 0.15s linear infinite reverse;
+}
+
+body.seizure-mode .tag {
+    animation: seizureFlash 0.1s linear infinite, seizureSpin 0.3s linear infinite;
+}
+
+body.seizure-mode nav ul li a {
+    animation: seizureSpin 0.2s linear infinite;
+    display: inline-block;
+}
 
 body.seizure-mode h1,
 body.seizure-mode h2,

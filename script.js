@@ -10,8 +10,8 @@ Guard: only runs on todo.html where #CreateTask exists
 const taskText = document.getElementById('WriteTask');
 const taskMake = document.getElementById('CreateTask');
 const taskList = document.getElementById('TaskDiv');
-const empty    = document.getElementById('NoTasks');
-let taskCount  = 0;
+const empty = document.getElementById('NoTasks');
+let taskCount = 0;
 
 if (taskMake) {
 
@@ -26,13 +26,13 @@ if (taskMake) {
             empty.style.display = "none"; // hide "no tasks" message
         }
 
-        const EachTask  = document.createElement('div');
-        const CheckBox  = document.createElement('input');
-        CheckBox.type   = "checkbox";
-        const TaskName  = document.createElement('span');
+        const EachTask = document.createElement('div');
+        const CheckBox = document.createElement('input');
+        CheckBox.type = "checkbox";
+        const TaskName = document.createElement('span');
         TaskName.innerText = newText;
         const DeleteBtn = document.createElement('input');
-        DeleteBtn.type  = "button";
+        DeleteBtn.type = "button";
         DeleteBtn.value = "Delete";
 
         EachTask.appendChild(CheckBox);
@@ -56,7 +56,7 @@ if (taskMake) {
 
     taskMake.addEventListener('click', addTask);
 
-    const toggleBtn   = document.getElementById('toggleBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
     const todoContent = document.getElementById('todoContent');
 
     toggleBtn.addEventListener('click', function() {
@@ -112,25 +112,27 @@ if (timerWindow) {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    let totalSeconds  = 0;
+    let totalSeconds = 0;
     let remainSeconds = 0;
     let timerInterval = null;
-    let isRunning     = false;
+    let isRunning = false;
 
-    const msgEl       = document.getElementById("timer-message");
-    const inputH      = document.getElementById("input-hours");
-    const inputM      = document.getElementById("input-minutes");
-    const inputS      = document.getElementById("input-seconds");
+    const msgEl = document.getElementById("timer-message");
+    const inputH = document.getElementById("input-hours");
+    const inputM = document.getElementById("input-minutes");
+    const inputS = document.getElementById("input-seconds");
     const progressBar = document.getElementById("progress-bar");
-    const btnStart    = document.getElementById("btn-start");
-    const btnPause    = document.getElementById("btn-pause");
-    const btnReset    = document.getElementById("btn-reset");
+    const btnStart = document.getElementById("btn-start");
+    const btnPause = document.getElementById("btn-pause");
+    const btnReset = document.getElementById("btn-reset");
     const minimizeBtn = document.getElementById("minimize-btn");
-    const closeBtn    = document.getElementById("close-btn");
-    const openBtn     = document.getElementById("open-timer-btn");
-    const titleBar    = document.getElementById("timer-titlebar");
+    const closeBtn = document.getElementById("close-btn");
+    const openBtn = document.getElementById("open-timer-btn");
+    const titleBar = document.getElementById("timer-titlebar");
 
-    let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+    let isDragging = false,
+        dragOffsetX = 0,
+        dragOffsetY = 0;
 
     titleBar.addEventListener("mousedown", function(e) {
         if (e.target.closest("#titlebar-controls")) return;
@@ -144,11 +146,11 @@ if (timerWindow) {
 
     document.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
-        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth  - timerWindow.offsetWidth));
-        let newTop  = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
+        let newLeft = Math.max(0, Math.min(e.clientX - dragOffsetX, window.innerWidth - timerWindow.offsetWidth));
+        let newTop = Math.max(0, Math.min(e.clientY - dragOffsetY, window.innerHeight - timerWindow.offsetHeight));
         timerWindow.style.transform = "none";
         timerWindow.style.left = newLeft + "px";
-        timerWindow.style.top  = newTop  + "px";
+        timerWindow.style.top = newTop + "px";
     });
 
     document.addEventListener("mouseup", function() {
@@ -158,8 +160,8 @@ if (timerWindow) {
 
     function getInputSeconds() {
         return (parseInt(inputH.value) || 0) * 3600 +
-               (parseInt(inputM.value) || 0) * 60  +
-               (parseInt(inputS.value) || 0);
+            (parseInt(inputM.value) || 0) * 60 +
+            (parseInt(inputS.value) || 0);
     }
 
     function setDisplayFromSeconds(secs) {
@@ -192,7 +194,10 @@ if (timerWindow) {
         const secs = getInputSeconds();
         if (secs <= 0) { msgEl.textContent = "Set a time first, chef."; return; }
 
-        if (remainSeconds === 0) { totalSeconds = secs; remainSeconds = secs; }
+        if (remainSeconds === 0) {
+            totalSeconds = secs;
+            remainSeconds = secs;
+        }
 
         isRunning = true;
         setRunningStyle(true);
@@ -230,8 +235,8 @@ if (timerWindow) {
 
     btnReset.addEventListener("click", function() {
         clearInterval(timerInterval);
-        isRunning     = false;
-        totalSeconds  = 0;
+        isRunning = false;
+        totalSeconds = 0;
         remainSeconds = 0;
         setRunningStyle(false);
         setDisplayFromSeconds(0);
@@ -266,28 +271,28 @@ Used by the recipe fetching, rendering, and search system
 ============================================================
 */
 
-let allRecipes      = []; // master list — all recipes from all JSON files
+let allRecipes = []; // master list — all recipes from all JSON files
 let featuredRecipes = []; // for featured recipe on homepage
-let allStories      = [];
+let allStories = [];
 let filteredRecipes = []; // current working list — filtered by search/filter
-let currentIndex    = 0;  // tracks how far into filteredRecipes we've rendered
+let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
 const recipesPerPage = 4; // how many cards to show per Load More click
 
-const recipeContainer    = document.getElementById('recipe-container');
-const featuredContainer  = document.getElementById('featured-recipe');
-const seasonalContainer  = document.getElementById('seasonal');
-const detailContainer    = document.getElementById('recipe-details');
+const recipeContainer = document.getElementById('recipe-container');
+const featuredContainer = document.getElementById('featured-recipe');
+const seasonalContainer = document.getElementById('seasonal');
+const detailContainer = document.getElementById('recipe-details');
 const favoritesContainer = document.getElementById('favorites-container');
-const loadMoreBtn        = document.getElementById('load-more');
-const searchInput        = document.getElementById('recipe-search');
+const loadMoreBtn = document.getElementById('load-more');
+const searchInput = document.getElementById('recipe-search');
 
 /* CHANGED: added references for the new filter/sort controls on recipelist.html
    These will be null on other pages — the guards below handle that safely       */
-const filterSeason  = document.getElementById('filter-season');
+const filterSeason = document.getElementById('filter-season');
 const filterCuisine = document.getElementById('filter-cuisine');
-const sortSelect    = document.getElementById('sort-by');
-const resetFilters  = document.getElementById('reset-filters');
-const resultsCount  = document.getElementById('results-count');
+const sortSelect = document.getElementById('sort-by');
+const resetFilters = document.getElementById('reset-filters');
+const resultsCount = document.getElementById('results-count');
 
 
 /*
@@ -327,7 +332,7 @@ async function loadAndMergeRecipes() {
 
         const dataArrays = await Promise.all(responses.map(res => res.json()));
 
-        allRecipes      = dataArrays.flat();
+        allRecipes = dataArrays.flat();
         filteredRecipes = [...allRecipes]; // start with all recipes visible
 
         /* on index.html the seasonal section filters by current month */
@@ -335,7 +340,7 @@ async function loadAndMergeRecipes() {
             const d = new Date();
             let index = d.getMonth();
             let matchSeason;
-            if (index >= 3 && index < 6)  matchSeason = "Spring";
+            if (index >= 3 && index < 6) matchSeason = "Spring";
             else if (index >= 6 && index < 9) matchSeason = "Summer";
             else if (index >= 9 && index < 11) matchSeason = "Autumn";
             else matchSeason = "Winter";
@@ -382,7 +387,7 @@ function renderBatch() {
     const batch = filteredRecipes.slice(currentIndex, currentIndex + recipesPerPage);
 
     batch.forEach(recipe => {
-        const cardHTML = `
+                const cardHTML = `
             <a href="recipedetails.html?id=${recipe.id}" class="card-link">
                 <div class="recipe-card fade-in">
 
@@ -847,8 +852,10 @@ function renderDetails() {
             <hr>
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
+            <button id="check-switch">Display Checklist</button>
             <div class="recipelayout">
                 <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
+                <ul id="ingredlist">${recipe.ingredients.map(ing => `<li> ${ing}</li>`).join('')}</ul>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
@@ -896,6 +903,23 @@ function renderDetails() {
     /* init the heart button and ratings now that they've been injected into the DOM */
     initNewHeartButtons();
     initNewRatings();
+    const checkSwitch = document.getElementById('check-switch');
+    const clist = document.getElementById("checklist");
+    const ilist = document.getElementById("ingredlist");
+        if(checkSwitch) {
+        clist.style.display = "none";
+        checkSwitch.addEventListener("click", function() {
+        if (clist.style.display === "none") {
+            clist.style.display = "block";
+            ilist.style.display = "none";
+            checkSwitch.textContent = "Hide Checklist";
+        } else {
+            clist.style.display = "none";
+            ilist.style.display = "block";
+            checkSwitch.textContent = "Display Checklist";
+        }
+        });
+    }
 }
 
 
@@ -1248,3 +1272,29 @@ if (seizureSwitch) {
         seizureSwitch.textContent = isOn ? "Stop the Seizure!" : "Seizure Mode";
     });
 }
+
+/*
+============================================================
+INGREDIENTS CHECKLIST
+Toggles whether the ingredients checklist shows up on recipe details
+============================================================
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const checkSwitch = document.getElementById('check-switch');
+    const clist = document.getElementById("checklist");
+    const ilist = document.getElementById("ingredlist");
+        if(checkSwitch) {
+        console.log("Give me an animal crown");
+        clist.style.display = "none";
+        checkSwitch.addEventListener("click", function() {
+        if (clist.style.display === "none") {
+            clist.style.display = "block";
+            ilist.style.display = "none";
+        } else {
+            clist.style.display = "none";
+            ilist.style.display = "block";
+        }
+        });
+    }
+});*/

@@ -141,6 +141,11 @@ with screen smaller than 850pz + responsive
     accent-color: var(--light-gold);
     scale: 2;
     margin: 10px;
+    margin-left: 0px;
+}
+
+#checklist {
+    list-style-type: none;
 }
 
 body,

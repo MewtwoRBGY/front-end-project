@@ -853,12 +853,17 @@ function renderDetails() {
             <hr>
             <h1>Ingredients</h1>
             <!-- RECIPE INGREDIENTS -->
+            <div class="input-group">
             <button id="check-switch">Display Checklist</button>
-            <button id="set-size">Set Size</button>
-            <textarea id="ingred-input" placeholder="Input serving size..."></textarea>
+            <div class="size-controls">
+                <button id="set-size">Set Size</button>
+                <input id="ingred-input" placeholder="1"></input>
+            </div>
+        </div>
             <div class="recipelayout">
                 <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
                 <ul id="ingredlist">${recipe.ingredients.map(ing => `<li> ${ing}</li>`).join('')}</ul>
+                <button id="Add-To-List">Add to shopping list</button>
                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>

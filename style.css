@@ -121,11 +121,13 @@ with screen smaller than 850pz + responsive
 }
 
 #set-size {
+    display: inline-flex;       
+    align-items: center;       
+    gap: 8px;                 
     text-decoration: none;
     border-radius: 5px;
     padding: 6px 12px;
     margin-left: 20px;
-    display: inline-block;
     background-color: var(--crimson-violet);
     color: var(--light-gold);
     border: 2px solid var(--light-gold);
@@ -382,6 +384,41 @@ blockquote {
     margin-left: auto;
 }
 
+/* Stacks the top button and the bottom controls vertically */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: fit-content; 
+    padding: 0;
+}
+
+/* Forces horizontal, center-aligned flow for the bottom elements */
+.size-controls {
+    display: flex;
+    align-items: center; 
+    gap: 5px; 
+}
+
+#ingred-input {
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+    border-radius: 5px;
+    height: 30px;
+    width: 47px; 
+    overflow: hidden;
+    resize: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 28px;
+    white-space: nowrap;     
+    overflow-x: auto;       
+    overflow-y: hidden;
+}
+
 #aboutPhoto {
     border-radius: 60%;
     height: 150px;
@@ -468,6 +505,8 @@ p.ingredient-text {
     padding: 0 !important;
     border-radius: 0 !important;
 }
+
+
 
 .recipe-card:hover .card-inner {
     transform: rotateY(180deg);

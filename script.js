@@ -334,6 +334,8 @@ async function loadAndMergeRecipes() {
         const dataArrays = await Promise.all(responses.map(res => res.json()));
 
         allRecipes = dataArrays.flat();
+        /* CHANGED: merge user-submitted recipes so they appear everywhere */
+        loadSubmittedRecipes();
         filteredRecipes = [...allRecipes]; // start with all recipes visible
 
         /* on index.html the seasonal section filters by current month */
@@ -399,7 +401,7 @@ function renderBatch() {
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <img src="${recipe.submitted && recipe.images[0] && recipe.images[0].startsWith('data:') ? recipe.images[0] : 'images/images/' + recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
                             <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
@@ -851,7 +853,7 @@ function renderDetails() {
         <div>
             <!-- RECIPE OVERVIEW -->
             <div class="recipelayout">
-                <img src="images/images/${recipe.images[img1]}" class="recipephoto" alt="completed">
+                <img src="${recipe.submitted && recipe.images[img1] && recipe.images[img1].startsWith('data:') ? recipe.images[img1] : 'images/images/' + recipe.images[img1]}" class="recipephoto" alt="completed">
                 <blockquote></blockquote>
             </div>
             <hr>
@@ -869,13 +871,13 @@ function renderDetails() {
             <div class="recipelayout">
                 <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
                 <ul id="ingredlist">${recipe.ingredients.map(ing => `<li class="ingredient-name">${ing}</li>`).join('')}</ul>               
-                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
+                 <img src="${recipe.submitted && recipe.images[img2] && recipe.images[img2].startsWith('data:') ? recipe.images[img2] : 'images/images/' + recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
             <h2>Instructions</h2>
             <div class="recipelayout">
-                <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
+                <img src="${recipe.submitted && recipe.images[img3] && recipe.images[img3].startsWith('data:') ? recipe.images[img3] : 'images/images/' + recipe.images[img3]}" class="recipephoto" alt="prep">
                 <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
             </div>
         </div>
@@ -883,7 +885,7 @@ function renderDetails() {
         <!-- RECIPE COMPLETE -->
         <div id="recipe-complete">
             <h2>Share with your fellow sigmas!</h2>
-            <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
+            <img src="${recipe.submitted && recipe.images[img4] && recipe.images[img4].startsWith('data:') ? recipe.images[img4] : 'images/images/' + recipe.images[img4]}" class="recipephoto" alt="completeAlt">
 
             <!-- ratings section — data-recipe is the localStorage key -->
             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
@@ -1041,6 +1043,8 @@ async function loadFavorites() {
         });
         const dataArrays = await Promise.all(responses.map(res => res.json()));
         allRecipes = dataArrays.flat();
+        /* CHANGED: include submitted recipes on favorites page */
+        loadSubmittedRecipes();
     } catch (error) {
         console.error("Favorites load error:", error);
         favoritesContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
@@ -1085,7 +1089,7 @@ async function loadFavorites() {
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <img src="${recipe.submitted && recipe.images[0] && recipe.images[0].startsWith('data:') ? recipe.images[0] : 'images/images/' + recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
                             <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
@@ -1177,6 +1181,8 @@ async function loadObama() {
         });
         const dataArrays = await Promise.all(responses.map(res => res.json()));
         allRecipes = dataArrays.flat();
+        /* CHANGED: include submitted recipes on detail page */
+        loadSubmittedRecipes();
     } catch (error) {
         console.error("Data Load Error:", error);
         detailContainer.innerHTML = "<p>Error: Run this on a local server (Live Server) to load recipes.</p>";
@@ -1225,7 +1231,7 @@ function renderFeatured() {
                                 <span class="card-number">No. ${recipe.id}</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
-                            <img src="images/images/${recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
+                            <img src="${recipe.submitted && recipe.images[0] && recipe.images[0].startsWith('data:') ? recipe.images[0] : 'images/images/' + recipe.images[0]}" alt="${recipe.name}" class="recipefeat">
                             <div class="card-tags">
                                 <span class="tag">${recipe.season}</span>
                                 <span class="tag">${recipe.cuisine}</span>
@@ -1510,3 +1516,150 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });*/
+
+/*
+============================================================
+CHANGED: LOAD SUBMITTED RECIPES
+Merges user-submitted recipes from localStorage into allRecipes.
+Called in loadAndMergeRecipes, loadFavorites, and loadObama
+so submitted recipes appear everywhere JSON recipes do.
+IDs start at 10000 so they never clash with JSON recipe IDs.
+============================================================
+*/
+
+function loadSubmittedRecipes() {
+    const submitted = JSON.parse(localStorage.getItem('submittedRecipes')) || [];
+    submitted.forEach(recipe => {
+        if (!allRecipes.find(r => r.id === recipe.id)) {
+            allRecipes.push(recipe);
+        }
+    });
+}
+
+
+/*
+============================================================
+CHANGED: RECIPE SUBMISSION FORM
+Guard: only runs on submit.html where #recipe-submit-form exists
+============================================================
+*/
+
+const submitForm = document.getElementById('recipe-submit-form');
+
+if (submitForm) {
+    const imageInput       = document.getElementById('submit-image');
+    const imagePreview     = document.getElementById('image-preview');
+    const previewContainer = document.getElementById('image-preview-container');
+    const successMsg       = document.getElementById('submit-success');
+
+    /* show image preview when user picks a file */
+    imageInput.addEventListener('change', function() {
+        const file = imageInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            previewContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    submitForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name        = document.getElementById('submit-name').value.trim();
+        const season      = document.getElementById('submit-season').value;
+        const cuisine     = document.getElementById('submit-cuisine').value;
+        const prep        = document.getElementById('submit-prep').value.trim() || "Unknown";
+        const ingredients = document.getElementById('submit-ingredients').value
+                              .split('\n').map(s => s.trim()).filter(s => s !== '');
+        const steps       = document.getElementById('submit-steps').value
+                              .split('\n').map(s => s.trim()).filter(s => s !== '');
+
+        if (!name || ingredients.length === 0 || steps.length === 0) return;
+
+        const existing = JSON.parse(localStorage.getItem('submittedRecipes')) || [];
+
+        /* unique id starting at 10000 - never clashes with JSON recipe IDs */
+        const newId = existing.length > 0
+            ? Math.max(...existing.map(r => r.id)) + 1
+            : 10000;
+
+        const newRecipe = {
+            id:          newId,
+            name:        name,
+            season:      season,
+            cuisine:     cuisine,
+            prep_time:   prep,
+            ingredients: ingredients,
+            steps:       steps,
+            images:      [imagePreview.src || ''],
+            submitted:   true   /* flag so image path logic uses base64 not file path */
+        };
+
+        existing.push(newRecipe);
+        localStorage.setItem('submittedRecipes', JSON.stringify(existing));
+
+        successMsg.style.display = 'block';
+        submitForm.reset();
+        previewContainer.style.display = 'none';
+        imagePreview.src = '';
+
+        renderSubmitted();
+        setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+    });
+
+    /* renders submitted recipe cards below the form on submit.html */
+    function renderSubmitted() {
+        const container = document.getElementById('submitted-container');
+        const section   = document.getElementById('submitted-recipes-section');
+        const submitted = JSON.parse(localStorage.getItem('submittedRecipes')) || [];
+
+        if (submitted.length === 0) {
+            section.style.display = 'none';
+            return;
+        }
+
+        section.style.display = 'block';
+        container.innerHTML = '';
+
+        submitted.forEach(recipe => {
+            const imgSrc = recipe.images[0] && recipe.images[0].startsWith('data:')
+                ? recipe.images[0]
+                : 'https://via.placeholder.com/180x180/CB9173/511730?text=No+Image';
+
+            const cardHTML = `
+                <div class="recipe-card fade-in" style="cursor:default;">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-header">
+                                <span class="card-number">★ Submitted</span>
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <img src="${imgSrc}" alt="${recipe.name}" class="recipefeat">
+                            <div class="card-tags">
+                                <span class="tag">${recipe.season}</span>
+                                <span class="tag">${recipe.cuisine}</span>
+                                <span class="tag">${recipe.prep_time}</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-header">
+                                <h3 class="card-title">${recipe.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="ingredient-text">Ingredients:</p>
+                                <ul class="card-ingredients">
+                                    ${recipe.ingredients.slice(0, 5).map(ing => `<li>${ing}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
+
+    /* show any existing submissions on page load */
+    renderSubmitted();
+}

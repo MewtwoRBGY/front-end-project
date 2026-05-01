@@ -2487,3 +2487,101 @@ SHOPPING LIST
     box-shadow: none;
     transform: translate(4px, 4px);
 }
+
+/*
+============================================================
+RECIPE SUBMISSION FORM — submit.html
+============================================================
+*/
+
+#submit-section {
+    padding: 10px 20px 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    color: var(--light-gold);
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-hint {
+    color: var(--toasted-almond);
+    font-size: 13px;
+    font-weight: normal;
+    font-style: italic;
+    margin-left: 6px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    padding: 8px 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 2px solid var(--toasted-almond);
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+    resize: vertical;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--light-gold);
+    box-shadow: 0 0 6px rgba(255, 248, 191, 0.4);
+}
+
+.form-group input[type="file"] {
+    cursor: pointer;
+    padding: 6px;
+}
+
+#submit-btn {
+    background-color: var(--midnight-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--toasted-almond);
+    border-radius: 6px;
+    padding: 10px 28px;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--reddish-brown);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 6px;
+}
+
+#submit-btn:hover {
+    background-color: var(--reddish-brown);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--midnight-violet);
+}
+
+#submit-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+/* dark mode: keep form inputs readable */
+body.darkmode .form-group input[type="text"],
+body.darkmode .form-group textarea,
+body.darkmode .form-group select {
+    background-color: var(--light-gold);
+    color: var(--midnight-violet);
+}
+
+body.darkmode .form-group label {
+    color: var(--light-gold);
+}

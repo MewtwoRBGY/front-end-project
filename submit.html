@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Knights of the Grill - Submit a Recipe</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+</head>
+
+<body>
+    <header>
+        <div id="headerdiv">
+            <div class="image-flipper-container">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="logo.png" id="logo" alt="logo">
+                    </div>
+                    <div class="card-back">
+                        <a href="index.html"> <img src="FinalNanoLogo.png" id="logo" alt="logo">
+                    </div>
+                </div>
+            </div>
+            <h1>Knights of the Grill</h1></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipelist.html">Recipes</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="todo.html">Groceries</a></li>
+                <li><a href="submit.html">Submit</a></li>
+            </ul>
+            <div id="mode-buttons">
+                <button id="theme-switch">Turn on Knight Mode</button>
+                <button id="seizure-switch">Seizure Mode</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="favorites-section">
+            <h1>Submit a Recipe</h1>
+            <p id="favorites-hint"><i>Have a recipe worthy of the Knights of the Grill? Submit it below!</i></p>
+        </section>
+
+        <section id="submit-section">
+            <div class="lore-card" style="max-width:700px; margin: 20px auto;">
+                <div class="lore-card-inner">
+
+                    <form id="recipe-submit-form">
+
+                        <div class="form-group">
+                            <label for="submit-name">Recipe Name *</label>
+                            <input type="text" id="submit-name" placeholder="e.g. Sigma Steak Supreme" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-season">Season</label>
+                            <select id="submit-season">
+                                <option value="All">All Seasons</option>
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Autumn">Autumn</option>
+                                <option value="Winter">Winter</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-cuisine">Cuisine</label>
+                            <select id="submit-cuisine">
+                                <option value="American">American</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Mediterranean">Mediterranean</option>
+                                <option value="Asian">Asian</option>
+                                <option value="French">French</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-prep">Prep Time</label>
+                            <input type="text" id="submit-prep" placeholder="e.g. 30 min">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-ingredients">
+                                Ingredients *
+                                <span class="form-hint">(one per line)</span>
+                            </label>
+                            <textarea id="submit-ingredients" rows="6"
+                                placeholder="1 cup flour&#10;2 eggs&#10;1 tsp salt" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-steps">
+                                Instructions *
+                                <span class="form-hint">(one step per line)</span>
+                            </label>
+                            <textarea id="submit-steps" rows="6"
+                                placeholder="Mix all dry ingredients&#10;Add wet ingredients&#10;Bake at 350°F for 30 minutes"
+                                required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submit-image">
+                                Recipe Image
+                                <span class="form-hint">(optional)</span>
+                            </label>
+                            <input type="file" id="submit-image" accept="image/*">
+                            <div id="image-preview-container" style="display:none; margin-top:10px;">
+                                <img id="image-preview" alt="Preview"
+                                     style="max-width:200px; max-height:200px; border-radius:6px; border:2px solid var(--crimson-violet);">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-btn">⚔️ Submit Recipe</button>
+
+                        <p id="submit-success" style="display:none; color:var(--toasted-almond); font-size:16px; margin-top:12px; font-style:italic;">
+                            ✅ Recipe submitted! It will appear on the homepage and favorites page.
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- shows all previously submitted recipes as cards -->
+            <div id="submitted-recipes-section" style="display:none; padding: 0 20px;">
+                <h2>Your Submitted Recipes</h2>
+                <div class="featuredlist" id="submitted-container"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p><i>Knights of the Grill</i> is brought to you by Chad TV, Inc. All rights reserved. 2026
+            <a href="https://github.com/MewtwoRBGY/front-end-project">GitHub Available Here</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

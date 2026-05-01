@@ -347,6 +347,10 @@ blockquote {
     margin-bottom: 20px;
 }
 
+#recipe-details {
+    margin: 15px;
+}
+
 #searchUI {
     background-color: var(--reddish-brown);
     padding: 15px;
@@ -504,6 +508,13 @@ a.card-link .recipe-card:hover {
     color: var(--crimson-violet);
     font-weight: bold;
     white-space: nowrap;
+}
+
+.card-arrow {
+    top: 10px;
+    right: 10px;
+    position: sticky;
+    font-size: 50px;
 }
 
 
@@ -1147,7 +1158,7 @@ heartFloat: a floating ❤️ that rises upward and fades out
 .heart-btn {
     background: none;
     border: none;
-    font-style: 20px;
+    font-style: 500px;
     cursor: pointer;
     color: var(--crimson-violet);
     position: relative;

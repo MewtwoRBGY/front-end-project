@@ -841,6 +841,7 @@ function renderDetails() {
                     onclick="event.preventDefault();"
                     style="font-size:28px; position:static;"
                     aria-label="Favorite this recipe">&#9825;</button>
+            <p>Like this recipe!</p>
         </div>
 
         <div>
@@ -1173,6 +1174,7 @@ function renderFeatured() {
                                 <button class="heart-btn" data-card="${recipe.id}"
                                         onclick="event.preventDefault();"
                                         aria-label="Favorite">&#9829;</button>
+                                        <span class="card-like">Like</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -1181,12 +1183,15 @@ function renderFeatured() {
                                 <ul class="card-ingredients">
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
+                                <!--<p class="card-arrow">↓</p>-->
                             </div>
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
                                     <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                                     <span class="rating-count">(0 ratings)</span>
+                                    <span class="rating-count">↓</span>
                                 </div>
+                                <h3>Leave a review below!</h3>
                                 <div class="star-input">
                                     <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
                                     <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>

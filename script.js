@@ -412,6 +412,7 @@ function renderBatch() {
                                 <button class="heart-btn" data-card="${recipe.id}"
                                         onclick="event.preventDefault();"
                                         aria-label="Favorite">&#9829;</button>
+                                        <span class="card-like">Like</span>
                                 <h3 class="card-title">${recipe.name}</h3>
                             </div>
                             <div class="card-body">
@@ -420,6 +421,7 @@ function renderBatch() {
                                 <ul class="card-ingredients">
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
+                                <h3>Scroll down for more info</h3>
                             </div>
                             <!-- ratings section — data-recipe is the localStorage key -->
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
@@ -427,6 +429,7 @@ function renderBatch() {
                                     <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                                     <span class="rating-count">(0 ratings)</span>
                                 </div>
+                                <h3>Leave a review below!</h3>
                                 <div class="star-input">
                                     <button class="star" data-value="1" onclick="event.preventDefault();">&#9733;</button>
                                     <button class="star" data-value="2" onclick="event.preventDefault();">&#9733;</button>
@@ -1243,13 +1246,12 @@ function renderFeatured() {
                                 <ul class="card-ingredients">
                                     ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
-                                <!--<p class="card-arrow">↓</p>-->
+                                <h3>Scroll down for more info</h3>
                             </div>
                             <div class="ratings-section" data-recipe="recipe-${recipe.id}">
                                 <div class="star-display">
                                     <span class="avg-rating">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                                     <span class="rating-count">(0 ratings)</span>
-                                    <span class="rating-count">↓</span>
                                 </div>
                                 <h3>Leave a review below!</h3>
                                 <div class="star-input">

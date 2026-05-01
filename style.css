@@ -803,6 +803,28 @@ the breakpoints are:
         font-size: 14px;
         padding: 10px;
     }
+
+
+    #seizure-switch {   
+    height: auto!important;
+    width: auto!important;
+    font-size: 12px;
+
+    }
+
+    #theme-switch {   
+    height: auto!important;
+    width: auto!important;
+    font-size: 12px;
+
+    }
+
+    #mode-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;               /*  vertical spacing between buttons */
+        align-items: flex-end;  /* alighs to right*/
+    }
 }
 
 

@@ -858,13 +858,14 @@ function renderDetails() {
             <div class="size-controls">
                 <button id="set-size">Set Size</button>
                 <input id="ingred-input" placeholder="1"></input>
-                <button id="Add-To-List">Add to shopping list</button>
+                <button id="Add-To-List">Add to groceries list</button>
 
             </div>
         </div>
             <div class="recipelayout">
                 <ul id="checklist">${recipe.ingredients.map(ing => `<li><input type="checkbox" class="ingCheck"> ${ing}</li>`).join('')}</ul>
-                <ul id="ingredlist">${recipe.ingredients.map(ing => `<li class="ingredient-name">${ing}</li>`).join('')}</ul>                <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
+                <ul id="ingredlist">${recipe.ingredients.map(ing => `<li class="ingredient-name">${ing}</li>`).join('')}</ul>               
+                 <img src="images/images/${recipe.images[img2]}" class="recipephoto" id="ingredphoto" alt="ingredients">
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
@@ -937,32 +938,19 @@ function renderDetails() {
 
     // SHOPPING LIST LOGIC
     const addToListBtn = document.getElementById('Add-To-List');
-    if (addToListBtn) {
-        addToListBtn.addEventListener('click', () => {
-            // grabbs ingredients from the active list
-            const ingredientElements = document.querySelectorAll('#ingredlist .ingredient-name');
-            
-            // puts text content into an array
-            const newItems = Array.from(ingredientElements).map(el => el.textContent.trim());
+if (addToListBtn) {
+    addToListBtn.addEventListener('click', () => {
+        recipe.ingredients.forEach(ing => addToGroceryList(ing));
 
-            if (newItems.length > 0) {
-                // adds to localStorage data
-                const currentList = JSON.parse(localStorage.getItem('groceryList')) || [];
-                const updatedList = [...new Set([...currentList, ...newItems])];
-                
-                localStorage.setItem('groceryList', JSON.stringify(updatedList));
+        addToListBtn.textContent = "Added to List!";
+        addToListBtn.style.backgroundColor = "green";
 
-                // UI feedback
-                addToListBtn.textContent = "Added to List!";
-                addToListBtn.style.backgroundColor = "green";
-                
-                setTimeout(() => {
-                    addToListBtn.textContent = "Add to shopping list";
-                    addToListBtn.style.backgroundColor = ""; 
-                }, 2000);
-            }
-        });
-    }
+        setTimeout(() => {
+            addToListBtn.textContent = "Add to groceries list";
+            addToListBtn.style.backgroundColor = "";
+        }, 2000);
+    });
+}
 
 }
 
@@ -1326,7 +1314,6 @@ if (seizureSwitch) {
 }
 
 
-
 /*
 ==========================================================
 SHOPPING LIST
@@ -1336,42 +1323,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayContainer = document.getElementById('display-list');
     const clearBtn = document.getElementById('clear-list');
 
+    // Helper: read list from localStorage (normalizes old plain-string entries)
+    function getList() {
+        const raw = JSON.parse(localStorage.getItem('groceryList')) || [];
+        return raw.map(item => typeof item === 'string' ? { name: item, qty: 1 } : item);
+    }
+
+    // Helper: write list to localStorage
+    function saveList(list) {
+        localStorage.setItem('groceryList', JSON.stringify(list));
+    }
+
     // 1. Render function to update the UI
     function renderList() {
-        const groceryList = JSON.parse(localStorage.getItem('groceryList')) || [];
+        const groceryList = getList();
 
         if (groceryList.length === 0) {
             displayContainer.innerHTML = '<li>Your list is currently empty.</li>';
             return;
         }
 
-        // Generate HTML for each item with a "Remove" option
         displayContainer.innerHTML = groceryList
             .map((item, index) => `
                 <li>
-                    <span>${item}</span>
+                    <span>${item.name}${item.qty > 1 ? ` <strong>x${item.qty}</strong>` : ''}</span>
                     <button class="remove-item" data-index="${index}">×</button>
                 </li>`)
             .join('');
 
-        // Attach listeners to individual remove buttons
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute('data-index');
+                const index = parseInt(e.target.getAttribute('data-index'));
                 removeItem(index);
             });
         });
     }
 
-    // 2. Function to remove a single item
+    // 2. Remove/decrement a single item
     function removeItem(index) {
-        const groceryList = JSON.parse(localStorage.getItem('groceryList')) || [];
-        groceryList.splice(index, 1);
-        localStorage.setItem('groceryList', JSON.stringify(groceryList));
+        const groceryList = getList();
+        if (groceryList[index].qty > 1) {
+            groceryList[index].qty -= 1;
+        } else {
+            groceryList.splice(index, 1);
+        }
+        saveList(groceryList);
         renderList();
     }
 
-    // 3. Logic to clear the entire list
+    // 3. Clear the entire list
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
             if (confirm("Are you sure you want to clear the entire list?")) {
@@ -1381,9 +1381,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial render call
+    // Initial render
     renderList();
 });
+
+// 4. Called from recipe cards (or anywhere) to add an ingredient
+function addToGroceryList(ingredientName) {
+    const raw = JSON.parse(localStorage.getItem('groceryList')) || [];
+    const groceryList = raw.map(item => typeof item === 'string' ? { name: item, qty: 1 } : item);
+
+    const existing = groceryList.find(
+        item => item.name.toLowerCase() === ingredientName.toLowerCase()
+    );
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        groceryList.push({ name: ingredientName, qty: 1 });
+    }
+
+    localStorage.setItem('groceryList', JSON.stringify(groceryList));
+}
 
 /*
 ============================================================

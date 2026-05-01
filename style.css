@@ -839,6 +839,9 @@ the breakpoints are:
     .resultsgrid {
         grid-template-columns: 1fr;
     }
+    .featuredlist {
+        grid-template-columns: 1fr;
+    }
     .card-body {
         flex-direction: column;
         align-items: center;

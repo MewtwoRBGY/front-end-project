@@ -414,8 +414,10 @@ blockquote {
 }
 
 #search-section {
-    width: 45%;
+    width: 55%;
     margin-right: 0px;
+    padding-left: 22%;
+    padding-right: 22%;
 }
 
 
@@ -1766,7 +1768,7 @@ FILTER BAR — recipelist.html
 
 #filter-bar #recipe-search {
     flex: 1;
-    min-width: 140px;
+    min-width: 250px;
     padding: 8px 12px;
     font-size: 1rem;
     font-family: 'EB Garamond', serif;

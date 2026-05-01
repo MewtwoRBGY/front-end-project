@@ -295,6 +295,7 @@ const resetFilters = document.getElementById('reset-filters');
 const resultsCount = document.getElementById('results-count');
 
 
+
 /*
 ==================================================================
 TASK 6: DATA FETCHING

@@ -366,7 +366,7 @@ blockquote {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     /*adjusts the column count for the recipe cards*/
     gap: 8px;
     padding: 20px;
@@ -493,7 +493,8 @@ blockquote {
     background-color: var(--toasted-almond);
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 300px;
     box-sizing: border-box;
     padding: 12px;

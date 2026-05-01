@@ -3,6 +3,7 @@
 Joseph Racca
 -Wireframe
 -HTML
+-Slides
 -CSS, flex boxes
 -Presentation 3
 -Recipe Details Page
@@ -23,6 +24,8 @@ Eljay Jimenez
 -Mobile styling
 -Dark Mode and Seizure Mode
 -Dynamic Search and Filtering
+-Recipe Submission
+
 
 Seamus Sommers
 -Wireframe
@@ -35,6 +38,8 @@ Seamus Sommers
 -To-do list
 -Search
 -Mobile styling
+-Styling
+-Customizable serving size
 
 Pancake test from Taste of Home website
 Gigachad About Me Photo by Gemini

@@ -936,11 +936,50 @@ function renderDetails() {
         }); }
     }
 
-    // SHOPPING LIST LOGIC
-    const addToListBtn = document.getElementById('Add-To-List');
+   // SCALING LOGIC
+function scaleIngredient(ing, factor) {
+    const match = ing.match(/^(\d+\.?\d*)\s+(.+)$/);
+    if (!match) return ing;
+    const num = parseFloat(match[1]) * factor;
+    const rest = match[2];
+    const formatted = Number.isInteger(num) ? num : parseFloat(num.toFixed(2));
+    return `${formatted} ${rest}`;
+}
+
+function applyScale(factor) {
+    const ingredItems = document.querySelectorAll('#ingredlist .ingredient-name');
+    const checkItems  = document.querySelectorAll('#checklist li');
+
+    recipe.ingredients.forEach((ing, i) => {
+        const scaled = scaleIngredient(ing, factor);
+        if (ingredItems[i]) ingredItems[i].textContent = scaled;
+        if (checkItems[i])  checkItems[i].innerHTML = `<input type="checkbox" class="ingCheck"> ${scaled}`;
+    });
+}
+function handleScale() {
+    const factor = parseFloat(inputSize.value) || 1;
+    applyScale(factor);
+}
+
+if (setSize) {
+    setSize.addEventListener('click', handleScale);
+}
+
+if (inputSize) {
+    inputSize.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') handleScale();
+    });
+}
+
+// SHOPPING LIST LOGIC
+const addToListBtn = document.getElementById('Add-To-List');
 if (addToListBtn) {
     addToListBtn.addEventListener('click', () => {
-        recipe.ingredients.forEach(ing => addToGroceryList(ing));
+        // read whatever is currently displayed (scaled or original)
+        const ingredientElements = document.querySelectorAll('#ingredlist .ingredient-name');
+        const currentIngredients = Array.from(ingredientElements).map(el => el.textContent.trim());
+
+        currentIngredients.forEach(ing => addToGroceryList(ing));
 
         addToListBtn.textContent = "Added to List!";
         addToListBtn.style.backgroundColor = "green";
@@ -1390,14 +1429,36 @@ function addToGroceryList(ingredientName) {
     const raw = JSON.parse(localStorage.getItem('groceryList')) || [];
     const groceryList = raw.map(item => typeof item === 'string' ? { name: item, qty: 1 } : item);
 
-    const existing = groceryList.find(
-        item => item.name.toLowerCase() === ingredientName.toLowerCase()
-    );
+    const match = ingredientName.match(/^(\d+\.?\d*)\s+(.+)$/);
 
-    if (existing) {
-        existing.qty += 1;
+    if (match) {
+        // ingredient has a leading number — merge by adding amounts
+        const incomingAmount = parseFloat(match[1]);
+        const baseText = match[2].toLowerCase();
+
+        const existing = groceryList.find(item => {
+            const m = item.name.match(/^(\d+\.?\d*)\s+(.+)$/);
+            return m && m[2].toLowerCase() === baseText;
+        });
+
+        if (existing) {
+            const existingMatch = existing.name.match(/^(\d+\.?\d*)\s+(.+)$/);
+            const total = parseFloat(existingMatch[1]) + incomingAmount;
+            const formatted = Number.isInteger(total) ? total : parseFloat(total.toFixed(2));
+            existing.name = `${formatted} ${existingMatch[2]}`;
+        } else {
+            groceryList.push({ name: ingredientName, qty: 1 });
+        }
     } else {
-        groceryList.push({ name: ingredientName, qty: 1 });
+        // no leading number — fall back to qty stacking
+        const existing = groceryList.find(
+            item => item.name.toLowerCase() === ingredientName.toLowerCase()
+        );
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            groceryList.push({ name: ingredientName, qty: 1 });
+        }
     }
 
     localStorage.setItem('groceryList', JSON.stringify(groceryList));

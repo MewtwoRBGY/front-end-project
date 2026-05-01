@@ -1383,17 +1383,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         displayContainer.innerHTML = groceryList
-            .map((item, index) => `
-                <li>
-                    <span>${item.name}${item.qty > 1 ? ` <strong>x${item.qty}</strong>` : ''}</span>
-                    <button class="remove-item" data-index="${index}">×</button>
-                </li>`)
-            .join('');
+        .map((item, index) => `
+        <li class="groceryItem">
+            <input type="checkbox" class="grocery-check" id="check-${index}">
+            <span class="item-text">${item.name}${item.qty > 1 ? ` <strong>x${item.qty}</strong>` : ''}</span>
+            <button class="remove-item" data-index="${index}">×</button>
+        </li>`)
+    .join('');
 
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = parseInt(e.target.getAttribute('data-index'));
                 removeItem(index);
+            });
+        });
+
+        document.querySelectorAll('.grocery-check').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                this.closest('li').classList.toggle('checked', this.checked);
             });
         });
     }

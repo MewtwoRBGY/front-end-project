@@ -2239,3 +2239,71 @@ SHOPPING LIST
     border-radius: 5px;
     cursor: pointer;
 }
+
+#display-list li {
+    background-color: var(--toasted-almond);
+    color: var(--light-gold);
+    border: 1px solid var(--light-gold);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#display-list li:hover {
+    opacity: 0.85;
+}
+
+.groceryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    color: black; 
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.groceryItem span {
+    font-size: 1rem;
+}
+
+.groceryItem strong {
+    background-color: #4a90d9;
+    color: white;
+    font-size: 0.8rem;
+    padding: 2px 7px;
+    border-radius: 12px;
+    margin-left: 6px;
+}
+
+.groceryItem .remove-item {
+    background: none;
+    border: none;
+    color: #cc0000;
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.groceryItem .remove-item:hover {
+    color: #ff0000;
+    transform: scale(1.2);
+}
+
+#display-list li.checked {
+    background-color: grey;
+    border: 2px solid black;
+    opacity: 0.6;
+}
+
+#display-list li.checked .item-text {
+    text-decoration: line-through;
+    color: #ccc;
+
+}

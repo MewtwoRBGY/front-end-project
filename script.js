@@ -276,7 +276,7 @@ let featuredRecipes = []; // for featured recipe on homepage
 let allStories = [];
 let filteredRecipes = []; // current working list — filtered by search/filter
 let currentIndex = 0; // tracks how far into filteredRecipes we've rendered
-const recipesPerPage = 4; // how many cards to show per Load More click
+const recipesPerPage = 8; // how many cards to show per Load More click
 
 const recipeContainer = document.getElementById('recipe-container');
 const featuredContainer = document.getElementById('featured-recipe');

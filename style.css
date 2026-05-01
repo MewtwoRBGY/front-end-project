@@ -103,6 +103,18 @@ with screen smaller than 850pz + responsive
 
 */
 
+h1 {
+    background-color: var(--crimson-violet); /* Maroon inner */
+    color: var(--light-gold)!important;                /* Text color */
+    border: 4px solid var(--light-gold);     /* Toasted almond border */
+    border-radius: 8px;                      /* Rounded corners */
+    padding: 10px 20px;                      /* Internal spacing */
+    display: inline-block;                   /* Prevents the bar from stretching 100% width */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds depth */
+    margin-bottom: 20px;
+}
+
 #check-switch {
     text-decoration: none;
     border-radius: 5px;
@@ -824,6 +836,12 @@ the breakpoints are:
         flex-direction: column;
         gap: 2px;               /*  vertical spacing between buttons */
         align-items: flex-end;  /* alighs to right*/
+    }
+
+    #filter-bar #recipe-search {
+        width: 80px !important;
+        font-size: small !important;
+
     }
 }
 
@@ -1715,16 +1733,16 @@ FILTER BAR — recipelist.html
     flex-direction: row;
     gap: 10px;
     align-items: center;
-    padding: 14px 20px;
+    padding: 20px;
     background-color: var(--reddish-brown);
     border-radius: 6px;
-    margin: 10px 0 0 0;
+    margin: 10px auto 0 auto;
     width: fit-content;
 }
 
 #filter-bar #recipe-search {
     flex: 1;
-    min-width: 180px;
+    min-width: 140px;
     padding: 8px 12px;
     font-size: 1rem;
     font-family: 'EB Garamond', serif;

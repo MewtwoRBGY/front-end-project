@@ -32,7 +32,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="recipelist.html">Recipes</a></li>
                 <li><a href="favorites.html">Favorites</a></li>
-                <li><a href="todo.html">ToDo</a></li>
+                <li><a href="todo.html">Groceries</a></li>
             </ul>
             <!-- CHANGED: wrapped both buttons so they stay grouped on the right -->
             <div id="mode-buttons">
@@ -44,25 +44,17 @@
 
 <body>
     <div class="nav">
-
-        <h1>To-Do List</h1>
-        <button id="toggleBtn">Show List</button>
+        <h1>Grocery List</h1>
         <hr>
-
-        <div id="todoContent" class="hidden">
-            <form action="/action_page.php">
-                <label for="fname">Task name:</label>
-                <br>
-                <input id="WriteTask" type="text" name="WriteTask" value="Example task">
-                <input id="CreateTask" type="submit" value="Create"><br>
-            </form>
-
-            <div id="TaskDiv">
-                <h4 id="NoTasks">You completed all your tasks!</h4>
+        
+        <div id="GroceryContainer">
+            <ul id="display-list"></ul>
+            
+            <div id="ListControls">
+                <button id="clear-list">Clear Entire List</button>
             </div>
         </div>
     </div>
-
 
     <footer>
         <p><i>Knights of the Grill</i> is brought to you by Chad TV, Inc. All rights reserved. 2026

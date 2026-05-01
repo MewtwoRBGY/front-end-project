@@ -836,7 +836,7 @@ function renderDetails() {
     const detailHTML = `
         <!-- recipe name + heart button side by side at the top -->
         <div style="display:flex; align-items:center; gap:12px; margin:10px;">
-            <h1 style="margin:0;">${recipe.name}</h1>
+            <h2 style="margin:0;">${recipe.name}</h2>
             <button class="heart-btn" data-card="${recipe.id}"
                     onclick="event.preventDefault();"
                     style="font-size:28px; position:static;"
@@ -851,7 +851,7 @@ function renderDetails() {
                 <blockquote></blockquote>
             </div>
             <hr>
-            <h1>Ingredients</h1>
+            <h2>Ingredients</h2>
             <!-- RECIPE INGREDIENTS -->
             <div class="input-group">
             <button id="check-switch">Display Checklist</button>
@@ -869,7 +869,7 @@ function renderDetails() {
             </div>
             <hr>
             <!-- RECIPE PREP STEPS -->
-            <h1>Instructions</h1>
+            <h2>Instructions</h2>
             <div class="recipelayout">
                 <img src="images/images/${recipe.images[img3]}" class="recipephoto" alt="prep">
                 <blockquote>${recipe.steps.map(stp => `<li>${stp}</li>`).join('')}</blockquote>
@@ -878,7 +878,7 @@ function renderDetails() {
 
         <!-- RECIPE COMPLETE -->
         <div id="recipe-complete">
-            <h1>Share with your fellow sigmas!</h1>
+            <h2>Share with your fellow sigmas!</h2>
             <img src="images/images/${recipe.images[img4]}" class="recipephoto" alt="completeAlt">
 
             <!-- ratings section — data-recipe is the localStorage key -->
@@ -1269,7 +1269,7 @@ function renderFeatured() {
                     </div>
                 </div>
             </a>
-            <figcaption><i>Check out today's featured recipe!</i></figcaption>
+            <figcaption><p><i>Check out today's featured recipe!</i></p></figcaption>
         </figure>`;
 
     featuredContainer.innerHTML = cardHTML;

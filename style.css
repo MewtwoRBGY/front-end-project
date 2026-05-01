@@ -103,6 +103,12 @@ with screen smaller than 850pz + responsive
 
 */
 
+#featured-recipe figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h1 {
     background-color: var(--crimson-violet); 
     color: var(--light-gold)!important;               
@@ -124,6 +130,7 @@ h2 {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     margin-bottom: 20px;
+    font-size: large;
 }
 
 
@@ -1557,6 +1564,11 @@ body.darkmode #about th {
     color: var(--light-gold);
 }
 
+body.darkmode #no-favorites p,
+body.darkmode #no-favorites {
+    color: var(--light-gold);
+}
+
 
 /*
 ============================================================
@@ -2286,7 +2298,7 @@ SHOPPING LIST
 #clear-list {
     background-color: #721c24; /* Darker red for destructive action */
     color: white;
-    border: 1px solid white;
+    border: 1px solid var(--light-gold);
     padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
@@ -2388,4 +2400,81 @@ SHOPPING LIST
     text-decoration: line-through;
     color: #ccc;
 
+}
+
+.lore-card {
+    background-color: var(--crimson-violet);
+    border: 3px solid var(--light-gold);
+    border-radius: 10px;
+    padding: 4px;
+    max-width: 700px;
+    margin: 20px auto;
+    box-shadow: 6px 6px 0px var(--midnight-violet);
+    align-self: flex-start; /* stops it stretching to fill the flex row */
+}
+
+.lore-card-inner {
+    border: 1px solid var(--toasted-almond);
+    border-radius: 7px;
+    padding: 24px 30px;
+}
+
+.lore-card p {
+    color: var(--light-gold);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.5; /* was 1.8, tighten it up */
+    margin: 0;
+    text-align: center;
+}
+
+.lore-card strong {
+    color: var(--toasted-almond);
+    font-style: italic;
+}
+
+.lore-card-inner p {
+    margin: 0;
+}
+
+#load-more {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 28px;
+    background-color: var(--midnight-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--toasted-almond);
+    border-radius: 6px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--reddish-brown);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#load-more:hover {
+    background-color: var(--reddish-brown);
+    color: var(--light-gold);
+    box-shadow: 2px 2px 0px var(--midnight-violet);
+    transform: translate(2px, 2px);
+}
+
+#load-more:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+}
+
+#clear-list:hover{
+    background-color: var(--reddish-brown);
+    color: var(--light-gold);
+    box-shadow: 2px 2px 0px var(--midnight-violet);
+    transform: translate(2px, 2px);
+}
+
+#clear-list:active {
+    color: red;
+    box-shadow: none;
+    transform: translate(4px, 4px);
 }

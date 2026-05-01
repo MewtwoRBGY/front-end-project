@@ -1383,20 +1383,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         displayContainer.innerHTML = groceryList
+        displayContainer.innerHTML = groceryList
         .map((item, index) => `
-        <li class="groceryItem">
-            <input type="checkbox" class="grocery-check" id="check-${index}">
+        <li class="groceryItem${item.checked ? ' checked' : ''}">
             <span class="item-text">${item.name}${item.qty > 1 ? ` <strong>x${item.qty}</strong>` : ''}</span>
             <button class="remove-item" data-index="${index}">×</button>
         </li>`)
     .join('');
-
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = parseInt(e.target.getAttribute('data-index'));
-                removeItem(index);
-            });
+    
+    // whole li toggles checked, except when clicking the delete button
+    document.querySelectorAll('.groceryItem').forEach((li, i) => {
+        li.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-item')) return;
+            const groceryList = getList();
+            groceryList[i].checked = !groceryList[i].checked;
+            saveList(groceryList);
+            this.classList.toggle('checked', groceryList[i].checked);
         });
+    });
+    
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = parseInt(e.target.getAttribute('data-index'));
+            removeItem(index);
+        });
+    });
 
         document.querySelectorAll('.grocery-check').forEach(checkbox => {
             checkbox.addEventListener('change', function() {

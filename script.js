@@ -1136,9 +1136,6 @@ if (detailContainer) {
     loadObama();
 }
 
-renderDetails();
-
-
 /*
 ============================================================
 FEATURED RECIPE
@@ -1227,10 +1224,10 @@ DARK MODE
 Persists across page loads using localStorage
 
 CHANGED: added if (themeSwitch) guard so the script does not
-crash on pages where the button hasn't loaded yet.
+crash on pages where the button hasn't loaded yet
 Without this guard, themeSwitch.addEventListener on a null
 element throws an error that kills ALL listeners below it,
-which is why the seizure button was also broken.
+which is why the seizure button was also broken
 ============================================================
 */
 
@@ -1280,8 +1277,15 @@ CHANGED: added if (seizureSwitch) guard for same reason
 const seizureSwitch = document.getElementById('seizure-switch');
 
 if (seizureSwitch) {
+    // restore saved seizure mode on page load
+    if (localStorage.getItem('seizuremode') === 'active') {
+        document.body.classList.add('seizure-mode');
+        seizureSwitch.textContent = "Stop the Seizure!";
+    }
+
     seizureSwitch.addEventListener("click", function() {
         const isOn = document.body.classList.toggle('seizure-mode');
+        localStorage.setItem('seizuremode', isOn ? 'active' : null);
         seizureSwitch.textContent = isOn ? "Stop the Seizure!" : "Seizure Mode";
     });
 }

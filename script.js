@@ -837,7 +837,7 @@ function renderDetails() {
     const detailHTML = `
         <!-- recipe name + heart button side by side at the top -->
         <div style="display:flex; align-items:center; gap:12px; margin:10px;">
-            <h2 style="margin:0;">${recipe.name}</h2>
+            <h1 style="margin:0;">${recipe.name}</h1>
             <button class="heart-btn" data-card="${recipe.id}"
                     onclick="event.preventDefault();"
                     style="font-size:28px; position:static;"

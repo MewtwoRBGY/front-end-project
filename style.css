@@ -103,10 +103,25 @@ with screen smaller than 850pz + responsive
 
 */
 
+#featured-recipe {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
 #featured-recipe figure {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+}
+
+#featured-recipe figcaption {
+    color: var(--light-gold);
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    margin-top: 8px;
+    text-align: center;
 }
 
 h1 {
@@ -125,7 +140,8 @@ h2 {
     color: var(--light-gold)!important;               
     border: 4px solid var(--light-gold);    
     border-radius: 8px;                      
-    padding: 10px 20px;                     
+    padding: 10px 20px;   
+    margin-left: 10px;                  
     display: inline-block;                 
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
@@ -366,8 +382,8 @@ blockquote {
 
 .featuredlist {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    /*adjusts the column count for the recipe cards*/
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
     gap: 8px;
     padding: 20px;
     width: 100%;
@@ -493,8 +509,7 @@ blockquote {
     background-color: var(--toasted-almond);
     border: 2px solid var(--crimson-violet);
     border-radius: 8px;
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
     height: 300px;
     box-sizing: border-box;
     padding: 12px;
@@ -738,10 +753,7 @@ the breakpoints are:
         font-size: 14px;
         padding: 6px 10px;
     }
-    /*featured lists goes from 3 columns to 2 columns*/
-    .featuredlist {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
     .resultsgrid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -784,7 +796,7 @@ the breakpoints are:
 
 /*600px media query*/
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     /*navigation bar: reducing gaps so links don't go over each other*/
     nav ul {
         gap: 10px;
@@ -823,9 +835,7 @@ the breakpoints are:
         height: 120px;
         width: 120px;
     }
-    .featuredlist {
-        grid-template-columns: 1fr;
-    }
+ 
     .resultsgrid {
         grid-template-columns: 1fr;
     }

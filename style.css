@@ -139,6 +139,28 @@ with screen smaller than 850pz + responsive
     color: var(--crimson-violet);
 }
 
+#Add-To-List {
+    height: 35px;
+    width: 150px;
+    display: inline-flex;       
+    align-items: center;       
+    gap: 8px;                 
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    margin-left: 20px;
+    background-color: var(--crimson-violet);
+    color: var(--light-gold);
+    border: 2px solid var(--light-gold);
+    transition: background-color 0.3s ease;
+}
+
+#Add-To-List:hover {
+    background-color: var(--light-gold);
+    color: var(--crimson-violet);
+}
+
+
 .ingCheck {
     accent-color: var(--light-gold);
     scale: 2;
@@ -390,6 +412,7 @@ blockquote {
     flex-direction: column;
     gap: 10px;
     width: fit-content; 
+    height: fit-content;
     padding: 0;
 }
 
